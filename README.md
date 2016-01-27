@@ -21,7 +21,8 @@ Also pyreadline for tab completion:
 Now you are ready to install(pip works on both windows/nix machines):
 
     root$ python setup.py -s/--setup install 
-    root$ shellsploit
+    root$ chmod +x shellsploit
+    root$ ./shellsploit
 
 You dont want it anymore ? Uninstall it:
 
