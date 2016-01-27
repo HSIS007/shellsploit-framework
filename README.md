@@ -18,10 +18,10 @@ Also pyreadline for tab completion:
    	root$ sudo pip install readline
     
 
-Now you are ready to install(pip works on both windows/nix machines):
+Pip works on both windows/nix machines without problem.Now you are ready to install:
 
     root$ python setup.py -s/--setup install 
-    root$ chmod +x shellsploit
+    root$ chmod +x shellsploit (if you are using windows just pass this step)
     root$ ./shellsploit
 
 You dont want it anymore ? Uninstall it:
