@@ -45,7 +45,10 @@ def shellsploit():
 			shellsploit()
 
 		elif terminal[:14] == "show backdoors":
-			from core.help import mainhelp
+			#from core.help import mainhelp
+			from core.lists import backdoors
+			backdoors()
+			shellsploit()
 
 		elif terminal[:2] == "os":
 			from core.commands import oscommand
