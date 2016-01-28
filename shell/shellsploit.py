@@ -252,7 +252,7 @@ def shellsploit():
 
 
 		elif terminal[:4] == "exit":
-			exit("\nThanks for using shellsploit !\n")    
+			sys.exit("\nThanks for using shellsploit !\n")    
 
 		else:
 			if terminal == "":
@@ -260,16 +260,12 @@ def shellsploit():
 			else:
 				print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: %s" % terminal + bcolors.ENDC)
 				shellsploit()
-
-
+				
 
 	except(KeyboardInterrupt):
 		print("\n[*] (Ctrl + C ) Detected, Trying To Exit ...")
-		from sys import exit
-		exit()
+		sys.exit()
 	  
-
-
 def main():
 	import optparse 
 	parser = optparse.OptionParser()
