@@ -8,21 +8,29 @@
 
 import sys
 import re
+import codecs
+
+#In py3 not like py2, byte-like objects will fuck up your strings.So you must decode before use them ..
+
+
 
 
 def plaintext( string):
-	db = re.findall("..?", string.encode("hex"))
+	string = codecs.encode(str.encode(string), 'hex')
+	string = string.decode('utf-8')
+	db = re.findall("..?", string)
 	return "\\x"+"\\x".join(db)
 
 def plaintextreverse( string):
-	db = re.findall("..?", string.encode("hex"))
+	string = codecs.encode(str.encode(string), 'hex')
+	string = string.decode('utf-8')
+	db = re.findall("..?", string)
 	return "\\x"+"\\x".join(db[::-1])
 
 
 
 def PORT( port):
-	from convertoffset import decimaltohex
-	#I just want use my own libraries lol.
+	from .convertoffset import decimaltohex
 	db = []
 	fixmesempai = re.findall('..?', decimaltohex(str(port)))
 	for x in fixmesempai:
@@ -34,7 +42,7 @@ def PORT( port):
 
 
 def IP( ip):
-	from convertoffset import decimaltohex
+	from .convertoffset import decimaltohex
 	#0x101017f : 127.1.1.1
 	ip = str(ip).split(".")
 	db = []
@@ -51,7 +59,9 @@ def IP( ip):
 def rawSTR( string):
 	db = []
 	for x in string:
-		db.append("\\x"+x.encode("hex"))
+		first = codecs.encode(str.encode(x), 'hex')
+		x = x.decode('utf-8')
+		db.append("\\x"+x)
 	return "".join(db)
 
 
@@ -75,7 +85,8 @@ def ARMsplitter( hexdump, pushdword="None"):
 	if pushdword == "None":
 		fixmesempai = re.findall('....?', hexdump)
 		for x in fixmesempai[::-1]:
-			first = str(x[::-1].encode("hex"))
+			first = codecs.encode(str.encode(x[::-1]), 'hex')
+			first = first.decode('utf-8')
 			second = re.findall("..?", first)[::-1]
 			db.append("\\x"+"\\x".join(second))
 		return "".join(db)			
@@ -83,8 +94,13 @@ def ARMsplitter( hexdump, pushdword="None"):
 
 
 
-def stackconvertSTR( string):
+def stackconvertSTR( string, win=False):
 	db = []
+	if len(string) == 1:
+		string = codecs.encode(str.encode(string), 'hex')
+		string = string.decode('utf-8')
+		return r"\x6a"+r"\x"+string
+
 	if "/" in string:
 		if len(string) % 4 == 0:
 			string = string
@@ -101,10 +117,11 @@ def stackconvertSTR( string):
 		
 	#Linux_x86
 	#68 PUSH DWORD
- 	#6668 PUSH WORD
+	#6668 PUSH WORD
+	#6A PUSH BYTE
 	if len(string) == 4:
-
-		stack = "%s" % (string[::-1].encode('hex'))
+		first = codecs.encode(str.encode(string[::-1]), 'hex')
+		stack = first.decode('utf-8')
 		data = re.findall("..?", stack)
 		return "\\x68\\x"+"\\x".join(data)
 
@@ -112,16 +129,32 @@ def stackconvertSTR( string):
 	elif len(string) % 4 == 0:
 		for x in range(0,len(string),4):
 			db.append(splitter(string[x:x+4]))
-		return "".join(db) #Unix,Linux etc..
-		#return "".join(db[::-1]) #Windows
+		if win == True:
+			return "".join(db[::-1]) #Windows
+		else:
+			return "".join(db) #Unix,Linux etc..
+
+	elif 2 < len(string) < 4:
+		first = codecs.encode(str.encode(hexdump[::-1]), 'hex')
+		first = first.decode('utf-8')
+		second = re.findall("..?", first)[::-1]
+		for x in second:
+			db.append("\\x"+x)
+		return "\\x66\\x68"+"".join(db)
+
 
 	else:
 		db = []
-		dwordpart = string[0:(len(string)-len(string)%4)]
-		wordpart = string[(len(string)-len(string)%4):len(string)]
-		db.append(splitter( dwordpart))
-		db.append(splitter(  wordpart, "WordTime"))
-		return "".join(db)
+		for x in range(0,len(string),4):
+			if len(string[x:x+4]) == 4:
+				db.append(splitter(string[x:x+4]))
+			else:
+				db.append(splitter(string[x:x+4], "WordTime"))
+		if win == True:
+			return "".join(db[::-1]) #Windows
+		else:
+			return "".join(db) #Unix,Linux etc..)
+
 
 def filler( string, number):
 	string = [x for x in string]
@@ -137,15 +170,24 @@ def splitter( hexdump, pushdword="None"):
 	if pushdword == "None":
 		fixmesempai = re.findall('....?', hexdump)
 		for x in fixmesempai[::-1]:
-			first = str(x[::-1].encode("hex"))
+			first = codecs.encode(str.encode(x[::-1]), 'hex')
+			first = first.decode('utf-8')
 			second = re.findall("..?", first)[::-1]
 			db.append("\\x"+"\\x".join(second))
 		return "\\x68"+"".join(db)	
 				
 	else:		
-		first = str(hexdump[::-1].encode("hex"))
-		second = re.findall("..?", first)[::-1]
-		for x in second:
-			db.append("\\x"+x)
-		return "\\x66\\x68"+"".join(db)
+		#Byte ..
+		if len(hexdump) == 1:
+			string = codecs.encode(str.encode(hexdump), 'hex')
+			string = string.decode('utf-8')
+			return r"\x6a"+r"\x"+string
+		else:
+			first = codecs.encode(str.encode(hexdump[::-1]), 'hex')
+			first = first.decode('utf-8')
+			second = re.findall("..?", first)[::-1]
+			for x in second:
+				db.append("\\x"+x)
+			return "\\x66\\x68"+"".join(db)
+
 

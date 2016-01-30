@@ -9,8 +9,8 @@ def ExeFile( shellcode, OS=None):
 	if OS == None:
 		OS = detectOS()
 
-	from logger import logs
-	from Database.exedb import B3m
+	from .logger import logs
+	from .Database.exedb import B3m
 
 	#0 linux86
 	#1 linux64

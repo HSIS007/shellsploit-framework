@@ -36,7 +36,7 @@ class B3mB4m(object):
 		#Injectors
 		if string[:9] == "injectors":
 			if terminal[:4] == "help":
-				from core.help import injectorhelp
+				from .core.help import injectorhelp
 				injectorhelp()
 				self.control( string)
 
@@ -48,17 +48,17 @@ class B3mB4m(object):
 				exit()
 			
 			elif terminal[:4] == "pids":
-				from core.commands import pids
+				from .core.commands import pids
 				pids( "wholelist")
 				self.control( string)
 
 			elif terminal[:6] == "getpid":
-				from core.commands import pids
+				from .core.commands import pids
 				pids( None, terminal[7:])
 				self.control( string)
 
 			elif terminal[:5] == "clear":
-				from core.commands import clean
+				from .core.commands import clean
 				clean()
 				self.control( string)
 
@@ -69,12 +69,11 @@ class B3mB4m(object):
 					self.argvlist[0] = terminal[8:]
 				elif terminal[4:13] == "shellcode":
 					self.argvlist[1] = terminal[14:]
-				
 				else:
 					if terminal == "":
 						self.control( string)
 					else:
-						print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: %s" % terminal + bcolors.ENDC)
+						print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
 				self.control( string)
 
 
@@ -125,12 +124,12 @@ Module options ({0}):
 
 			elif terminal[:6] == "inject":
 				if string == "injectors/Linux":
-					from inject.menager import linux
+					from .inject.menager import linux
 					#print self.argvlist[1]
 					linux( self.argvlist[0], self.argvlist[1].replace('"', "").replace("\\x", ""))
 				
 				elif string == "injectors/Windows_x86":
-					from inject.menager import windows
+					from .inject.menager import windows
 					windows( self.argvlist[0], self.argvlist[1].replace("\\x", ""))
 				self.control( string)
 
@@ -138,7 +137,7 @@ Module options ({0}):
 				if terminal == "":
 					self.control( string)
 				else:
-					print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: %s" % terminal + bcolors.ENDC)
+					print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
 					self.control( string)
 
 
@@ -152,12 +151,12 @@ Module options ({0}):
 				#else:
 					#from core.help import shellcodehelp
 					#shellcodehelp()
-				from core.help import shellcodehelp
+				from .core.help import shellcodehelp
 				shellcodehelp()
 				self.control( string)
 			
 			elif terminal[:2] == "os":
-				from core.commands import oscommand
+				from .core.commands import oscommand
 				oscommand( terminal[3:])
 				self.control( string)
 
@@ -169,7 +168,7 @@ Module options ({0}):
 				exit()
 
 			elif terminal[:10] == "whatisthis":
-				from core.whatisthis import whatisthis
+				from .core.whatisthis import whatisthis
 				if "egg" in string:
 					message = "Egg-hunt"
 				elif "tcp" in string or "reverse" in string or "netcat" in string:
@@ -190,7 +189,7 @@ Module options ({0}):
 				#That's the rule !
 	
 			elif terminal[:3] == "set":
-				from core.lists import encoders
+				from .core.lists import encoders
 				#To control whether encoder in list ..
 
 
@@ -267,15 +266,15 @@ Module options ({0}):
 						self.argvlist[3] = terminal[9:]
 					else:
 						print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-				#elif string == "linux86/download&exec":
-					#if terminal[4:7] == "url":
-						#self.argvlist[2] = terminal[8:]
-					#elif terminal[4:11] == "encoder":
-						#self.argvlist[0] = terminal[12:]
-					#elif terminal[4:13] == "iteration":
-						#self.argvlist[1] = terminal[14:]
-					#else:
-						#print bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC									
+				elif string == "linux86/download&exec":
+					if terminal[4:7] == "url":
+						self.argvlist[2] = terminal[8:]
+					elif terminal[4:11] == "encoder":
+						self.argvlist[0] = terminal[12:]
+					elif terminal[4:13] == "iteration":
+						self.argvlist[1] = terminal[14:]
+					else:
+						print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)								
 				elif string == "linux86/exec":
 					if terminal[4:11] == "command":
 						self.argvlist[2] = terminal[12:]
@@ -551,7 +550,7 @@ Module options ({0}):
 				self.control( string)	
 
 			elif terminal[:12] == "show options":
-				from core.SHELLoptions import controlset
+				from .core.SHELLoptions import controlset
 				if string[:7] == "linux86":
 					if string == "linux86/read":
 						controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
@@ -561,8 +560,8 @@ Module options ({0}):
 						controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
 					elif string == "linux86/reverse_tcp":
 						controlset( string, self.argvlist[3], self.argvlist[2], self.argvlist[0], self.argvlist[1])
-					#elif string == "linux86/download&exec":
-						#controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
+					elif string == "linux86/download&exec":
+						controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
 					elif string == "linux86/exec":
 						controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
 					else:
@@ -685,7 +684,7 @@ Module options ({0}):
 					self.control( string)
 
 			elif terminal[:8] == "generate":
-				from database.generator import generator
+				from .database.generator import generator
 				if string[:7] == "linux86":
 					if string == "linux86/binsh_spawn":
 						self.disassembly = generator( "linux_x86", "bin_sh")
@@ -707,6 +706,20 @@ Module options ({0}):
 						if self.argvlist[2] == "None":
 							print ("\nLink must be declared.\n")
 							self.control( string)
+						elif "/" not in self.argvlist[2]:
+							print ("\nWrong url format example : 127.0.0.1/X\n") 
+							self.control( string)
+						elif len(self.argvlist[2].split("/")[-1]) != 1:
+							print ("\nYour filename must be one lenght ..\n")	
+							self.control( string)
+
+						if "http" in self.argvlist[2] or "https" in self.argvlist[2] or "www." in self.argvlist:
+							try:
+								edit = self.argvlist[2].replace("http://", "").replace("https://", "").replace("www.", "")
+								self.argvlist[2] = edit
+							except:
+								#Raise error ? Maybe ..
+								pass
 						self.disassembly = generator( "linux_x86", "download&exec", self.argvlist[2])
 
 
@@ -835,7 +848,7 @@ Module options ({0}):
 
 
 				if self.argvlist[0] == "x86/xor_b3m":
-					from encoders.xor_b3m import prestart
+					from .encoders.xor_b3m import prestart
 					if self.argvlist[1] == "None":
 						self.argvlist[1] = 1
 					elif self.argvlist[1] == 0:
@@ -843,7 +856,7 @@ Module options ({0}):
 					self.disassembly = prestart( self.disassembly.replace("\\x", ""), int(self.argvlist[1]))
 
 				elif self.argvlist[0] == "x86/xor":
-					from encoders.xor import prestart
+					from .encoders.xor import prestart
 					if self.argvlist[1] == "None":
 						self.argvlist[1] = 1
 					elif self.argvlist[1] == 0:
@@ -904,13 +917,13 @@ Module options ({0}):
 						OS = None
 					
 			
-					from Outputs.exe import ExeFile
+					from .Outputs.exe import ExeFile
 					ExeFile( self.disassembly, OS)
 					self.control( string)
 
 
 				elif terminal[7:10].lower() == "c++" or terminal[7:10].lower() == "cpp":
-					from Outputs.Cplusplus import CplusplusFile
+					from .Outputs.Cplusplus import CplusplusFile
 					if "windows" in string:
 						CplusplusFile( self.disassembly, True)
 					else:
@@ -918,36 +931,36 @@ Module options ({0}):
 				
 				elif terminal[7:8].lower() == "c":
 					if "windows" in string:
-						from Outputs.Cplusplus import CplusplusFile
+						from .Outputs.Cplusplus import CplusplusFile
 						CplusplusFile( self.disassembly, True)
 					else:
-						from Outputs.C import CFile
+						from .Outputs.C import CFile
 						CFile( self.disassembly)				
 
 				elif terminal[7:9].lower() == "py" or terminal[7:13].lower() == "python": 
-					from Outputs.python import PyFile
+					from .Outputs.python import PyFile
 					PyFile( self.disassembly)
 				
 				elif terminal[7:10].lower() == "txt":
-					from Outputs.txt import TxtFile
+					from .Outputs.txt import TxtFile
 					TxtFile( self.disassembly)	
 
 				else:
-					print (bcolors.RED + bcolors.BOLD + "[-] Unknown output type: %s" % terminal + bcolors.ENDC)
+					print (bcolors.RED + bcolors.BOLD + "[-] Unknown output type: {0}".format(terminal) + bcolors.ENDC)
 				self.control( string)					
 
 			elif terminal[:5] == "clear":
-				from core.commands import clean
+				from .core.commands import clean
 				clean()
 				self.control( string)
 
 			elif terminal[:2].lower() == "ip":
-				from core.commands import IP 
+				from .core.commands import IP 
 				IP()
 				self.control( string)
 
 			elif terminal[:13] == "show encoders":
-				from core.lists import encoderlist
+				from .core.lists import encoderlist
 				encoderlist()
 				self.control( string)
 
@@ -958,7 +971,7 @@ Module options ({0}):
 				else:
 					self.disassembly = self.disassembly.replace("\\x", "")
 					if "linux_mips" not in string or "linux_mips" not in string:
-						from disassembly.dis import disas
+						from .disassembly.dis import disas
 						#Thanks for capstone ! :)
 						try: 
 							if "64" in string:
@@ -970,7 +983,7 @@ Module options ({0}):
 						except TypeError:
 							print ("Disassembly failed.Please do not forget report.")
 					else:
-						from disassembly.dis2 import disasNOTintel
+						from .disassembly.dis2 import disasNOTintel
 						try:
 							print ("\n\n")
 							if "mips" in string:
@@ -989,5 +1002,5 @@ Module options ({0}):
 				if terminal == "":
 					self.control( string)
 				else:
-					print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: %s" % terminal + bcolors.ENDC)
+					print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
 					self.control( string)

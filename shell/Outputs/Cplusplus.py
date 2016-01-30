@@ -10,7 +10,7 @@ def CplusplusFile( shellcode, win=False):
 	if win == True:
 		db = """//Project : https://github.com/b3mb4m/Shellsploit
 //This file created with shellsploit ..
-//%s - %s
+//{0} - {1}
 //Compile : gcc shell.c -o shell.exe
 
 
@@ -22,7 +22,7 @@ def CplusplusFile( shellcode, win=False):
 		 
 int main(void)
 {
-	char *shellcode = "%s";
+	char *shellcode = "{2}";
 	DWORD why_must_this_variable;
 	BOOL ret = VirtualProtect (shellcode, strlen(shellcode),
 	PAGE_EXECUTE_READWRITE, &why_must_this_variable);
@@ -39,25 +39,25 @@ int main(void)
 
 
 
-		"""  % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+		""".format(time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
 
 	else:
 		db = """//Project : https://github.com/b3mb4m/Shellsploit
 //This file created with shellsploit ..
-//%s - %s
+//{0} - {1}
 //Compile : g++ -fno-stack-protector -z execstack shell.cpp -o shell
 
-unsigned char shellcode[] = "%s";
+unsigned char shellcode[] = "{2}";
 
 int main(){
 	int (*func)() = (int(*)())shellcode;   
 	func();
 }
 		  
-		""" % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+		""".format(time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
 
 
-	from logger import logs
+	from .logger import logs
 	logs( db, "cpp")
 
 

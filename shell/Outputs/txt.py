@@ -8,14 +8,14 @@
 
 def TxtFile( shellcode):
 	import time
-	db = """#Project : https://github.com/b3mb4m/Shellsploit
+	db = '''#Project : https://github.com/b3mb4m/Shellsploit
 #This file created with shellsploit ..
-#%s - %s
+#{0} - {1}
 
 
-%s
+{2}
  
-""" % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+'''.format(time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
 
-	from logger import logs
+	from .logger import logs
 	logs( db, "txt")

@@ -1,4 +1,4 @@
-from color import *
+from .color import *
 
 #Will be add command line params ..
 

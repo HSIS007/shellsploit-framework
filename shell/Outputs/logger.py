@@ -11,9 +11,9 @@ import os
 def logs(  data=None, extension=None):
 	while True:
 		if extension == None:
-			name = "%s" % str(randint(0, 999999999))
+			name = "{0}".format(str(randint(0, 999999999)))
 		else:
-			name = "%s.%s" % (str(randint(0, 999999999)),extension)
+			name = "{0}.{1}".format(str(randint(0, 999999999)),extension)
 
 		if not os.path.isfile(name):
 			break

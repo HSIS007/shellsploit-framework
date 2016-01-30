@@ -40,17 +40,17 @@ def shellsploit():
 			terminal = input(bash)
 
 		if terminal[:4] == "help":
-			from core.help import mainhelp
+			from .core.help import mainhelp
 			mainhelp()
 			shellsploit()
 
 		elif terminal[:14] == "show backdoors":
-			from core.backdoors import backdoorlist
+			from .core.backdoors import backdoorlist
 			backdoorlist()
 			shellsploit()
 
 		elif terminal[:2] == "os":
-			from core.commands import oscommand
+			from .core.commands import oscommand
 			oscommand( terminal[3:])
 			shellsploit()
 
@@ -78,9 +78,9 @@ def shellsploit():
 			elif terminal[4:len("linux86/exec")+4] == "linux86/exec":
 				B3mB4m().control( "linux86/exec")
 				shellsploit()
-			#elif terminal[4:len("linux86/download&exec")+4] == "linux86/download&exec":
-				#B3mB4m().control( "linux86/download&exec")
-				#shellsploit()
+			elif terminal[4:len("linux86/download&exec")+4] == "linux86/download&exec":
+				B3mB4m().control( "linux86/download&exec")
+				shellsploit()
 
 
 			elif terminal[4:len("linux64/read")+4] == "linux64/read":
@@ -236,17 +236,17 @@ def shellsploit():
 
 
 		elif terminal[:14] == "show injectors":
-			from core.lists import injectorlist
+			from .core.lists import injectorlist
 			injectorlist()
 			shellsploit()
 
 		elif terminal[:5] == "clear":
-			from core.commands import clean
+			from .core.commands import clean
 			clean()
 			shellsploit()
 
 		elif terminal[:12] == "show modules":
-			from core.shellcodes import shellcodelist
+			from .core.shellcodes import shellcodelist
 			shellcodelist()
 			shellsploit()    
 
@@ -260,12 +260,16 @@ def shellsploit():
 			else:
 				print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: %s" % terminal + bcolors.ENDC)
 				shellsploit()
-				
+
+
 
 	except(KeyboardInterrupt):
 		print("\n[*] (Ctrl + C ) Detected, Trying To Exit ...")
+		from sys import exit
 		sys.exit()
 	  
+
+
 def main():
 	import optparse 
 	parser = optparse.OptionParser()
@@ -279,11 +283,11 @@ def main():
 	
 
 	if options.list == "backdoors":
-		from core.backdoors import backdoorlist
+		from .core.backdoors import backdoorlist
 		backdoorlist( require=False)
 		
 	elif options.nc == "netcat" or options.nc == "nc":
-		from Session.netcat import nc
+		from .Session.netcat import nc
 		if options.port:
 			nc( PORT)
 		else:
@@ -291,9 +295,9 @@ def main():
 	else:
 		if options.payload:
 			if options.host and options.port:
-				from core.backdoors import backdoorlist
+				from .core.backdoors import backdoorlist
 				if options.payload in backdoorlist( require=True):
-					from Session.generator import process
+					from .Session.generator import process
 					if options.output:
 						process( options.payload, options.host, options.port, options.output)
 					else:
@@ -305,3 +309,6 @@ def main():
 				print ("\npython shellsploit  -p PAYLOAD --host IP --port P0RT\n")
 		else:
 			start()
+
+
+	

@@ -4,7 +4,7 @@
 #Project : https://github.com/b3mb4m/Shellsploit
 #LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
-from color import *
+from .color import *
 
 def shellcodelist():
 	print (bcolors.GREEN+"""

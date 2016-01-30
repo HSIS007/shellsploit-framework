@@ -1,5 +1,5 @@
 #https://en.wikipedia.org/wiki/Shellcode
-from color import *
+from .color import *
 
 
 def whatisthis( choice):

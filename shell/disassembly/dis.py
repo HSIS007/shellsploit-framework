@@ -9,7 +9,7 @@ def disas(shellcode, bits=32):
     store = "\n"    
     if bits == 32:
         control = ["AL", "AX", "EAX"]
-        from Syscalls import linux_32
+        from .Syscalls import linux_32
         from distorm3 import Decode,Decode32Bits
         disasm = Decode(0x0, shellcode, Decode32Bits)
         for x in disasm:
@@ -44,7 +44,7 @@ def disas(shellcode, bits=32):
 
     elif bits == 64:
         control = ["AL", "AX", "EAX", "RAX"]
-        from Syscalls import linux_64
+        from .Syscalls import linux_64
         from distorm3 import Decode,Decode64Bits
         disasm = Decode(0x0, shellcode, Decode64Bits)
         for x in disasm:    

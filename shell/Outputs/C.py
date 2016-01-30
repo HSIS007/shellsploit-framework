@@ -21,5 +21,5 @@ int main(void){
   
 """ % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
 
-	from logger import logs
+	from .logger import logs
 	logs( db, "c")
