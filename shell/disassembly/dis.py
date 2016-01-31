@@ -1,56 +1,45 @@
-#------------------Bombermans Team---------------------------------# 
-#Author  : B3mB4m
-#Concat  : b3mb4m@protonmail.com
-#Project : https://github.com/b3mb4m/Shellsploit
-#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
-#------------------------------------------------------------------#
+from capstone import *
+from binascii import hexlify
+
+
 
 def disas(shellcode, bits=32):
-    store = "\n"    
+    test = []
+    ARCH = {
+        'arm': CS_ARCH_ARM,
+        'arm64': CS_ARCH_ARM64,
+        'mips': CS_ARCH_MIPS,
+        'ppc': CS_ARCH_PPC,
+        'x86': CS_ARCH_X86,
+        'xcore': CS_ARCH_XCORE
+    }
+
+    MODE = {
+        '16': CS_MODE_16,
+        '32': CS_MODE_32,
+        '64': CS_MODE_64,
+        'arm': CS_MODE_ARM,
+        'be': CS_MODE_BIG_ENDIAN,
+        'le': CS_MODE_LITTLE_ENDIAN,
+        'micro': CS_MODE_MICRO,
+        'thumb': CS_MODE_THUMB
+    }
+
+
     if bits == 32:
-        control = ["AL", "AX", "EAX"]
-        from .Syscalls import linux_32
-        from distorm3 import Decode,Decode32Bits
-        disasm = Decode(0x0, shellcode, Decode32Bits)
-        for x in disasm:
-            if "PUSH" in x[2]:
-                if "0x" in x[2]:
-                    try:
-                        store += "\t0x%08x:\t %-20s %s ;%s\n" % (x[0],  x[3], x[2].lower(), x[2].split("0x")[1].decode("hex")[::-1])
-                    except TypeError:
-                        store += "\t0x%08x:\t %-20s %s ;%s\n" % (x[0],  x[3], x[2].lower(), x[2].split("0x")[1])
-                    continue
-           
-            elif "MOV" in x[2]:
-                if "0x" in x[2]:
-                    if control in x:
-                        continue
-                    else:
-                        try:
-                            i386 =  linux_32.call( str(int(x[2].split("0x")[1].decode("hex")[::-1],16)))   
-                            store += "\t0x%08x:\t %-20s %s ;%s\n" % (x[0],  x[3], x[2].lower(), i386)
-                        except:
-                            store += "\t0x%08x:\t %-20s %s\n" % (x[0],  x[3], x[2].lower())
-                            continue
-                        #continue        
-
-
-            if x == disasm[-1]:
-                store += "\t0x%08x:\t %-20s %s" % (x[0], x[3], x[2].lower())
-            else:
-                store += "\t0x%08x:\t %-20s %s\n" % (x[0], x[3], x[2].lower())
-
-        
-
+        md = Cs(CS_ARCH_X86, CS_MODE_32)
     elif bits == 64:
-        control = ["AL", "AX", "EAX", "RAX"]
-        from .Syscalls import linux_64
-        from distorm3 import Decode,Decode64Bits
-        disasm = Decode(0x0, shellcode, Decode64Bits)
-        for x in disasm:    
-            store += "\t0x%08x:\t %-20s\t %s\n" % (x[0], x[3], x[2].lower())
-    return store+"\n" 
+        md = Cs(CS_ARCH_X86, CS_MODE_64)
+
     
+    for i in md.disasm(shellcode, 0x10000000):
+        if len(i.mnemonic) <= 3:
+            db = "\t0x%x: %s\t\t%s\t\t%s" % (i.address, hexlify(i.bytes), i.mnemonic, i.op_str)
+        else:
+            db = "\t0x%x: %s\t%s\t%s" % (i.address, hexlify(i.bytes),  i.mnemonic, i.op_str)
+        test.append(db)
+    return "\n".join(test)
+
 
 
 

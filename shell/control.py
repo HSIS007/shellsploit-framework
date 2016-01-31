@@ -15,6 +15,7 @@ sys.path.append(name)
 from .core.color import *
 from re import findall
 from .core.Comp import tab
+from .core.shellcodeformat import prettyout
 
 
 tab.start()
@@ -78,7 +79,6 @@ class B3mB4m(object):
 
 
 			elif terminal[:12] == "show options":
-				#from inject.options import printer		
 				if self.argvlist[1] != "None":
 					self.mycache = "process"
 				if len(self.argvlist[0]) >= len(self.mycache):
@@ -126,12 +126,14 @@ Module options ({0}):
 				if string == "injectors/Linux":
 					from .inject.menager import linux
 					#print self.argvlist[1]
-					linux( self.argvlist[0], self.argvlist[1].replace('"', "").replace("\\x", ""))
+					linux( self.argvlist[0], self.argvlist[1])
 				
 				elif string == "injectors/Windows_x86":
 					from .inject.menager import windows
-					windows( self.argvlist[0], self.argvlist[1].replace("\\x", ""))
+					windows( self.argvlist[0], self.argvlist[1])
 				self.control( string)
+
+
 
 			else:
 				if terminal == "":
@@ -866,9 +868,9 @@ Module options ({0}):
 				else:
 					self.disassembly = self.disassembly	
 
-				#Error on too big iterations
+
 				#print "\n"+"Shellcode Lenght : %d" % len(str(bytearray(self.disassembly.replace("\\x", "").decode("hex"))))
-				print ("\n"+self.disassembly+"\n")
+				prettyout(self.disassembly)
 				self.control( string)
 
 

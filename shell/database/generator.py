@@ -9,7 +9,7 @@
 def generator( choose, shellcode, argv="None", argv2="None"):
 	if choose == "linux_x86":
 		if shellcode == "bin_sh":
-			from L.inux86.bin_shx86 import bin_shx86
+			from .Linux86.bin_shx86 import bin_shx86
 			return bin_shx86()
 
 		elif shellcode == "exec":

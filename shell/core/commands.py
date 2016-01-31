@@ -59,7 +59,7 @@ def pids( check=None, name=None):
 		print ("")
 		for p in process_iter():
 			try:
-				print ("\tPID: ",p.pid,"\t\t",p.name())
+				print ('\tPID: {0}  \t\t {1}'.format(p.pid,p.name()))
 			except:
 				pass
 		print ("")
@@ -71,7 +71,7 @@ def pids( check=None, name=None):
 			try:
 				if name.lower() in p.name().lower():
 					cache = True
-					print ("\tPID: ",p.pid,"\t\t",p.name())
+					print ('\tPID: {0}  \t\t {1}'.format(p.pid,p.name()))
 			except:
 				pass
 		print ("")
@@ -82,7 +82,7 @@ def pids( check=None, name=None):
 def oscommand( command):
 	from os import system
 	try:
-		print ()
+		print ("")
 		system( command)
 	except Exception as error:
 		return "Unexpected error : %s " % error
@@ -96,3 +96,4 @@ def web2ip( target):
 	except Exception as error:
 		return "Unexpected error : %s " % error
 
+print pids( "wholelist")

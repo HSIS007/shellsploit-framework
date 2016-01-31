@@ -1,4 +1,5 @@
 from capstone import *
+from binascii import hexlify
 
 def disasNOTintel(shellcode, choice,  bits=32):
     ARCH = {
@@ -37,10 +38,9 @@ def disasNOTintel(shellcode, choice,  bits=32):
     list = []
     for i in md.disasm(shellcode, 0x10000000):
         if len(i.mnemonic) <= 3:
-            db = "\t0x%x: %s\t\t%s" % (i.address, i.mnemonic, i.op_str)
-            #print("\t0x%x:\t%s\t\t%s" % (i.address, i.mnemonic, i.op_str))
+            db = "\t0x%x: %s\t\t%s\t\t%s" % (i.address, hexlify(i.bytes), i.mnemonic, i.op_str)
         else:
-            db = "\t0x%x: %s\t%s" % (i.address, i.mnemonic, i.op_str)
-            #print("\t0x%x:\t%s\t%s" % (i.address, i.mnemonic, i.op_str))
+            db = "\t0x%x: %s\t%s\t  %s" % (i.address, hexlify(i.bytes),  i.mnemonic, i.op_str)
         list.append(db)
     return "\n".join(list)
+
