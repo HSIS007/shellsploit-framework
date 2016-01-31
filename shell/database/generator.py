@@ -34,13 +34,13 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 
 		elif shellcode == "tcp_bind":
 			from .Linux86.tcp_bindx86 import tcp_bindx86
-			from .database.stackconvert import PORT
+			from .stackconvert import PORT
 			return tcp_bindx86(  PORT(argv))
 
 		elif shellcode == "reverse_tcp":
 			from .Linux86.reverse_tcpx86 import reverse_tcpx86
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcpx86( IP(argv), PORT(argv2))
 
 	elif choose == "linux_x64":
@@ -50,18 +50,18 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 
 		elif shellcode == "tcp_bind":
 			from .Linux64.tcp_bindx64 import tcp_bindx64
-			from .database.stackconvert import PORT
+			from .stackconvert import PORT
 			return tcp_bindx64( PORT(argv))
 
 		elif shellcode == "reverse_tcp":
 			from .Linux64.reverse_tcpx64 import reverse_tcpx64
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcpx64( IP(argv), PORT(argv2))
 		
 		elif shellcode == "read":
 			from .Linux64.readfilex64 import readx64
-			from .database.stackconvert import plaintext
+			from .stackconvert import plaintext
 			return readx64( plaintext(argv))
 
 
@@ -77,8 +77,8 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 		elif shellcode == "read":
 			from .Linux86.readfilex86 import readx86
 			from .Linux64.readfilex64 import readx64
-			from .database.stackconvert import stackconvertSTR
-			from .database.stackconvert import plaintext
+			from .stackconvert import stackconvertSTR
+			from .stackconvert import plaintext
 			value = hex(len(readx86( stackconvertSTR(argv)).split("\\x"))-1)[2:]
 			value = "\\x{0}".format(value)
 			return merlin( value)+readx86( stackconvertSTR(argv))+readx64( plaintext(argv))
@@ -86,8 +86,8 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 		elif shellcode == "reverse_tcp":
 			from .Linux64.reverse_tcpx64 import reverse_tcpx64
 			from .Linux86.reverse_tcpx86 import reverse_tcpx86
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			value = hex(len(reverse_tcpx86( IP(argv), PORT(argv2)).split("\\x"))-1)[2:]
 			value = "\\x{0}".format(value)
 			return merlin( value)+reverse_tcpx86( IP(argv), PORT(argv2))+reverse_tcpx64( IP(argv), PORT(argv2))
@@ -95,7 +95,7 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 		elif shellcode == "tcp_bind":
 			from .Linux64.tcp_bindx64 import tcp_bindx64
 			from .Linux86.tcp_bindx86 import tcp_bindx86
-			from .database.stackconvert import PORT
+			from .stackconvert import PORT
 			value = hex(len(tcp_bindx86( PORT(argv)).split("\\x"))-1)[2:]
 			value = "\\x{0}".format(value)
 			return merlin( value)+tcp_bindx86(  PORT(argv))+tcp_bindx64( PORT(argv))
@@ -106,7 +106,7 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 	elif choose == "osx86":
 		if shellcode == "tcp_bind":
 			from .OSX86.tcp_bind import tcp_bind
-			from .database.stackconvert import PORT
+			from .stackconvert import PORT
 			return tcp_bind( PORT(argv))
 
 		elif shellcode == "bin_sh":
@@ -115,8 +115,8 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 
 		elif shellcode == "reverse_tcp":
 			from .OSX86.reverse_tcp import reverse_tcp
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp( IP(argv), PORT(argv2))
 
 	elif choose == "osx64":
@@ -126,13 +126,13 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 		
 		elif shellcode == "reverse_tcp":
 			from .OSX64.reverse_tcp import reverse_tcp
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp( IP(argv), PORT(argv2))
 		
 		elif shellcode == "tcp_bind":
 			from .OSX64.tcp_bind import tcp_bind
-			from .database.stackconvert import PORT
+			from .stackconvert import PORT
 			return tcp_bind( PORT(argv))
 
 	elif choose == "freebsd_x86":
@@ -143,21 +143,21 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 
 		elif shellcode == "read":
 			from .FreeBSDx86.read import read
-			from .database.plaintext import plaintext
+			from .plaintext import plaintext
 			return read(plaintext(argv))
 
 
 		elif shellcode == "reverse_tcp":
 			from .FreeBSDx86.reverse_tcp import reverse_tcp
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp( IP(argv2), PORT(argv))
 		
 
 		elif shellcode == "reverse_tcp2":
 			from .FreeBSDx86.reverse_tcp2 import reverse_tcp2
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp2( IP(argv2), PORT(argv))
 		
 		elif shellcode == "tcp_bind":
@@ -170,7 +170,7 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 
 		elif shellcode == "exec":
 			from .FreeBSDx86.execc import execc
-			from .database.plaintext import plaintext
+			from .plaintext import plaintext
 			command = '/bin/sh -c {0}'.format(argv)
 			return execc(plaintext(argv))
 		
@@ -185,21 +185,21 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 
 
 		elif shellcode == "tcp_bind":
-			from .database.stackconvert import plaintext
-			from .database.stackconvert import PORT
+			from .stackconvert import plaintext
+			from .stackconvert import PORT
 			from .FreeBSDx64.tcp_bind import tcp_bind
 			return tcp_bind( PORT(argv), plaintext(argv2))	
 
 		elif shellcode == "reverse_tcp":
 			from .FreeBSDx64.reverse_tcp import reverse_tcp
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp( IP(argv), PORT(argv2))	
 
 	elif choose == "linux_arm":
 		if shellcode == "chmod":
 			from .LinuxARM.chmod import chmod
-			from .database.stackconvert import plaintext
+			from .stackconvert import plaintext
 			if argv == "None":
 				return "FILE PATH must be declared."
 			else:
@@ -215,15 +215,15 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 
 		elif shellcode == "reverse_tcp":
 			from .LinuxARM.reverse_tcp import reverse_tcp
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp( IP(argv2), PORT(argv))
 
 	elif choose == "linux_mips":
 		if shellcode == "reverse_tcp":
 			from .LinuxMIPS.reverse_tcp import reverse_tcp
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp( IP(argv), PORT(argv2))
 
 		elif shellcode == "bin_sh":
@@ -231,44 +231,49 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 			return bin_sh()
 		elif shellcode == "chmod": 	
 			from .LinuxMIPS.chmod import chmod
-			from .database.stackconvert import plaintext
+			from .stackconvert import plaintext
 			return chmod( plaintext(argv))
 
 		elif shellcode == "tcp_bind":
 			from .LinuxMIPS.tcp_bind import tcp_bind
-			from .database.stackconvert import PORT
+			from .stackconvert import PORT
 			return tcp_bind( PORT(argv))
 
 	elif choose == "windows":
 		if shellcode == "messagebox":
 			from .Windows import messagebox
-			from .database.stackconvert import stackconvertSTR
-			return messagebox.messagebox( stackconvertSTR(argv, True))
+			from .stackconvert import stackconvertSTR
+			if argv == "None":
+				return messagebox.messagebox( False)
+			else:
+				return messagebox.messagebox( stackconvertSTR(argv, True))
 
 		elif shellcode == "downloandandexecute":
 			from .Windows import downloadandexecute
-			from .database.stackconvert import rawSTR
-			from .database.stackconvert import stackconvertSTR
+			from .stackconvert import rawSTR
+			from .stackconvert import stackconvertSTR
 			return downloadandexecute.downANDexecute( rawSTR(argv), stackconvertSTR(argv2, True))
 		
 		elif shellcode == "exec":
-			from .Windows import execc
-			return execc.WinExec(argv)
+			from .Windows.execc import WinExec
+			return WinExec(argv)
 
 	elif choose == "solarisx86":	
 		if shellcode == "read":
 			from .Solarisx86.read import read
-			from .database.plaintext import plaintext
+			from .plaintext import plaintext
 			return read( plaintext(argv))	
 		elif shellcode == "reverse_tcp":
 			from .Solarisx86.reverse_tcp import reverse_tcp
-			from .database.stackconvert import IP
-			from .database.stackconvert import PORT
+			from .stackconvert import IP
+			from .stackconvert import PORT
 			return reverse_tcp( IP(argv2), PORT(argv))
 		elif shellcode == "bin_sh":
 			from .Solarisx86.bin_sh import bin_sh
 			return bin_sh()
 		elif shellcode == "tcp_bind":
 			from .Solarisx86.tcp_bind import tcp_bind
-			from .database.stackconvert import PORT
+			from .stackconvert import PORT
 			return tcp_bind( PORT(argv))
+
+

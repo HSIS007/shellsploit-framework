@@ -1,8 +1,7 @@
 import re
-import codecs
 
 def prettyout( shellcode):
-	data = codecs.encode(str.encode(shellcode.replace(r"\x", "")), 'hex')
+	data = shellcode.replace("\\x", "")
 	db = []
 	print ("\n")
 	for x in [data[x:x+40] for x in range(0, len(data), 40)]:
@@ -12,3 +11,4 @@ def prettyout( shellcode):
 		else:
 			print ('\t"\\x'+"\\x".join(db)+'"'+' +')
 	print ("\n")
+	

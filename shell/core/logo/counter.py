@@ -1,10 +1,3 @@
-#------------------Bombermans Team---------------------------------# 
-#Author  : B3mB4m
-#Concat  : b3mb4m@protonmail.com
-#Project : https://github.com/b3mb4m/Shellsploit
-#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
-#------------------------------------------------------------------#
-
 import os
 from sys import platform
  
@@ -12,7 +5,6 @@ class B3mB4mLogo(object):
 	def __init__(self):
 		self.db = ["database", "OS", "encoders", "inject"]
 		self.ret = []
-		#self.magic = os.sep.join((os.getcwd()).split(os.sep)[:len((os.getcwd()).split(os.sep))-1])
 		self.magic = os.getcwd()+os.sep+"shell"
 		if 'win' not in platform.lower():
 			self.magic = '/usr/share/shellsploit/'+os.sep
@@ -43,5 +35,3 @@ class B3mB4mLogo(object):
 			else:
 				self.ret.append( self.calculate( "database", False))
 		return self.ret
-
-

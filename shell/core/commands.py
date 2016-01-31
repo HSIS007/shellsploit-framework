@@ -96,4 +96,3 @@ def web2ip( target):
 	except Exception as error:
 		return "Unexpected error : %s " % error
 
-print pids( "wholelist")

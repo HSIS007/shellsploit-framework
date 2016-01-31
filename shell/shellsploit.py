@@ -222,12 +222,17 @@ def shellsploit():
 				shellsploit()    
 		 
 
-			elif terminal[4:len("injectors/Windows_x86")+4] == "injectors/Windows_x86":
-				B3mB4m().control( "injectors/Windows_x86")
+
+			elif terminal[4:len("injectors/Windows/byteman")+4] == "injectors/Windows/byteman":
+				B3mB4m().control( "injectors/Windows/byteman")
 				shellsploit()
-			elif terminal[4:len("injectors/Linux")+4] == "injectors/Linux":
-				B3mB4m().control( "injectors/Linux")
+			elif terminal[4:len("injectors/Linux/ptrace")+4] == "injectors/Linux/ptrace":
+				B3mB4m().control( "injectors/Linux/ptrace")
 				shellsploit()    
+			elif terminal[4:len("injectors/Windowsx86/Codecave")+4] == "injectors/Windowsx86/Codecave":
+				B3mB4m().control( "injectors/Windowsx86/Codecave")
+				shellsploit()    
+
 
 
 			else:

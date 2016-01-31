@@ -199,6 +199,35 @@ Module options ({0}):
 	""".format(choice,argv3,argv4,argv2,argv1))
 
 
+		elif choice == "linux86/download&exec":
+			#Temporary settings ..
+			if len(argv1) >= len(argv2):
+				if len(argv1) == 0:
+					padd = 8
+				elif len(argv1) == 1:
+					padd = 8
+				elif len(argv1) == 2:
+					padd = 8
+				else:
+					padd = len(argv1)+5
+			else:
+				padd = len(argv2)+5
+
+			print (bcolors.GREEN+"""
+Module options ({0}):
+
+\tName\t\t{1}\t\tRequired\tDescription
+\t----\t\t{2}\t\t--------\t-----------
+\turl\t\t{3}\t\tyes\t\tFile name&path
+\tencoder\t\t{4}\t\tno\t\tEncoder type	
+\titeration\t{5}\t\tno\t\tIteration times
+""".format(choice,"Current Setting".ljust(padd),"---------------".ljust(padd),
+	argv1.ljust(padd),argv2.ljust(padd),argv3.ljust(padd)))
+
+
+
+
+
 		#Will be change
 		elif choice == "freebsd_x64/tcp_bind":
 			print (bcolors.GREEN+"""

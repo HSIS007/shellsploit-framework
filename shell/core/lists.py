@@ -28,10 +28,10 @@ Encoders
 
 def injectorlist():
 	print ("""
-\tArchitecture\t\t\tVersion
-\t============\t\t\t=======
-\t[+] injectors/Linux\t\t(x86/x64)
-\t[+] injectors/Windows_x86\t(x86)
+\tArchitecture\t\t\t\tVersion
+\t============\t\t\t\t=======
+\t[+] injectors/Linux/ptrace\t\t(x86/x64)
+\t[+] injectors/Windows/byteman\t\t(x86)
 	""")
 
 def OSlist():
@@ -59,12 +59,12 @@ def encoders():
   	list = [
   	"x64/xor",
 	"x86/xor",
-	"x86/add_sub",
-	"x86/alpha_mixed",
-	"x86/alpha_upper",
-	"x86/countdown",
-	"x86/nonalpha",
-	"x86/nonupper",
+	#"x86/add_sub",
+	#"x86/alpha_mixed",
+	#"x86/alpha_upper",
+	#"x86/countdown",
+	#"x86/nonalpha",
+	#"x86/nonupper",
 	"x86/xor_b3m",
   	]
   	return list

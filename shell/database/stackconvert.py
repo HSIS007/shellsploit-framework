@@ -30,7 +30,7 @@ def plaintextreverse( string):
 
 
 def PORT( port):
-	from .convertoffset import decimaltohex
+	from convertoffset import decimaltohex
 	db = []
 	fixmesempai = re.findall('..?', decimaltohex(str(port)))
 	for x in fixmesempai:
@@ -42,7 +42,7 @@ def PORT( port):
 
 
 def IP( ip):
-	from .convertoffset import decimaltohex
+	from convertoffset import decimaltohex
 	#0x101017f : 127.1.1.1
 	ip = str(ip).split(".")
 	db = []

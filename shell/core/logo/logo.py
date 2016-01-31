@@ -30,6 +30,23 @@ def banner( num1,num2,num3,num4):
                          |_|     
 """,
 """
+  ____   ___                ___ ___                    ___                       
+ 6MMMMb\ `MM                `MM `MM                    `MM           68b         
+6M'    `  MM                 MM  MM                     MM           Y89   /     
+MM        MM  __     ____    MM  MM   ____   __ ____    MM   _____   ___  /M     
+YM.       MM 6MMb   6MMMMb   MM  MM  6MMMMb\ `M6MMMMb   MM  6MMMMMb  `MM /MMMMM  
+ YMMMMb   MMM9 `Mb 6M'  `Mb  MM  MM MM'    `  MM'  `Mb  MM 6M'   `Mb  MM  MM     
+     `Mb  MM'   MM MM    MM  MM  MM YM.       MM    MM  MM MM     MM  MM  MM     
+      MM  MM    MM MMMMMMMM  MM  MM  YMMMMb   MM    MM  MM MM     MM  MM  MM     
+      MM  MM    MM MM        MM  MM      `Mb  MM    MM  MM MM     MM  MM  MM     
+L    ,M9  MM    MM YM    d9  MM  MM L    ,MM  MM.  ,M9  MM YM.   ,M9  MM  YM.  , 
+MYMMMM9  _MM_  _MM_ YMMMM9  _MM__MM_MYMMMM9   MMYMMM9  _MM_ YMMMMM9  _MM_  YMMM9 
+                                              MM                                 
+                                              MM                                 
+                                             _MM_          
+""",
+
+"""
   >=>>=>                       >=>  >=>           >=>                  >=>   
 >=>    >=> >=>                 >=>  >=>           >=>             >>   >=>   
  >=>       >=>        >==>     >=>  >=> >=> >=>   >=>    >=>         >=>>==> 
@@ -46,30 +63,6 @@ def banner( num1,num2,num3,num4):
   `Y8b. 88~~~88 88~~~~~ 88      88      88~~~   88      88    88    88       88    
 db   8D 88   88 88.     88booo. 88booo. 88      88booo. `8b  d8'   .88.      88    
 `8888Y' YP   YP Y88888P Y88888P Y88888P 88      Y88888P  `Y88P'  Y888888P    YP                                                                             
-""",
-"""
-   _____ _              .    .           .             .   
-  (      /        ___   |    |   \,___,  |     __.  ` _/_  
-   `--.  |,---. .'   `  |    |   |    \  |   .'   \ |  |   
-      |  |'   ` |----'  |    |   |    |  |   |    | |  |   
- \___.'  /    | `.___, /\__ /\__ |`---' /\__  `._.' /  \__/
-                                 \                         
-""",
-"""
-/ __)( )_( )( ___)(  )  (  )  (  _ \(  )  (  _  )(_  _)(_  _)
-\__ \ ) _ (  )__)  )(__  )(__  )___/ )(__  )(_)(  _)(_   )(  
-(___/(_) (_)(____)(____)(____)(__)  (____)(_____)(____) (__) 
-
-""",
-"""
-  O)) O)                     O)) O))         O))               O))  
-O))    O))O))                O)) O))         O))           O)  O))  
- O))      O))        O))     O)) O))O) O))   O))   O))       O)O) O)
-   O))    O) O)    O)   O))  O)) O))O)  O))  O)) O))  O)) O))  O))  
-      O)) O))  O))O))))) O)) O)) O))O)   O)) O))O))    O))O))  O))  
-O))    O))O)   O))O)         O)) O))O)) O))  O)) O))  O)) O))  O))  
-  O)) O)  O))  O))  O))))   O)))O)))O))     O)))   O))    O))   O)) 
-                                    O))                             
 """,
 """
  .d8888b.  888               888 888          888          d8b 888    

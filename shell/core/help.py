@@ -5,7 +5,7 @@
 #LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
 
-from color import *
+from .color import *
 
 def mainhelp():
 	print (bcolors.GREEN+"""
@@ -54,4 +54,7 @@ Injector  Commands
 	os  			Command directly ur computer
 	pids			Get PID list of computer
 	getpid			Get specific PID on list(Ex. getpid Python)
+	inject 			Start injector
+	show options		Show current options of selected module
+	show shellcode 		Show current shellcode of selected module
 """)

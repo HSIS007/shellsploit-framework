@@ -45,8 +45,7 @@ class B3mB4m(object):
 				pass
 
 			elif terminal[:4] == "exit":
-				from sys import exit
-				exit()
+				sys.exit("\nThanks for using shellsploit !\n")    
 			
 			elif terminal[:4] == "pids":
 				from .core.commands import pids
@@ -69,13 +68,31 @@ class B3mB4m(object):
 				if terminal[4:7] == "pid":
 					self.argvlist[0] = terminal[8:]
 				elif terminal[4:13] == "shellcode":
-					self.argvlist[1] = terminal[14:]
+					if ".txt" in terminal[14:]:
+						with open(terminal[14:], "r") as shellcode:
+							cache = shellcode.readlines()	
+							db = ""
+							for x in database:
+								db += x.strip().replace('"', "").replace('+', "").strip()
+							self.argvlist[1] = db
+					else:
+						self.argvlist[1] = terminal[14:]
+					
 				else:
 					if terminal == "":
 						self.control( string)
 					else:
 						print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
 				self.control( string)
+
+
+			elif terminal[:14] == "show shellcode":
+				if self.argvlist[1] != "None":
+					prettyout(self.argvlist[1])
+				else:
+					print ("\nYou must set shellcode before this ..\b")
+				self.control( string)
+
 
 
 			elif terminal[:12] == "show options":
@@ -98,37 +115,34 @@ Module options ({0}):
 
 \tName\t\t{1}\t\tRequired\tDescription
 \t----\t\t{2}\t\t--------\t-----------
-\tPID\t\t{3}\t\tno\t\tEncoder		
-\tShellcode\t{4}\t\tno\t\tEncoder
-""".format(string,"Current Setting".ljust(padd),"---------------".ljust(padd),self.argvlist[0].ljust(padd),self.mycache.ljust(padd)+bcolors.ENDC))
+\tpid\t\t{3}\t\tno\t\tProcess ID
+\tshellcode\t{4}\t\tno\t\tInject Bytes
+""".format(string,"Current Setting".ljust(padd),"---------------".ljust(padd),
+	self.argvlist[0].ljust(padd),self.mycache.ljust(padd)))
+				
 				self.control( string)
 
 			
-			#elif terminal[:5] == "disas":
-			#	from disassembly.dis import disas
-			#	self.disassembly = self.disassembly.replace("\\x", "")
-
-			#	try:
-			#		if "64" in string:
-			#			print disas( str(bytearray(self.disassembly.decode("hex"))), 64)
-			#		elif "86" in string:
-			#			print disas( str(bytearray(self.disassembly.decode("hex"))), 32)
-			#		else: 
-			#			print disas( str(bytearray(self.disassembly.decode("hex"))), 32)
-			#	except TypeError:
-			#		print "Disassembly failed.Please do not forget report."
-
-			#	self.control( string)
+			elif terminal[:5] == "disas":
+				from .disassembly.dis import disas
+				try: 
+					if "64" in string:
+						print (disas( str(bytearray(self.disassembly.decode("hex"))), 64))
+					elif "86" in string:
+						print (disas( str(bytearray(self.disassembly.decode("hex"))), 32))
+					else: 
+						print (disas( str(bytearray(self.disassembly.decode("hex"))), 32))
+				except TypeError:
+					print ("Disassembly failed.Please do not forget report.")
+				self.control( string)
 				
 
 
 			elif terminal[:6] == "inject":
-				if string == "injectors/Linux":
+				if string == "injectors/Linux/ptrace":
 					from .inject.menager import linux
-					#print self.argvlist[1]
 					linux( self.argvlist[0], self.argvlist[1])
-				
-				elif string == "injectors/Windows_x86":
+				elif string == "injectors/Windows/byteman":
 					from .inject.menager import windows
 					windows( self.argvlist[0], self.argvlist[1])
 				self.control( string)
