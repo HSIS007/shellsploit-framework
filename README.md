@@ -20,7 +20,7 @@ Also pyreadline for tab completion:
 
 Pip works on both windows/nix machines without problem. Now you are ready to install:
 
-    root$ python setup.py -s/--setup install 
+    root$ python setup.py -s/--setup install --user
     root$ chmod +x shellsploit (if you are using windows just pass this step)
     root$ ./shellsploit
 
@@ -85,5 +85,7 @@ Don't want it anymore? Uninstall it:
 #Screenshots
 -------------
 
+![alt tag](http://i.hizliresim.com/rZojmM.png)
+![alt tag](http://i.hizliresim.com/7MrYVv.png)
 ![alt tag](http://i.hizliresim.com/W18pL2.png)
 ![alt tag](http://i.hizliresim.com/pBMNO0.png)
