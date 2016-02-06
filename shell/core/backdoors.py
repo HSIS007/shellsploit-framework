@@ -1,25 +1,25 @@
 from .color import *
 
-#Will be add command line params ..
+
 
 def backdoorlist( require=False):
 	if require != False:
 		data = [
-		"linux/x86/reverse_tcp",
-		"linux/x64/reverse_tcp",
-		"osx/x86/reverse_tcp",
-		"osx/x64/reverse_tcp",
-		"windows/x86/reverse_tcp",
+		"backdoors/linux86/reverse_tcp",
+		"backdoors/linux64/reverse_tcp",
+		"backdoors/osx86/reverse_tcp",
+		"backdoors/osx64/reverse_tcp",
+		"backdoors/windows/x86/reverse_tcp",
 
-		"php/reverse_tcp",
-		"asp/reverse_tcp",
-		"jsp/reverse_tcp",
-		"war/reverse_tcp",
+		"backdoors/php/reverse_tcp",
+		"backdoors/asp/reverse_tcp",
+		"backdoors/jsp/reverse_tcp",
+		"backdoors/war/reverse_tcp",
 
-		"unix/python/reverse_tcp",
-		"unix/perl/reverse_tcp",
-		"unix/bash/reverse_tcp",
-		"unix/ruby/reverse_tcp",
+		"backdoors/unix/python/reverse_tcp",
+		"backdoors/unix/perl/reverse_tcp",
+		"backdoors/unix/bash/reverse_tcp",
+		"backdoors/unix/ruby/reverse_tcp",
 		]
 		return data
 	else:
@@ -28,27 +28,27 @@ def backdoorlist( require=False):
 Binaries
 ==========
 
-  linux/x86/reverse_tcp
-  linux/x64/reverse_tcp
-  osx/x86/reverse_tcp
-  windows/x86/reverse_tcp - [Passive]
-  windows/x64/reverse_tcp - [Passive]
+  backdoors/linux86/reverse_tcp
+  backdoors/linux64/reverse_tcp
+  backdoors/osx86/reverse_tcp
+  backdoors/windowsx86/reverse_tcp - [Passive]
+  backdoors/windowsx64/reverse_tcp - [Passive]
 
 Web Payloads 
 =============
 
-  php/reverse_tcp - [Passive]
-  asp/reverse_tcp - [Passive]
-  jsp/reverse_tcp - [Passive]
-  war/reverse_tcp - [Passive]
+  backdoors/php/reverse_tcp - [Passive]
+  backdoors/asp/reverse_tcp - [Passive]
+  backdoors/jsp/reverse_tcp - [Passive]
+  backdoors/war/reverse_tcp - [Passive]
 
 Scripting Payloads
 ===================
 
-  unix/python/reverse_tcp
-  unix/perl/reverse_tcp
-  unix/bash/reverse_tcp
-  unix/ruby/reverse_tcp
+  backdoors/unix/python/reverse_tcp
+  backdoors/unix/perl/reverse_tcp
+  backdoors/unix/bash/reverse_tcp
+  backdoors/unix/ruby/reverse_tcp
 
 
 	""" + bcolors.ENDC)

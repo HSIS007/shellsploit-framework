@@ -25,7 +25,7 @@ from .core.Comp import tab
 tab.start(1)
 db = B3mB4mLogo().start()
 def start():
-	print (banner( "47", "", "2", "0"))
+	print (banner( "47", "", "2", "2"))
 	shellsploit()
 
 def shellsploit():
@@ -235,7 +235,53 @@ def shellsploit():
 				#B3mB4m().control( "injectors/Windowsx86/Codecave")
 				#shellsploit()    
 
+			
+			elif terminal[4:len("backdoors/linux86/reverse_tcp")+4] == "backdoors/linux86/reverse_tcp":
+				B3mB4m().control( "backdoors/linux86/reverse_tcp")
+				shellsploit()   
+			elif terminal[4:len("backdoors/linux64/reverse_tcp")+4] == "backdoors/linux64/reverse_tcp":
+				B3mB4m().control( "backdoors/linux64/reverse_tcp")
+				shellsploit() 
+			elif terminal[4:len("backdoors/osx86/reverse_tcp")+4] == "backdoors/osx86/reverse_tcp":
+				B3mB4m().control( "backdoors/osx86/reverse_tcp")
+				shellsploit() 	
+			#elif terminal[4:len("backdoors/windowsx86/reverse_tcp")+4] == "backdoors/windowsx86/reverse_tcp":
+				#B3mB4m().control( "backdoors/windowsx86/reverse_tcp")
+				#shellsploit() 		
+			#elif terminal[4:len("backdoors/windowsx64/reverse_tcp")+4] == "backdoors/windowsx64/reverse_tcp":
+				#B3mB4m().control( "backdoors/windowsx64/reverse_tcp")
+				#shellsploit() 		
 
+			#elif terminal[4:len("backdoors/php/reverse_tcp")+4] == "backdoors/php/reverse_tcp":
+				#B3mB4m().control( "backdoors/php/reverse_tcp")
+				#shellsploit() 		
+			#elif terminal[4:len("backdoors/asp/reverse_tcp")+4] == "backdoors/asp/reverse_tcp":
+				#B3mB4m().control( "asp/reverse_tcp")
+				#shellsploit() 		
+			#elif terminal[4:len("backdoors/jsp/reverse_tcp")+4] == "backdoors/jsp/reverse_tcp":
+				#B3mB4m().control( "backdoors/jsp/reverse_tcp")
+				#shellsploit() 		
+			#elif terminal[4:len("backdoors/war/reverse_tcp")+4] == "backdoors/war/reverse_tcp":
+				#B3mB4m().control( "backdoors/war/reverse_tcp")
+				#shellsploit() 		
+
+			elif terminal[4:len("backdoors/unix/python/reverse_tcp")+4] == "backdoors/unix/python/reverse_tcp":
+				B3mB4m().control( "backdoors/unix/python/reverse_tcp")
+				shellsploit() 			
+			elif terminal[4:len("backdoors/unix/perl/reverse_tcp")+4] == "backdoors/unix/perl/reverse_tcp":
+				B3mB4m().control( "backdoors/unix/perl/reverse_tcp")
+				shellsploit() 		
+			elif terminal[4:len("backdoors/unix/bash/reverse_tcp")+4] == "backdoors/unix/bash/reverse_tcp":
+				B3mB4m().control( "backdoors/unix/bash/reverse_tcp")
+				shellsploit() 		
+			elif terminal[4:len("backdoors/unix/ruby/reverse_tcp")+4] == "backdoors/unix/ruby/reverse_tcp":
+				B3mB4m().control( "backdoors/unix/ruby/reverse_tcp")
+				shellsploit() 			
+
+		 	
+		  	
+		  	
+		  	
 
 			else:
 				print ("\nModule not avaible !\n")

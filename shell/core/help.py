@@ -56,5 +56,21 @@ Injector  Commands
 	getpid			Get specific PID on list(Ex. getpid Python)
 	inject 			Start injector
 	show options		Show current options of selected module
+	clear			Clear the menu
 	show shellcode 		Show current shellcode of selected module
 """)
+
+
+def backdoorshelp():
+	print (bcolors.GREEN+"""
+Injector  Commands
+===================
+	Commands		Description
+	------------	\t-------------
+	set 			Set Value Of Options To Modules
+	help 			Help menu
+	back			Exit Current Module
+	os  			Command directly ur computer
+	clear			Clear the menu
+	show options		Show current options of selected module
+""")	

@@ -129,6 +129,11 @@ Module options ({0}):
 				self.control( string)
 
 			
+			elif terminal[:5] == "clear":
+				from .core.commands import clean
+				clean()
+				self.control( string)	
+
 			elif terminal[:5] == "disas":
 				from .disassembly.dis import disas
 				try: 
@@ -141,7 +146,6 @@ Module options ({0}):
 				except TypeError:
 					print ("Disassembly failed.Please do not forget report.")
 				self.control( string)
-				
 
 			elif terminal[:2] == "os":
 				from .core.commands import oscommand
@@ -168,7 +172,66 @@ Module options ({0}):
 				#Make it executable (Dynamic virus land)
 				#from bla bla import executable
 				#generator()
+			
+			elif terminal[:4] == "back":
+				pass
 
+			else:
+				if terminal == "":
+					self.control( string)
+				else:
+					print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
+					self.control( string)
+
+
+		#Backdoors
+		elif string[:9] == "backdoors":
+			if terminal[:4] == "help":
+				from .core.help import backdoorshelp
+				backdoorshelp()
+				self.control( string)
+
+
+			elif terminal[:2] == "os":
+				from .core.commands import oscommand
+				oscommand( terminal[3:])
+				self.control( string)
+
+			elif terminal[:12] == "show options":		
+				from .core.SHELLoptions import controlset
+				controlset( string, self.argvlist[0], self.argvlist[1])
+				self.control( string)
+
+
+			elif terminal[:3] == "set":	
+				if terminal[4:9].lower() == "lhost":
+					self.argvlist[0] = terminal[10:]
+				elif terminal[4:9].lower() == "lport":
+					self.argvlist[1] = terminal[10:]
+				#elif terminal[4:11].lower() == "encoder"
+					#self.argvlist[2] = terminal[11:]
+				else:
+					print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
+				self.control( string)
+
+
+			elif terminal[:8] == "generate":
+				from .Session.generator import process
+				#Custom output path will be add .. 
+				if self.argvlist[0] == "None" or self.argvlist[1] == "None":
+					print ("\nSet options before generate payload.\n")
+					self.control( string)
+				else:
+					process( string, self.argvlist[0], self.argvlist[1], True)
+					self.control( string)
+
+			elif terminal[:5] == "clear":
+				from .core.commands import clean
+				clean()
+				self.control( string)
+
+			elif terminal[:4] == "back":
+				pass
 
 			else:
 				if terminal == "":

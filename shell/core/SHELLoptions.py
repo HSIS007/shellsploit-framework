@@ -11,6 +11,30 @@
 from color import *
 
 def controlset( choice, argv1="None", argv2="None", argv3="None", argv4="None"):
+ 	if choice[:9] == "backdoors":
+		if len(argv1) >= len(argv2):
+			if len(argv1) == 0:
+				padd = 8
+			elif len(argv1) == 1:
+				padd = 8
+			elif len(argv1) == 2:
+				padd = 8
+			else:
+				padd = len(argv1)+5
+		else:
+			padd = len(argv2)+5
+
+		print (bcolors.GREEN+"""
+	Module options ({0}):
+
+	\tName\t\t{1}\tRequired\tDescription
+	\t----\t\t{2}\t--------\t-----------
+	\tLHOST\t\t{3}\t\tyes\t\tConnection Host
+	\tLPORT\t\t{4}\t\tyes\t\tConnection Port
+	""".format(choice,"Current Setting".ljust(padd),"---------------".ljust(padd),
+		argv1.ljust(padd),argv2.ljust(padd))) 			
+
+
 	argv3 = str(argv3)
 	#Standalone Shellcodes
 	list = [
@@ -240,5 +264,6 @@ Module options ({0}):
 	\tencoder\t\t{3}\t\t\tno\t\tEncoder type		
 	\titeration\t{4}\t\t\tno\t\tIteration times
 	""".format(choice,argv4,argv3,argv2,argv1))
+
 
 
