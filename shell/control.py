@@ -44,6 +44,12 @@ class B3mB4m(object):
 			elif terminal[:4] == "back":
 				pass
 
+			#elif terminal[:9] == "need help":
+				#import XX
+				#print youtubelink for this module
+
+
+				
 			elif terminal[:4] == "exit":
 				sys.exit("\nThanks for using shellsploit !\n")    
 			
@@ -137,16 +143,31 @@ Module options ({0}):
 				self.control( string)
 				
 
+			elif terminal[:2] == "os":
+				from .core.commands import oscommand
+				oscommand( terminal[3:])
+				self.control( string)
 
 			elif terminal[:6] == "inject":
-				if string == "injectors/Linux/ptrace":
-					from .inject.menager import linux
-					linux( self.argvlist[0], self.argvlist[1])
+				if self.argvlist[0] == None or self.argvlist[1] == None:
+					print ("\nYou must set pid/shellcode before inject !\n")
+					self.control( string)
+				if string == "injectors/Linux86/ptrace":
+					from .inject.menager import linux86ptrace
+					linux86ptrace( self.argvlist[0], self.argvlist[1])
+				elif string == "injectors/Linux64/ptrace":
+					from .inject.menager import linux64ptrace
+					linux64ptrace( self.argvlist[0], self.argvlist[1])					
 				elif string == "injectors/Windows/byteman":
 					from .inject.menager import windows
 					windows( self.argvlist[0], self.argvlist[1])
 				self.control( string)
 
+
+			#elif terminal[:10] == "executable" or elif terminal[:3] == "exe":
+				#Make it executable (Dynamic virus land)
+				#from bla bla import executable
+				#generator()
 
 
 			else:
@@ -164,9 +185,7 @@ Module options ({0}):
 				#if terminal[5:11] == "output":
 					#from Outputs.exehelp import help
 					#print help()
-				#else:
-					#from core.help import shellcodehelp
-					#shellcodehelp()
+					#self.control( string)
 				from .core.help import shellcodehelp
 				shellcodehelp()
 				self.control( string)
