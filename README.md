@@ -86,7 +86,7 @@ Please do not forget to report bugs! You can submit an issue, pull request, or e
 #Screenshots
 -------------
 
-![alt tag](http://i.hizliresim.com/rZojmM.png)
+![alt tag](http://i.hizliresim.com/28XmmN.png)
 ![alt tag](http://i.hizliresim.com/7MrYVv.png)
 ![alt tag](http://i.hizliresim.com/W18pL2.png)
 ![alt tag](http://i.hizliresim.com/pBMNO0.png)

@@ -17,15 +17,15 @@ sys.path.append(name)
 
 from .control import *
 from .core.logo.logo import banner
-from .core.logo.counter import * #- Will be  improved(buggy)
+#from .core.logo.counter import * #- Will be  improved(buggy)
 #Dynamic counter for shellcodes,injectors etc..
 from .core.Comp import tab
 
 
 tab.start(1)
-db = B3mB4mLogo().start()
+#db = B3mB4mLogo().start()
 def start():
-	print (banner( "47", "", "2", "2"))
+	print (banner( "47", "12", "2", "2"))
 	shellsploit()
 
 def shellsploit():
@@ -55,7 +55,7 @@ def shellsploit():
 
 
 		elif terminal[:6] == "banner":
-			print (banner( db[0], db[1], db[2], db[3]))
+			print (banner( "47", "12", "2", "2"))
 			shellsploit()
 
 		elif terminal[:3] == "use":
