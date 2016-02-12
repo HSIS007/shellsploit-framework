@@ -79,7 +79,8 @@ Don't want it anymore? Uninstall it:
 
 #Bugs
 ------
-	Please do not forget report bugs.You can submit issue,pull requests, or directly pm through my email address.
+
+Please do not forget to report bugs! You can submit an issue, pull request, or even directly PM me through my email address.
 
 
 #Screenshots
