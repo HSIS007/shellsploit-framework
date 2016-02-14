@@ -14,7 +14,7 @@ name = os.sep.join([x for x in os.getcwd().split(os.sep) if x != os.getcwd().spl
 sys.path.append(name)
 
 if sys.version_info.major == 3:
-        raw_input = input
+    raw_input = input
 
 
 from .control import *
@@ -64,11 +64,7 @@ def shellsploit():
 	try:
 		bash =  bcolors.OKBLUE + bcolors.UNDERLINE + "ssf" + bcolors.ENDC
 		bash += bcolors.OKBLUE + " > "+ bcolors.ENDC
-		#terminal = raw_input(bash).lower()
-		try:
-			terminal = raw_input(bash)
-		except EOFError, KeyboardInterrupt:
-                        return
+		terminal = raw_input(bash)
 
 		if terminal[:4] == "help":
 			from .core.help import mainhelp
