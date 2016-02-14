@@ -20,7 +20,6 @@ from .core.shellcodeformat import prettyout
 if sys.version_info.major == 3:
     raw_input = input
 
-
 tab.start()
 class B3mB4m(object):
     def __init__(self):
@@ -1076,6 +1075,10 @@ class B3mB4m(object):
                 elif terminal[7:10].lower() == "txt":
                     from .Outputs.txt import TxtFile
                     TxtFile( self.disassembly)
+
+                elif terminal[7:10].lower() == "raw":
+                    from .Outputs.raw import RawFile
+                    RawFile( self.disassembly)
 
                 else:
                     print (bcolors.RED + bcolors.BOLD + "[-] Unknown output type: {0}".format(terminal) + bcolors.ENDC)
