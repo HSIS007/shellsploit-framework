@@ -1,4 +1,4 @@
-#------------------Bombermans Team---------------------------------# 
+#------------------Bombermans Team---------------------------------#
 #Author  : B3mB4m
 #Concat  : b3mb4m@protonmail.com
 #Project : https://github.com/b3mb4m/Shellsploit
@@ -36,12 +36,12 @@ Shellcode Commands
 \tdisas			Disassembly the shellcode(Support : x86/x64)
 \twhatisthis      	Learn which kind of shellcode it is
 \titeration		Encoder iteration time
-\tgenerate 		Generate shellcode 
-\toutput 			Save option to shellcode(txt,py,c,cpp,exe)
+\tgenerate 		Generate shellcode
+\toutput 			Save option to shellcode(txt,py,c,cpp,exe,raw,dll)
 \tshow encoders		List all obfucscation encoders
 \tshow options		Show Current Options Of Selected Module
 """)
-	
+
 def injectorhelp():
 	print (bcolors.GREEN+"""
 Injector  Commands
@@ -73,4 +73,4 @@ Injector  Commands
 	os  			Command directly ur computer
 	clear			Clear the menu
 	show options		Show current options of selected module
-""")	
+""")
