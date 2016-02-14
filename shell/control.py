@@ -1080,6 +1080,10 @@ class B3mB4m(object):
                     from .Outputs.raw import RawFile
                     RawFile( self.disassembly)
 
+                elif terminal[7:10].lower() == "dll":
+                    from .Outputs.Dll import DllFile
+                    DllFile( self.disassembly)
+
                 else:
                     print (bcolors.RED + bcolors.BOLD + "[-] Unknown output type: {0}".format(terminal) + bcolors.ENDC)
                 self.control( string)
