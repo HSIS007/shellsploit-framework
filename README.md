@@ -3,7 +3,12 @@
 
 Shellsploit let's you generate customized shellcodes, backdoors, injectors for various operating system.
 And let's you obfuscation every byte via encoders.
-	
+
+
+"Please do not forget before use shellsploit is still BETA.And its not only about "shellcodes"."
+
+
+
 #Install/Uninstall	
 -------------------
 
@@ -20,13 +25,13 @@ Also pyreadline for tab completion:
 
 Pip works on both windows/nix machines without problem. Now you are ready to install:
 
-    root$ python setup.py -s/--setup install 
+    root$ python setup.py --s/ --setup install 
     root$ chmod +x shellsploit (if you are using windows just pass this step)
     root$ ./shellsploit
 
 Don't want it anymore? Uninstall it:
 
-    root$ python setup.py -s/--setup uninstall 
+    root$ python setup.py --s/--setup uninstall 
  
 
 #Usage
@@ -90,3 +95,4 @@ Please do not forget to report bugs! You can submit an issue, pull request, or e
 ![alt tag](http://i.hizliresim.com/7MrYVv.png)
 ![alt tag](http://i.hizliresim.com/W18pL2.png)
 ![alt tag](http://i.hizliresim.com/pBMNO0.png)
+![alt tag](http://i.hizliresim.com/rZP6vV.png)

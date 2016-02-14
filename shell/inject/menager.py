@@ -7,5 +7,13 @@ def linux64ptrace( pid, shellcode):
 	injectmex64( pid, shellcode)
 
 
+#def winx86codecave( exe, shellcode):
+	#from .Windowsx86.codecave import main
+	#main( exe, shellcode)
+
+
+def winx86tLsDLL( exe, dll):
+	from .Windowsx86.tlsInjector import main
+	main( exe, dll)
 
 

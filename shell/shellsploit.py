@@ -25,7 +25,7 @@ from .core.Comp import tab
 tab.start(1)
 #db = B3mB4mLogo().start()
 def start():
-	print (banner( "47", "12", "2", "2"))
+	print (banner( "47", "12", "2", "3"))
 	shellsploit()
 
 def shellsploit():
@@ -55,7 +55,7 @@ def shellsploit():
 
 
 		elif terminal[:6] == "banner":
-			print (banner( "47", "12", "2", "2"))
+			print (banner( "47", "12", "2", "3"))
 			shellsploit()
 
 		elif terminal[:3] == "use":
@@ -231,9 +231,17 @@ def shellsploit():
 			elif terminal[4:len("injectors/Linux64/ptrace")+4] == "injectors/Linux64/ptrace":
 				B3mB4m().control( "injectors/Linux64/ptrace")
 				shellsploit()    
+			elif terminal[4:len("injectors/Windowsx86/tLsInjectorDLL")+4] == "injectors/Windowsx86/tLsInjectorDLL":
+				B3mB4m().control( "injectors/Windowsx86/tLsInjectorDLL")
+				shellsploit()
 			#elif terminal[4:len("injectors/Windowsx86/Codecave")+4] == "injectors/Windowsx86/Codecave":
 				#B3mB4m().control( "injectors/Windowsx86/Codecave")
 				#shellsploit()    
+
+
+
+
+
 
 			
 			elif terminal[4:len("backdoors/linux86/reverse_tcp")+4] == "backdoors/linux86/reverse_tcp":
