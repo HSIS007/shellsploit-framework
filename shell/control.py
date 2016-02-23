@@ -1,4 +1,4 @@
-#------------------Bombermans Team---------------------------------#
+#------------------Bombermans Team---------------------------------# 
 #Author  : B3mB4m
 #Concat  : b3mb4m@protonmail.com
 #Project : https://github.com/b3mb4m/Shellsploit
@@ -17,11 +17,9 @@ from re import findall
 from .core.Comp import tab
 from .core.shellcodeformat import prettyout
 
-if sys.version_info.major == 3:
-    raw_input = input
 
 tab.start()
-class B3mB4m(object):
+class B3mB4m(object):   
     def __init__(self):
         self.argvlist = ["None", "None", "None", "None"]
         self.disassembly = "None"
@@ -53,6 +51,45 @@ class B3mB4m(object):
                 "osx86/binsh_spawn",
         ]
 
+        self.list3 = [
+                "linux86/tcp_bind",
+                "linux64/tcp_bind",   
+                "linux/tcp_bind",
+                "osx64/tcp_bind",
+                "solarisx86/tcp_bind",
+                "linux_mips/tcp_bind",
+                "osx86/tcp_bind",
+                "freebsd_x86/tcp_bind",
+                "freebsd_x64/tcp_bind",
+        ]
+
+
+        self.list4 = [
+                "linux86/reverse_tcp",
+                "linux64/reverse_tcp",
+                "linux/reverse_tcp",
+                "osx86/reverse_tcp",
+                "osx64/reverse_tcp",
+                "solarisx86/reverse_tcp",
+                "freebsd_x86/reverse_tcp",
+                "freebsd_x86/reverse_tcp2",
+                "freebsd_x64/reverse_tcp",     
+                "linux_mips/reverse_tcp",
+                "linux_arm/reverse_tcp",
+        ]
+
+        self.list5 = [
+                "linux86/exec",
+                "freebsd_x86/exec",
+                "freebsd_x64/exec",
+                "linux_arm/exec",
+                "windows/exec",
+        ]
+
+        self.list6 = [
+            "linux86/download&exec",
+            "windows/download&execute",
+        ]
 
 
     def control(self, string):
@@ -62,8 +99,8 @@ class B3mB4m(object):
         bash += bcolors.OKBLUE + " > "+ bcolors.ENDC
         try:
             terminal = raw_input(bash)
-        except EOFError, KeyboardInterrupt:
-            return
+        except NameError:
+            terminal = input(bash)
 
         #Injectors
         if string[:9] == "injectors":
@@ -80,8 +117,8 @@ class B3mB4m(object):
                 #print youtubelink for this module
 
             elif terminal[:4] == "exit":
-                sys.exit("\nThanks for using shellsploit !\n")
-
+                sys.exit("\nThanks for using shellsploit !\n")    
+            
             elif terminal[:4] == "pids":
                 from .core.commands import pids
                 pids( "wholelist")
@@ -101,14 +138,14 @@ class B3mB4m(object):
             elif terminal[:5] == "unset":
                 if string == "injectors/Windowsx86/tLsInjectorDLL":
                     if terminal[6:] == "exe":
-                        self.argvlist[0] = "None"
+                        self.argvlist[0] = "None"   
                     elif terminal[6:] == "dll":
                         self.argvlist[1] = "None"
                     else:
-                        print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
+                        print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)                    
                 else:
                     if terminal[6:] == "pid":
-                        self.argvlist[0] = "None"
+                        self.argvlist[0] = "None"   
                     elif terminal[6:] == "shellcode":
                         self.argvlist[1] = "None"
                     else:
@@ -134,7 +171,7 @@ class B3mB4m(object):
                         if ".txt" in terminal[14:]:
                             if os.path.isfile(terminal[14:]):
                                 with open(terminal[14:], "r") as shellcode:
-                                    cache = shellcode.readlines()
+                                    cache = shellcode.readlines()   
                                     db = ""
                                     for x in database:
                                         db += x.strip().replace('"', "").replace('+', "").strip()
@@ -172,11 +209,11 @@ class B3mB4m(object):
                 controlset( string, self.argvlist[0], self.argvlist[1])
                 self.control( string)
 
-
+            
             elif terminal[:5] == "clear":
                 from .core.commands import clean
                 clean()
-                self.control( string)
+                self.control( string)   
 
 
             elif terminal[:2] == "os":
@@ -193,7 +230,7 @@ class B3mB4m(object):
                     linux86ptrace( self.argvlist[0], self.argvlist[1])
                 elif string == "injectors/Linux64/ptrace":
                     from .inject.menager import linux64ptrace
-                    linux64ptrace( self.argvlist[0], self.argvlist[1])
+                    linux64ptrace( self.argvlist[0], self.argvlist[1])                  
                 elif string == "injectors/Windows/byteman":
                     from .inject.menager import windows
                     windows( self.argvlist[0], self.argvlist[1])
@@ -208,7 +245,7 @@ class B3mB4m(object):
                 #Make it executable (Dynamic virus land)
                 #from bla bla import executable
                 #generator()
-
+            
             elif terminal[:4] == "back":
                 pass
 
@@ -233,7 +270,7 @@ class B3mB4m(object):
                 oscommand( terminal[3:])
                 self.control( string)
 
-            elif terminal[:12] == "show options":
+            elif terminal[:12] == "show options":       
                 from .core.SHELLoptions import controlset
                 controlset( string, self.argvlist[0], self.argvlist[1])
                 self.control( string)
@@ -241,7 +278,7 @@ class B3mB4m(object):
 
             elif terminal[:5] == "unset":
                 if terminal[6:] == "lhost":
-                    self.argvlist[0] = "None"
+                    self.argvlist[0] = "None"   
                 elif terminal[6:] == "lport":
                     self.argvlist[1] = "None"
                 #elif terminal[6:] == "encoder":
@@ -251,7 +288,7 @@ class B3mB4m(object):
                 self.control( string)
 
 
-            elif terminal[:3] == "set":
+            elif terminal[:3] == "set": 
                 if terminal[4:9].lower() == "lhost":
                     self.argvlist[0] = terminal[10:]
                 elif terminal[4:9].lower() == "lport":
@@ -265,7 +302,7 @@ class B3mB4m(object):
 
             elif terminal[:8] == "generate":
                 from .Session.generator import process
-                #Custom output path will be add ..
+                #Custom output path will be add .. 
                 if self.argvlist[0] == "None" or self.argvlist[1] == "None":
                     print ("\nSet options before generate payload.\n")
                     self.control( string)
@@ -291,7 +328,7 @@ class B3mB4m(object):
 
         #Shellcodes
         else:
-
+            
             if terminal[:4] == "help":
                 #if terminal[5:11] == "output":
                     #from Outputs.exehelp import help
@@ -300,7 +337,7 @@ class B3mB4m(object):
                 from .core.help import shellcodehelp
                 shellcodehelp()
                 self.control( string)
-
+            
             elif terminal[:2] == "os":
                 from .core.commands import oscommand
                 oscommand( terminal[3:])
@@ -308,7 +345,7 @@ class B3mB4m(object):
 
             elif terminal[:4] == "back":
                 pass
-
+            
             elif terminal[:4] == "exit":
                 from sys import exit
                 exit()
@@ -332,7 +369,7 @@ class B3mB4m(object):
             elif terminal[:5] == "unset":
                 if string in self.list:
                     if terminal[6:] == "encoder":
-                        self.argvlist[0] = "None"
+                        self.argvlist[0] = "None"   
                     elif terminal[6:] == "iteration":
                         self.argvlist[1] = "None"
                     elif terminal[6:] == "file":
@@ -341,7 +378,7 @@ class B3mB4m(object):
                         print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
                 elif string in self.list2:
                     if terminal[6:] == "encoder":
-                        self.argvlist[0] = "None"
+                        self.argvlist[0] = "None"   
                     elif terminal[6:] == "iteration":
                         self.argvlist[1] = "None"
                 self.control( string)
@@ -350,7 +387,6 @@ class B3mB4m(object):
 
             elif terminal[:3] == "set":
                 from .core.lists import encoders
-                #To control whether encoder in list ..
 
                 if string in self.list:
                     if terminal[4:8] == "file":
@@ -376,215 +412,13 @@ class B3mB4m(object):
                     else:
                         print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
 
-
-                if string == "linux86/tcp_bind":
+                if string in self.list3:
                     if terminal[4:8] == "port":
                         self.argvlist[2] = terminal[9:]
                     elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "linux86/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "linux86/download&exec":
-                    if terminal[4:7] == "url":
-                        self.argvlist[2] = terminal[8:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "linux86/exec":
-                    if terminal[4:11] == "command":
-                        self.argvlist[2] = terminal[12:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-                elif string == "linux64/tcp_bind":
-                    if terminal[4:8].lower() == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "linux64/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-                elif string == "linux/tcp_bind":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "linux/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-
-                elif string == "osx86/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "osx64/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "osx64/tcp_bind":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-
-
-                elif string == "solarisx86/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "solarisx86/tcp_bind":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-
-
-
-
-                elif string == "osx86/tcp_bind":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-
-
-                elif string == "freebsd_x86/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "freebsd_x86/tcp_bind":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "freebsd_x86/reverse_tcp2":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "freebsd_x86/exec":
-                    if terminal[4:8] == "command":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-
-                elif string == "freebsd_x64/exec":
-                    if terminal[4:11] == "command":
-                        self.argvlist[2] = terminal[12:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "freebsd_x64/tcp_bind":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
+                        if terminal[12:] not in encoders():
+                            print ("This encoder not in list !")
+                            self.control( string)
                         self.argvlist[0] = terminal[12:]
                     elif terminal[4:13] == "iteration":
                         self.argvlist[1] = terminal[14:]
@@ -592,10 +426,14 @@ class B3mB4m(object):
                         self.argvlist[3] = terminal[13:]
                     else:
                         print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "freebsd_x64/reverse_tcp":
+
+                if string in self.list4:
                     if terminal[4:8] == "port":
                         self.argvlist[2] = terminal[9:]
                     elif terminal[4:11] == "encoder":
+                        if terminal[12:] not in encoders():
+                            print ("This encoder not in list !")
+                            self.control( string)
                         self.argvlist[0] = terminal[12:]
                     elif terminal[4:13] == "iteration":
                         self.argvlist[1] = terminal[14:]
@@ -604,54 +442,26 @@ class B3mB4m(object):
                     else:
                         print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
 
-                elif string == "linux_mips/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "linux_mips/tcp_bind":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-
-
-                elif string == "linux_arm/exec":
+                if string in self.list5:
                     if terminal[4:11] == "command":
                         self.argvlist[2] = terminal[12:]
                     elif terminal[4:11] == "encoder":
+                        if terminal[12:] not in encoders():
+                            print ("This encoder not in list !")
+                            self.control( string)
                         self.argvlist[0] = terminal[12:]
                     elif terminal[4:13] == "iteration":
                         self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "linux_arm/reverse_tcp":
-                    if terminal[4:8] == "port":
-                        self.argvlist[2] = terminal[9:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "host":
-                        self.argvlist[3] = terminal[9:]
                     else:
                         print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
 
-                elif string == "windows/download&execute":
+                if string in self.list6:
                     if terminal[4:8] == "link":
                         self.argvlist[2] = terminal[9:]
                     elif terminal[4:11] == "encoder":
+                        if terminal[12:] not in encoders():
+                            print ("This encoder not in list !")
+                            self.control( string)                      
                         self.argvlist[0] = terminal[12:]
                     elif terminal[4:13] == "iteration":
                         self.argvlist[1] = terminal[14:]
@@ -659,7 +469,9 @@ class B3mB4m(object):
                         self.argvlist[3] = terminal[9:]
                     else:
                         print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "windows/messagebox":
+                
+
+                if string == "windows/messagebox":
                     if terminal[4:11] == "message":
                         self.argvlist[2] = terminal[12:]
                     elif terminal[4:11] == "encoder":
@@ -667,18 +479,8 @@ class B3mB4m(object):
                     elif terminal[4:13] == "iteration":
                         self.argvlist[1] = terminal[14:]
                     else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-                elif string == "windows/exec":
-                    if terminal[4:11] == "command":
-                        self.argvlist[2] = terminal[12:]
-                    elif terminal[4:11] == "encoder":
-                        self.argvlist[0] = terminal[12:]
-                    elif terminal[4:13] == "iteration":
-                        self.argvlist[1] = terminal[14:]
-                    else:
-                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
-
-                self.control( string)
+                        print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)     
+                self.control( string)   
 
             elif terminal[:12] == "show options":
                 from .core.SHELLoptions import controlset
@@ -705,38 +507,36 @@ class B3mB4m(object):
                     elif string == "linux/tcp_bind":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
                     elif string == "linux/reverse_tcp":
-                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])                 
                     else:
                         controlset( string, self.argvlist[0], self.argvlist[1])
                     self.control( string)
-
-
 
 
                 elif string[:10] == "solarisx86":
                     if string == "solarisx86/read":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
                     elif string == "solarisx86/reverse_tcp":
-                        controlset( string, self.argvlist[3], self.argvlist[2], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[3], self.argvlist[2], self.argvlist[0], self.argvlist[1]) 
                     elif string == "solarisx86/tcp_bind":
-                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])     
                     else:
                         controlset( string, self.argvlist[0], self.argvlist[1])
                     self.control( string)
 
                 elif string[:7] == "linux64":
                     if string == "linux64/read":
-                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])                   
                     elif string == "linux64/mkdir":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
                     elif string == "linux64/tcp_bind":
-                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])               
                     elif string == "linux64/reverse_tcp":
                         controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[1], self.argvlist[0])
                     else:
                         controlset( string, self.argvlist[0], self.argvlist[1])
                     self.control( string)
-
+                
                 elif string[:5] == "osx86":
                     if string == "osx86/tcp_bind":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
@@ -745,7 +545,7 @@ class B3mB4m(object):
                     else:
                         controlset( string, self.argvlist[0], self.argvlist[1])
                     self.control( string)
-
+                
 
                 elif string[:5] == "osx64":
                     if string == "osx64/tcp_bind":
@@ -754,18 +554,18 @@ class B3mB4m(object):
                         controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])
                     else:
                         controlset( string, self.argvlist[0], self.argvlist[1])
-
+                    
                     self.control( string)
 
                 elif string[:11] == "freebsd_x86":
                     if string == "freebsd_x86/reverse_tcp2":
                         controlset( string, self.argvlist[3], self.argvlist[2], self.argvlist[0], self.argvlist[1])
                     elif string == "freebsd_x86/reverse_tcp":
-                        controlset( string, self.argvlist[3], self.argvlist[2], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[3], self.argvlist[2], self.argvlist[0], self.argvlist[1])             
                     elif string == "freebsd_x86/read":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
                     elif string == "freebsd_x86/exec":
-                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])                   
                     elif string == "freebsd_x86/tcp_bind":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
                     else:
@@ -776,7 +576,7 @@ class B3mB4m(object):
                     if string == "freebsd_x64/tcp_bind":
                         controlset( string, self.argvlist[0], self.argvlist[1], self.argvlist[2], self.argvlist[3])
                     elif string == "freebsd_x64/reverse_tcp":
-                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])
+                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1]) 
                     elif string == "freebsd_x64/exec":
                         controlset( string, self.argvlist[0], self.argvlist[1], self.argvlist[2])
                     else:
@@ -825,7 +625,7 @@ class B3mB4m(object):
                             print ("\nFile name must be declared.\n")
                             self.control( string)
                         self.disassembly = generator( "linux_x86", "read", self.argvlist[2])
-
+                    
 
                     elif string == "linux86/exec":
                         if self.argvlist[2] == "None":
@@ -838,10 +638,10 @@ class B3mB4m(object):
                             print ("\nLink must be declared.\n")
                             self.control( string)
                         elif "/" not in self.argvlist[2]:
-                            print ("\nWrong url format example : 127.0.0.1/X\n")
+                            print ("\nWrong url format example : 127.0.0.1/X\n") 
                             self.control( string)
                         elif len(self.argvlist[2].split("/")[-1]) != 1:
-                            print ("\nYour filename must be one lenght ..\n")
+                            print ("\nYour filename must be one lenght ..\n")   
                             self.control( string)
 
                         if "http" in self.argvlist[2] or "https" in self.argvlist[2] or "www." in self.argvlist:
@@ -849,7 +649,6 @@ class B3mB4m(object):
                                 edit = self.argvlist[2].replace("http://", "").replace("https://", "").replace("www.", "")
                                 self.argvlist[2] = edit
                             except:
-                                #Raise error ? Maybe ..
                                 pass
                         self.disassembly = generator( "linux_x86", "download&exec", self.argvlist[2])
 
@@ -865,8 +664,8 @@ class B3mB4m(object):
                             print ("\nPORT must be declared.\n")
                             self.control( string)
                         self.disassembly = generator( "linux_x86", "tcp_bind", self.argvlist[2])
-                    elif string == "linux86/reverse_tcp":
-                        if self.argvlist[2] == "None" or self.argvlist[3] == "None":
+                    elif string == "linux86/reverse_tcp":   
+                        if self.argvlist[2] == "None" or self.argvlist[3] == "None": 
                             print ("\nHost&Port must be declared.\n")
                             self.control( string)
                         self.disassembly = generator( "linux_x86", "reverse_tcp", self.argvlist[3], self.argvlist[2])
@@ -879,8 +678,8 @@ class B3mB4m(object):
                     elif string == "linux64/reverse_tcp":
                         self.disassembly = generator( "linux_x64", "reverse_tcp", self.argvlist[3], self.argvlist[2])
                     elif string == "linux64/read":
-                        self.disassembly = generator( "linux_x64", "read", self.argvlist[2])
-
+                        self.disassembly = generator( "linux_x64", "read", self.argvlist[2])    
+            
                 if string[:5] == "linux":
                     if string == "linux/read":
                         if self.argvlist[2] == "None":
@@ -910,7 +709,7 @@ class B3mB4m(object):
                         self.disassembly = generator( "osx64", "tcp_bind", self.argvlist[2])
                     elif string == "osx64/reverse_tcp":
                         self.disassembly = generator( "osx64", "reverse_tcp", self.argvlist[3], self.argvlist[2])
-
+                
                 elif string[:11] == "freebsd_x86":
                     if string == "freebsd_x86/binsh_spawn":
                         self.disassembly = generator( "freebsd_x86", "bin_sh")
@@ -944,7 +743,7 @@ class B3mB4m(object):
                     elif string == "linux_arm/reverse_tcp":
                         self.disassembly = generator( "linux_arm", "reverse_tcp", self.argvlist[3], self.argvlist[2])
                     elif string == "linux_arm/exec":
-                        self.disassembly = generator( "linux_arm", "exec", self.argvlist[2])
+                        self.disassembly = generator( "linux_arm", "exec", self.argvlist[2])    
 
                 elif string[:10] == "linux_mips":
                     if string == "linux_mips/reverse_tcp":
@@ -963,8 +762,8 @@ class B3mB4m(object):
                         self.disassembly = generator( "windows", "downloandandexecute", self.argvlist[2], self.argvlist[3])
                     elif string == "windows/exec":
                         self.disassembly = generator( "windows", "exec", self.argvlist[2])
-
-                elif string[:10] == "solarisx86":
+                        
+                elif string[:10] == "solarisx86":                   
                     if string == "solarisx86/binsh_spawn":
                         self.disassembly = generator( "solarisx86", "bin_sh")
                     elif string == "solarisx86/read":
@@ -995,7 +794,7 @@ class B3mB4m(object):
                     self.disassembly = prestart( self.disassembly.replace("\\x", ""), int(self.argvlist[1]))
 
                 else:
-                    self.disassembly = self.disassembly
+                    self.disassembly = self.disassembly 
 
 
                 #print "\n"+"Shellcode Lenght : %d" % len(str(bytearray(self.disassembly.replace("\\x", "").decode("hex"))))
@@ -1006,9 +805,9 @@ class B3mB4m(object):
             elif terminal[:6] == "output":
                 if self.disassembly == "None":
                     print ("Please generate shellcode before save it.")
-                    self.control( string)
+                    self.control( string)   
 
-                #I'm not sure about this option, should I get this option with params
+                #I'm not sure about this option, should I get this option with params 
                 #Or directly inputs ? ..
                 if terminal[7:10].lower() == "exe":
                     #Will be add missing parts ..
@@ -1029,7 +828,7 @@ class B3mB4m(object):
                     elif "linuxpowerpc" in terminal.lower():
                         OS = "linuxpowerpc"
                     elif "openbsdpowerpc" in terminal.lower():
-                        OS = "openbsdpowerpc"
+                        OS = "openbsdpowerpc"           
                     elif "linuxsparc" in terminal.lower():
                         OS = "linuxsparc"
                     elif "freebsdsparc" in terminal.lower():
@@ -1046,8 +845,8 @@ class B3mB4m(object):
                         OS = "openbsdarm"
                     else:
                         OS = None
-
-
+                    
+            
                     from .Outputs.exe import ExeFile
                     ExeFile( self.disassembly, OS)
                     self.control( string)
@@ -1059,34 +858,26 @@ class B3mB4m(object):
                         CplusplusFile( self.disassembly, True)
                     else:
                         CplusplusFile( self.disassembly)
-
+                
                 elif terminal[7:8].lower() == "c":
                     if "windows" in string:
                         from .Outputs.Cplusplus import CplusplusFile
                         CplusplusFile( self.disassembly, True)
                     else:
                         from .Outputs.C import CFile
-                        CFile( self.disassembly)
+                        CFile( self.disassembly)                
 
-                elif terminal[7:9].lower() == "py" or terminal[7:13].lower() == "python":
+                elif terminal[7:9].lower() == "py" or terminal[7:13].lower() == "python": 
                     from .Outputs.python import PyFile
                     PyFile( self.disassembly)
-
+                
                 elif terminal[7:10].lower() == "txt":
                     from .Outputs.txt import TxtFile
-                    TxtFile( self.disassembly)
-
-                elif terminal[7:10].lower() == "raw":
-                    from .Outputs.raw import RawFile
-                    RawFile( self.disassembly)
-
-                elif terminal[7:10].lower() == "dll":
-                    from .Outputs.Dll import DllFile
-                    DllFile( self.disassembly)
+                    TxtFile( self.disassembly)  
 
                 else:
                     print (bcolors.RED + bcolors.BOLD + "[-] Unknown output type: {0}".format(terminal) + bcolors.ENDC)
-                self.control( string)
+                self.control( string)                   
 
             elif terminal[:5] == "clear":
                 from .core.commands import clean
@@ -1094,7 +885,7 @@ class B3mB4m(object):
                 self.control( string)
 
             elif terminal[:2].lower() == "ip":
-                from .core.commands import IP
+                from .core.commands import IP 
                 IP()
                 self.control( string)
 
@@ -1112,12 +903,12 @@ class B3mB4m(object):
                     if "linux_mips" not in string or "linux_mips" not in string:
                         from .disassembly.dis import disas
                         #Thanks for capstone ! :)
-                        try:
+                        try: 
                             if "64" in string:
                                 print (disas( str(bytearray(self.disassembly.decode("hex"))), 64))
                             elif "86" in string:
                                 print (disas( str(bytearray(self.disassembly.decode("hex"))), 32))
-                            else:
+                            else: 
                                 print (disas( str(bytearray(self.disassembly.decode("hex"))), 32))
                         except TypeError:
                             print ("Disassembly failed.Please do not forget report.")
@@ -1133,7 +924,7 @@ class B3mB4m(object):
                                 elif "86" in string:
                                     print (disasNOTintel( self.disassembly.decode("hex"), "arm", 32))
                             print ("\n\n")
-                        except TypeError as err:
+                        except TypeError as err:    
                             print ("Disassembly failed.Please do not forget report.")
                 self.control( string)
 
