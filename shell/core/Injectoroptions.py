@@ -1,13 +1,22 @@
 from color import *
 
 def controlset( string, argv, argv1):
+	#depends to pid
 	list1 = [
 		"injectors/Linux86/ptrace",
 		"injectors/Linux64/ptrace",
 	]
+
+	#depends to dll
 	list2 = [
 		"injectors/Windowsx86/tLsInjectorDLL",
 	]
+
+	#depends to exe
+	list3 = [
+		"injectors/Windowsx86/CodecaveInjector",
+	]
+
 
 	if len(argv) >= len(argv1):
 		if len(argv) == 0:
@@ -45,6 +54,15 @@ Module options ({0}):
 	argv.ljust(padd),argv1.ljust(padd)))
 
 
+	elif string in list3:
+		print (bcolors.GREEN+"""
+Module options ({0}):
 
+\tName\t\t{1}\t\tRequired\tDescription
+\t----\t\t{2}\t\t--------\t-----------
+\texe\t\t{3}\t\tyes\t\tTarget exe file
+\tshellcode\t{4}\t\tyes\t\tInject Bytes
+""".format(string,"Current Setting".ljust(padd),"---------------".ljust(padd),
+	argv.ljust(padd),argv1.ljust(padd)))
 
 

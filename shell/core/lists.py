@@ -28,10 +28,12 @@ Encoders
 
 def injectorlist():
 	print ("""
-\tArchitecture\t\t\t\tVersion
-\t============\t\t\t\t=======
-\t[+] injectors/Linux/ptrace\t\t(x86/x64)
-\t[+] injectors/Windows/byteman\t\t(x86)
+\tArchitecture\t\t\t\t\tVersion
+\t============\t\t\t\t\t=======
+\t[+] injectors/Linux86/ptrace\t\t\tx86
+\t[+] injectors/Linux64/ptrace\t\t\tx64
+\t[+] injectors/Windowsx86/tLsInjectorDLL\t\tx86
+\t[+] injectors/Windowsx86/CodecaveInjector\tx86
 	""")
 
 def OSlist():

@@ -142,7 +142,12 @@ class B3mB4m(object):
                     elif terminal[6:] == "dll":
                         self.argvlist[1] = "None"
                     else:
-                        print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)                    
+                        print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)   
+                elif string == "injectors/Windowsx86/CodecaveInjector":
+                    if terminal[6:] == "exe":
+                        self.argvlist[0] = "None"
+                    elif terminal[6:] == "shellcode":
+                        self.argvlist[1] = "None"                 
                 else:
                     if terminal[6:] == "pid":
                         self.argvlist[0] = "None"   
@@ -164,9 +169,21 @@ class B3mB4m(object):
                             self.control( string)
                         else:
                             print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
+
+                elif string == "injectors/Windowsx86/CodecaveInjector":
+                    if terminal[4:7] == "exe":
+                        self.argvlist[0] = terminal[8:]
+                    elif terminal[4:13] == "shellcode":
+                        self.argvlist[1] = terminal[14:]
+                    else:
+                        if terminal == "":
+                            self.control( string)
+                        else:
+                            print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
+
                 else:
                     if terminal[4:7] == "pid":
-                        self.argvlist[0] = terminal[8:]
+                            self.argvlist[0] = terminal[8:]
                     elif terminal[4:13] == "shellcode":
                         if ".txt" in terminal[14:]:
                             if os.path.isfile(terminal[14:]):
@@ -206,6 +223,8 @@ class B3mB4m(object):
                 if string != "injectors/Windowsx86/tLsInjectorDLL":
                     if self.argvlist[1] != "None":
                         self.mycache = "process"
+                        controlset( string, self.argvlist[0], self.mycache)
+                        self.control( string)
                 controlset( string, self.argvlist[0], self.argvlist[1])
                 self.control( string)
 
@@ -237,6 +256,9 @@ class B3mB4m(object):
                 elif string == "injectors/Windowsx86/tLsInjectorDLL":
                     from .inject.menager import winx86tLsDLL
                     winx86tLsDLL( self.argvlist[0], self.argvlist[1])
+                elif string == "injectors/Windowsx86/CodecaveInjector":
+                    from .inject.menager import winx86Codecave
+                    winx86Codecave( self.argvlist[0], self.argvlist[1])
                 self.control( string)
 
 
@@ -387,7 +409,6 @@ class B3mB4m(object):
 
             elif terminal[:3] == "set":
                 from .core.lists import encoders
-
                 if string in self.list:
                     if terminal[4:8] == "file":
                         self.argvlist[2] = terminal[9:]
@@ -501,18 +522,6 @@ class B3mB4m(object):
                         controlset( string, self.argvlist[0], self.argvlist[1])
                     self.control( string)
 
-                elif string[:5] == "linux":
-                    if string == "linux/read":
-                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
-                    elif string == "linux/tcp_bind":
-                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
-                    elif string == "linux/reverse_tcp":
-                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])                 
-                    else:
-                        controlset( string, self.argvlist[0], self.argvlist[1])
-                    self.control( string)
-
-
                 elif string[:10] == "solarisx86":
                     if string == "solarisx86/read":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
@@ -537,6 +546,18 @@ class B3mB4m(object):
                         controlset( string, self.argvlist[0], self.argvlist[1])
                     self.control( string)
                 
+                elif string[:5] == "linux":
+                    if string == "linux/read":
+                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
+                    elif string == "linux/tcp_bind":
+                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])
+                    elif string == "linux/reverse_tcp":
+                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])                 
+                    else:
+                        controlset( string, self.argvlist[0], self.argvlist[1])
+                    self.control( string)
+
+
                 elif string[:5] == "osx86":
                     if string == "osx86/tcp_bind":
                         controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])

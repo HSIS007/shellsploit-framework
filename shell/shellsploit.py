@@ -48,7 +48,10 @@ shellcodeModules = {
 	"solarisx86":
 			["binsh_spawn","read","reverse_tcp","tcp_bind"],
 	"injectors":
-			["Linux86/ptrace","Linux64/ptrace","Windowsx86/tLsInjectorDLL"],
+			["Linux86/ptrace","Linux64/ptrace","Windowsx86/tLsInjectorDLL",
+			"Windowsx86/CodecaveInjector",
+
+			],
 	"backdoors":
 			["linux86/reverse_tcp","linux64/reverse_tcp","osx86/reverse_tcp",
 			"unix/python/reverse_tcp","unix/perl/reverse_tcp",
@@ -57,7 +60,7 @@ shellcodeModules = {
 tab.start(1)
 #db = B3mB4mLogo().start()
 def start():
-	print (banner( "47", "12", "2", "3"))
+	print (banner( "47", "12", "2", "4"))
 	shellsploit()
 
 def shellsploit():
@@ -83,7 +86,7 @@ def shellsploit():
 
 
 		elif terminal[:6] == "banner":
-			print (banner( "47", "12", "2", "3"))
+			print (banner( "47", "12", "2", "4"))
 			shellsploit()
 
 		elif terminal[:3] == "use":
