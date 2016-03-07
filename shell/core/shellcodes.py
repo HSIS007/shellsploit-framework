@@ -70,6 +70,8 @@ Windows
   windows/exec
   windows/messagebox
   windows/download&execute
+  windows/reverse_tcp
+  windows/tcp_bind
   
 
 

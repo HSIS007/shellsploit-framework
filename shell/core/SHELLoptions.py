@@ -8,10 +8,10 @@
 #Greetz : Kara Ayaz
 
 
-from color import *
+from .color import *
 
 def controlset( choice, argv1="None", argv2="None", argv3="None", argv4="None"):
- 	if choice[:9] == "backdoors":
+	if choice[:9] == "backdoors":
 		if len(argv1) >= len(argv2):
 			if len(argv1) == 0:
 				padd = 8
@@ -57,12 +57,13 @@ def controlset( choice, argv1="None", argv2="None", argv3="None", argv4="None"):
 	"linux86/read",
 	"solarisx86/read",
 	"linux86/chmod",
-    "linux64/read",
-    "linux_arm/chmod",
+	"linux64/read",
+	"linux_arm/chmod",
 	"linux86/mkdir",
 	"linux_arm/chmod"]
 
 	list3 = [
+	"windows/tcp_bind",
 	"linux86/tcp_bind",
 	"solarisx86/tcp_bind",
 	"linux/tcp_bind",
@@ -72,6 +73,7 @@ def controlset( choice, argv1="None", argv2="None", argv3="None", argv4="None"):
 	"freebsd_x86/tcp_bind"]
 
 	list4 = [
+	"windows/reverse_tcp",
 	"freebsd_x86/reverse_tcp",
 	"freebsd_x64/reverse_tcp",
 	"freebsd_x86/reverse_tcp2",

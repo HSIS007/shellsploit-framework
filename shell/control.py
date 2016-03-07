@@ -18,6 +18,8 @@ from .core.Comp import tab
 from .core.shellcodeformat import prettyout
 
 
+
+
 tab.start()
 class B3mB4m(object):   
     def __init__(self):
@@ -59,12 +61,14 @@ class B3mB4m(object):
                 "solarisx86/tcp_bind",
                 "linux_mips/tcp_bind",
                 "osx86/tcp_bind",
+                "windows/tcp_bind",
                 "freebsd_x86/tcp_bind",
                 "freebsd_x64/tcp_bind",
         ]
 
 
         self.list4 = [
+                "windows/reverse_tcp",
                 "linux86/reverse_tcp",
                 "linux64/reverse_tcp",
                 "linux/reverse_tcp",
@@ -259,6 +263,9 @@ class B3mB4m(object):
                 elif string == "injectors/Windowsx86/CodecaveInjector":
                     from .inject.menager import winx86Codecave
                     winx86Codecave( self.argvlist[0], self.argvlist[1])
+                elif string == "injectors/Windows/Dllinjector":
+                    from .inject.menager import winDLL
+                    winDLL( self.argvlist[0], self.argvlist[1])               
                 self.control( string)
 
 
@@ -633,6 +640,10 @@ class B3mB4m(object):
                         controlset( string, self.argvlist[1], self.argvlist[0], self.argvlist[2])
                     elif string == "windows/download&execute":
                         controlset( string, self.argvlist[0], self.argvlist[1], self.argvlist[2], self.argvlist[3])
+                    elif string == "windows/reverse_tcp":
+                        controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])
+                    elif string == "windows/tcp_bind":
+                        controlset( string, self.argvlist[0], self.argvlist[1], self.argvlist[2])                  
                     self.control( string)
 
             elif terminal[:8] == "generate":
@@ -783,7 +794,11 @@ class B3mB4m(object):
                         self.disassembly = generator( "windows", "downloandandexecute", self.argvlist[2], self.argvlist[3])
                     elif string == "windows/exec":
                         self.disassembly = generator( "windows", "exec", self.argvlist[2])
-                        
+                    elif string == "windows/reverse_tcp":
+                        self.disassembly = generator( "windows", "reverse_tcp", self.argvlist[3], self.argvlist[2])                  
+                    elif string == "windows/tcp_bind":
+                        self.disassembly = generator( "windows", "tcp_bind", self.argvlist[2])
+
                 elif string[:10] == "solarisx86":                   
                     if string == "solarisx86/binsh_spawn":
                         self.disassembly = generator( "solarisx86", "bin_sh")

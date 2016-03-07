@@ -5,6 +5,7 @@ def controlset( string, argv, argv1):
 	list1 = [
 		"injectors/Linux86/ptrace",
 		"injectors/Linux64/ptrace",
+		"injectors/Windows/Dllinjector",
 	]
 
 	#depends to dll

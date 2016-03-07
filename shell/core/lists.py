@@ -34,6 +34,7 @@ def injectorlist():
 \t[+] injectors/Linux64/ptrace\t\t\tx64
 \t[+] injectors/Windowsx86/tLsInjectorDLL\t\tx86
 \t[+] injectors/Windowsx86/CodecaveInjector\tx86
+\t[+] injectors/Windows/Dllinjector\t\tx86/x86_x64
 	""")
 
 def OSlist():

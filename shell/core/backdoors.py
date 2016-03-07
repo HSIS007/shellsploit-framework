@@ -20,6 +20,10 @@ def backdoorlist( require=False):
 		"backdoors/unix/perl/reverse_tcp",
 		"backdoors/unix/bash/reverse_tcp",
 		"backdoors/unix/ruby/reverse_tcp",
+		"backdoors/windows/asm/reverse_tcp",
+		"backdoors/windows/powershell/reverse_tcp",
+
+
 		]
 		return data
 	else:
@@ -49,7 +53,8 @@ Scripting Payloads
   backdoors/unix/perl/reverse_tcp
   backdoors/unix/bash/reverse_tcp
   backdoors/unix/ruby/reverse_tcp
-
+  backdoors/windows/asm/reverse_tcp
+  backdoors/windows/powershell
 
 	""" + bcolors.ENDC)
 

@@ -6,6 +6,7 @@
 #------------------------------------------------------------------#
 
 
+
 def generator( choose, shellcode, argv="None", argv2="None"):
 	if choose == "linux_x86":
 		if shellcode == "bin_sh":
@@ -257,6 +258,15 @@ def generator( choose, shellcode, argv="None", argv2="None"):
 		elif shellcode == "exec":
 			from .Windows.execc import WinExec
 			return WinExec(argv)
+
+		elif shellcode == "tcp_bind":
+			from .Windows.bind_tcp import PayloadModule
+			return PayloadModule( argv).gen_shellcode()
+
+		elif shellcode	== "reverse_tcp":
+			from .Windows.rev_tcp import PayloadModule
+			return PayloadModule( argv, argv2).gen_shellcode()
+
 
 	elif choose == "solarisx86":	
 		if shellcode == "read":

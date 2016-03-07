@@ -44,13 +44,13 @@ shellcodeModules = {
 	"linux_mips":
 			["binsh_spawn","chmod","reverse_tcp","tcp_bind"],
 	"windows":
-			["messagebox","download&execute","exec"],
+			["messagebox","download&execute","exec", "reverse_tcp", "tcp_bind"],
 	"solarisx86":
 			["binsh_spawn","read","reverse_tcp","tcp_bind"],
 	"injectors":
 			["Linux86/ptrace","Linux64/ptrace","Windowsx86/tLsInjectorDLL",
-			"Windowsx86/CodecaveInjector",
-
+			"Windowsx86/CodecaveInjector","Windows/Dllinjector",
+	#Dllinjector is still passive.
 			],
 	"backdoors":
 			["linux86/reverse_tcp","linux64/reverse_tcp","osx86/reverse_tcp",
@@ -60,7 +60,7 @@ shellcodeModules = {
 tab.start(1)
 #db = B3mB4mLogo().start()
 def start():
-	print (banner( "47", "12", "2", "4"))
+	print (banner( "49", "12", "2", "4"))
 	shellsploit()
 
 def shellsploit():

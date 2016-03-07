@@ -16,3 +16,7 @@ def winx86tLsDLL( exe, dll):
 	from .Windowsx86.tlsInjector import main
 	main( exe, dll)
 
+def winDLL( pid, shellcode):
+	from .Windows.inject import qweqwe
+	qweqwe( pid, shellcode)
+
