@@ -5,25 +5,19 @@
 #LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
 
-"""
-#On Windows pyreadline
-#On Linux readline
-try:
-    #Seems like reasonable so ..
-    #http://stackoverflow.com/questions/6024952/readline-functionality-on-windows-with-python-2-7
-    import pyreadline as readline
-except ImportError:
+import sys
+import os
 
-"""
-
-import readline
-#Just test it, readline works on windows too.Readline obsolete, so fck it.
+if 'linux' in sys.platform:
+    import readline
+elif 'darwin' in sys.platform:
+    from . import readlineOSX as readline
+elif 'win32' == sys.platform or 'win64' == sys.platform:
+    from . import readlineWIN as readline
 
 
 
-
-
-class SimpleCompleter(object):
+class autocomplete(object):
     def __init__(self, options):
         self.options = sorted(options)
         return
@@ -46,16 +40,17 @@ class SimpleCompleter(object):
         return response
 
 
+
 #Control 1 = Shellsploit
 #Control 2 = control.py
 def start( control=1):
     if control == 1:
         from .db import ret2
-        readline.set_completer(SimpleCompleter(ret2()).complete)
+        readline.set_completer(autocomplete(ret2()).complete)
         readline.parse_and_bind('tab: complete')
     else:
         from .db import ret
-        readline.set_completer(SimpleCompleter(ret()).complete)
+        readline.set_completer(autocomplete(ret()).complete)
         readline.parse_and_bind('tab: complete')
 
 

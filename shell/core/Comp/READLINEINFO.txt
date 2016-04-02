@@ -1,0 +1,4 @@
+https://pypi.python.org/pypi/readline/2.6.4  - OSX 
+http://pypi.python.org/pypi/pyreadline       - Windows
+
+
