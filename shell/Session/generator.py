@@ -1,4 +1,4 @@
-def process( data, HOST, PORT, logger=True):
+def process( data, HOST, PORT, ENCODER=False, logger=True):
 	logfile = None
 	extension = None
 	if logger == True:
@@ -88,6 +88,9 @@ def process( data, HOST, PORT, logger=True):
 
 	import os
 	path = os.getcwd()+os.sep+savefile[0].replace("\n", "")
+	if ENCODER:
+		from .encoders.starter import control 
+		control(payload=ENCODER, files=[path])
 	print ("\n\n\t Exploit Location : {0} \n\n".format(path))
 
 

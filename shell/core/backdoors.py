@@ -1,6 +1,26 @@
 from .color import *
 
 
+#That encoders can be use on "injectors" ..
+def encoderlist( require=False):
+	if require != False:
+		data = [
+			"encoders/py/bzip2",
+			"encoders/py/gzip",
+		]
+		return data
+	else:
+		print (bcolors.GREEN+"""
+
+Python
+========
+
+  encoders/py/bzip2
+  encoders/py/gzip			
+
+
+	""" + bcolors.ENDC)
+
 
 def backdoorlist( require=False):
 	if require != False:

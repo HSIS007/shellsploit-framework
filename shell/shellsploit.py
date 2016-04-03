@@ -143,6 +143,7 @@ def main():
 	import optparse
 	parser = optparse.OptionParser()
 	parser.add_option('-p', '--payload', action="store")
+	parser.add_option('-e', '--encoder', action="store", default="False")
 	parser.add_option('-o', '--output', action="store", default=True)
 	parser.add_option('-l','--list', action="store", default=True)
 	parser.add_option('-n','--nc', action="store", default=True)
@@ -154,6 +155,12 @@ def main():
 	if options.list == "backdoors":
 		from .core.backdoors import backdoorlist
 		backdoorlist( require=False)
+		sys.exit()
+
+	if options.list == "encoders":
+		from .core.backdoors import encoderlist
+		encoderlist( require=False)
+		sys.exit()
 
 	elif options.nc == "netcat" or options.nc == "nc":
 		from .Session.netcat import nc
@@ -161,20 +168,24 @@ def main():
 			nc( PORT)
 		else:
 			nc()
+		sys.exit()
 	else:
 		if options.payload:
 			if options.host and options.port:
 				from .core.backdoors import backdoorlist
+				from .core.backdoors import encoderlist
 				if options.payload in backdoorlist( require=True):
 					from .Session.generator import process
+					if "py" in options.encoder and "python" not in options.payload:
+						sys.exit("\nThis encoder can not use with that payload\n")
 					if options.output:
-						process( options.payload, options.host, options.port, options.output)
+						process( options.payload, options.host, options.port, options.encoder, options.output)
 					else:
-						process( options.payload, options.host, options.port, True)
+						process( options.payload, options.host, options.port, options.encoder,True)
 						#Default, file will be create with random name.
 				else:
-					print ("\npython shellsploit  -p PAYLOAD --host IP --port P0RT\n")
+					sys.exit("\npython shellsploit  -p PAYLOAD -e ENCODER --host IP --port P0RT\n")
 			else:
-				print ("\npython shellsploit  -p PAYLOAD --host IP --port P0RT\n")
+				sys.exit("\npython shellsploit  -p PAYLOAD -e ENCODER --host IP --port P0RT\n")
 		else:
 			start()
