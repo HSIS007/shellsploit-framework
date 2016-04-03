@@ -20,7 +20,7 @@ For the Capstone's installation:
 
 Also pyreadline for tab completion:
    	
-   	root$ sudo pip install readline
+   	root$ sudo pip install readline (Not necessary for windows coz preinstalled in shellsploit.)
     
 
 Pip works on both windows/nix machines without problem. Now you are ready to install:
@@ -42,7 +42,7 @@ Don't want it anymore? Uninstall it:
 
 
     optional arguments:
-	  	   -l, --list 			Show  list of backdoors,shellcodes,injectors
+	  	   -l, --list 			Show  list of backdoors,shellcodes,encoders,injectors
 	  	   -p, --payload 		Set payload for usage
 	  	   -n, -nc 				Declare netcat for usage
 	  	   --host				The connect/listen address
