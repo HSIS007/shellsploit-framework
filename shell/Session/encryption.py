@@ -61,6 +61,13 @@ def AES( TEXT, KEY, choice):
 		from Crypto.Cipher import AES
 		from Crypto import Random
 	except ImportError:
+"""
+ıf you cant install that damn thing into windows follow these steps;
+Ref : http://stackoverflow.com/a/11405769
+1) Install : https://www.microsoft.com/en-us/download/details.aspx?id=44266
+2) easy_install http://www.voidspace.org.uk/python/pycrypto-2.6.1/pycrypto-2.6.1.win32-py2.7.exe
+
+"""
 		print ("\npycrypto must be installed.\n")
 		return False	
 
