@@ -7,21 +7,21 @@ And let's you obfuscation every byte via encoders.
 
 "Please do not forget before use shellsploit is still BETA.And its not only about "shellcodes"."
 
+#StableVersion
+---------------
+    Still not exists stable version, because of too many file(any help would be great hehe).
+
+
+#Dependences
+-------------
+    root$ sudo pip install capstone
+    root$ sudo pip install readline(Not necessary for windows coz preinstalled in shellsploit)
+    root$ sudo pip install pefile
+    root$ sudo pip install colorama
 
 
 #Install/Uninstall	
 -------------------
-
-If you want to use Shellsploit, you have to install [Capstone](http://www.capstone-engine.org/) first.
-
-For the Capstone's installation:
-    	
-    root$ sudo pip install capstone
-
-Also pyreadline for tab completion:
-   	
-   	root$ sudo pip install readline (Not necessary for windows coz preinstalled in shellsploit.)
-    
 
 Pip works on both windows/nix machines without problem. Now you are ready to install:
 
@@ -93,6 +93,7 @@ Please do not forget to report bugs! You can submit an issue, pull request, or e
 
 ![alt tag](http://i.hizliresim.com/28XmmN.png)
 ![alt tag](http://i.hizliresim.com/7MrYVv.png)
+![alt tag](http://i.hizliresim.com/g8NqXN.jpg)
 ![alt tag](http://i.hizliresim.com/W18pL2.png)
 ![alt tag](http://i.hizliresim.com/pBMNO0.png)
 ![alt tag](http://i.hizliresim.com/rZP6vV.png)
