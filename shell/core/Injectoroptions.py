@@ -1,6 +1,7 @@
 from color import *
+from os import sep
 
-def controlset( string, argv, argv1):
+def controlset( string, argv, argv1, argv2=None):
 	#depends to pid
 	list1 = [
 		"injectors/Linux86/ptrace",
@@ -16,6 +17,16 @@ def controlset( string, argv, argv1):
 	#depends to exe
 	list3 = [
 		"injectors/Windowsx86/CodecaveInjector",
+	]
+
+
+	#BFD Scripts
+	list4 = [
+		"injectors/Windows/BFD/Patching",
+		"injectors/MacOSX/BFD/Patching",
+		"injectors/Linux/BFD/Patching",
+		"injectors/Linux/ARM/x86/BFD/Patching",
+		"injectors/FreeBSD/x86/BFD/Patching",
 	]
 
 
@@ -65,5 +76,22 @@ Module options ({0}):
 \tshellcode\t{4}\t\tyes\t\tInject Bytes
 """.format(string,"Current Setting".ljust(padd),"---------------".ljust(padd),
 	argv.ljust(padd),argv1.ljust(padd)))
+
+
+
+	elif string in list4:
+		if sep in argv:
+			argv = argv.split(sep)[-1]
+
+		print (bcolors.GREEN+"""
+Module options ({0}):
+
+\tName\t\t{1}\t\tRequired\tDescription
+\t----\t\t{2}\t\t--------\t-----------
+\tfile\t\t{3}\t\tyes\t\tFile name&path
+\thost\t\t{4}\t\tyes\t\tEncoder type	
+\tport\t\t{5}\t\tyes\t\tIteration times
+""".format(string,"Current Setting".ljust(padd),"---------------".ljust(padd),
+	argv.ljust(padd),argv1.ljust(padd),argv2.ljust(padd)))
 
 

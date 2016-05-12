@@ -30,11 +30,18 @@ def injectorlist():
 	print ("""
 \tArchitecture\t\t\t\t\tVersion
 \t============\t\t\t\t\t=======
-\t[+] injectors/Linux86/ptrace\t\t\tx86
-\t[+] injectors/Linux64/ptrace\t\t\tx64
-\t[+] injectors/Windowsx86/tLsInjectorDLL\t\tx86
-\t[+] injectors/Windowsx86/CodecaveInjector\tx86
-\t[+] injectors/Windows/Dllinjector\t\tx86/x86_x64
+\t[+] injectors/Linux/x86/ptrace\t\t\tx86
+\t[+] injectors/Linux/x64/ptrace\t\t\tx64
+\t[+] injectors/Linux/BFD/Patching\t\tx86/x64
+\t[+] injectors/Linux/ARM/BFD/Patching\t\tx86/x64
+\t[+] injectors/FreeBSD/x86/BFD/Patching\t\tx86/x64
+\t[+] injectors/Windows/x86/tLsInjectorDLL\tx86
+\t[+] injectors/Windows/x86/CodecaveInjector\tx86
+\t[+] injectors/Windows/Dllinjector\t\tx86/x64
+\t[+] injectors/Windows/BFD/Patching\t\tx86/x64
+\t[+] injectors/MachOSX/BFD/Patching\t\tx86/x64
+
+
 	""")
 
 def OSlist():

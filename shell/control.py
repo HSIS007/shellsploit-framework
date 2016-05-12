@@ -18,6 +18,8 @@ from .core.Comp import tab
 from .core.shellcodeformat import prettyout
 
 
+if sys.version_info.major == 3:
+    raw_input = input
 
 
 tab.start()
@@ -95,16 +97,28 @@ class B3mB4m(object):
             "windows/download&execute",
         ]
 
+        self.BFD = [
+            "injectors/Windows/BFD/Patching",
+            "injectors/MacOSX/BFD/Patching",
+            "injectors/Linux/BFD/Patching",
+            "injectors/Linux/ARM/x86/BFD/Patching",
+            "injectors/FreeBSD/x86/BFD/Patching",
+        ]
+
+
+
 
     def control(self, string):
         bash =  bcolors.OKBLUE + bcolors.UNDERLINE + "ssf" + bcolors.ENDC
         bash += ":"
         bash += bcolors.RED + string+ bcolors.ENDC
         bash += bcolors.OKBLUE + " > "+ bcolors.ENDC
+
         try:
             terminal = raw_input(bash)
-        except NameError:
-            terminal = input(bash)
+        except KeyboardInterrupt:
+            sys.exit("\n[*] (Ctrl + C ) Detected, Trying To Exit ...")
+            
 
         #Injectors
         if string[:9] == "injectors":
@@ -140,14 +154,24 @@ class B3mB4m(object):
 
 
             elif terminal[:5] == "unset":
-                if string == "injectors/Windowsx86/tLsInjectorDLL":
+                if string in self.BFD:
+                    if terminal[6:] == "exe" or terminal[6:] == "file":
+                        self.argvlist[0] = "None"   
+                    elif terminal[6:] == "host":
+                        self.argvlist[1] = "None"
+                    elif terminal[6:] == "port":
+                        self.argvlist[2] = "None"
+                    else:
+                        print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)                      
+
+                elif string == "injectors/Windows/x86/tLsInjectorDLL":
                     if terminal[6:] == "exe":
                         self.argvlist[0] = "None"   
                     elif terminal[6:] == "dll":
                         self.argvlist[1] = "None"
                     else:
                         print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)   
-                elif string == "injectors/Windowsx86/CodecaveInjector":
+                elif string == "injectors/Windows/x86/CodecaveInjector":
                     if terminal[6:] == "exe":
                         self.argvlist[0] = "None"
                     elif terminal[6:] == "shellcode":
@@ -163,7 +187,21 @@ class B3mB4m(object):
 
 
             elif terminal[:3] == "set":
-                if string == "injectors/Windowsx86/tLsInjectorDLL":
+                if string in self.BFD:
+                    if terminal[4:7] == "exe" or terminal[4:8] == "file":
+                        self.argvlist[0] = terminal[9:]
+                    elif terminal[4:8] == "host":
+                        self.argvlist[1] = terminal[9:]
+                    elif terminal[4:8] == "port":
+                        self.argvlist[2] = terminal[9:]
+                    else:
+                        if terminal == "":
+                            self.control( string)
+                        else:
+                            print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
+
+
+                elif string == "injectors/Windows/x86/tLsInjectorDLL":
                     if terminal[4:7] == "exe":
                         self.argvlist[0] = terminal[8:]
                     elif terminal[4:7] == "dll":
@@ -174,7 +212,7 @@ class B3mB4m(object):
                         else:
                             print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
 
-                elif string == "injectors/Windowsx86/CodecaveInjector":
+                elif string == "injectors/Windows/x86/CodecaveInjector":
                     if terminal[4:7] == "exe":
                         self.argvlist[0] = terminal[8:]
                     elif terminal[4:13] == "shellcode":
@@ -211,7 +249,10 @@ class B3mB4m(object):
 
 
             elif terminal[:14] == "show shellcode":
-                if string == "injectors/Windowsx86/tLsInjectorDLL":
+                if string in self.BFD:
+                    print ("This option not available for this module.")
+                    self.control( string)
+                elif string == "injectors/Windowsx86/tLsInjectorDLL":
                      self.control( string)
                 else:
                     if self.argvlist[1] != "None":
@@ -224,13 +265,17 @@ class B3mB4m(object):
 
             elif terminal[:12] == "show options":
                 from .core.Injectoroptions import controlset
-                if string != "injectors/Windowsx86/tLsInjectorDLL":
-                    if self.argvlist[1] != "None":
-                        self.mycache = "process"
-                        controlset( string, self.argvlist[0], self.mycache)
-                        self.control( string)
-                controlset( string, self.argvlist[0], self.argvlist[1])
-                self.control( string)
+                if string in self.BFD:
+                    controlset( string, self.argvlist[0], self.argvlist[1], self.argvlist[2])
+                    self.control( string)
+                else:
+                    if string != "injectors/Windows/x86/tLsInjectorDLL":
+                        if self.argvlist[1] != "None":
+                            self.mycache = "process"
+                            controlset( string, self.argvlist[0], self.mycache)
+                            self.control( string)
+                    controlset( string, self.argvlist[0], self.argvlist[1])
+                    self.control( string)
 
             
             elif terminal[:5] == "clear":
@@ -243,6 +288,7 @@ class B3mB4m(object):
                 from .core.commands import oscommand
                 oscommand( terminal[3:])
                 self.control( string)
+
 
             elif terminal[:6] == "inject":
                 if self.argvlist[0] == None or self.argvlist[1] == None:
@@ -257,15 +303,43 @@ class B3mB4m(object):
                 elif string == "injectors/Windows/byteman":
                     from .inject.menager import windows
                     windows( self.argvlist[0], self.argvlist[1])
-                elif string == "injectors/Windowsx86/tLsInjectorDLL":
+                elif string == "injectors/Windows/x86/tLsInjectorDLL":
                     from .inject.menager import winx86tLsDLL
                     winx86tLsDLL( self.argvlist[0], self.argvlist[1])
-                elif string == "injectors/Windowsx86/CodecaveInjector":
+                elif string == "injectors/Windows/x86/CodecaveInjector":
                     from .inject.menager import winx86Codecave
                     winx86Codecave( self.argvlist[0], self.argvlist[1])
                 elif string == "injectors/Windows/Dllinjector":
                     from .inject.menager import winDLL
-                    winDLL( self.argvlist[0], self.argvlist[1])               
+                    winDLL( self.argvlist[0], self.argvlist[1])        
+                
+
+                elif string == "injectors/Windows/BFD/Patching":
+                    from .inject.menager import winBFD
+                    winBFD( self.argvlist[0], self.argvlist[1], int(self.argvlist[2]))
+                
+
+                #elif string == "injectors/MacOSX/BFD/Patching":
+                    #from .inject.menager import MacBFD
+                    #MacBFD( FILE, HOST, PORT)          
+              
+
+                #elif string == "injectors/Linux/BFD/Patching":
+                    #from .inject.menager import LinuxBFD
+                    #LinuxBFD( FILE, HOST, PORT)
+               
+
+                #elif string == "injectors/Linux/ARM/x86/BFD/Patching":
+                    #from .inject.menager import LinuxARMx86BFD
+                    #LinuxARMx86BFD( FILE, HOST, PORT)                    
+              
+                #elif string == "FreeBSD/x86/BFD/Patching":
+                    #from .inject.menager import FreeBSDx86
+                    #FreeBSDx86( FILE, HOST, PORT)                    
+
+
+                
+
                 self.control( string)
 
 

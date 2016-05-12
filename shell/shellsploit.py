@@ -19,8 +19,7 @@ if sys.version_info.major == 3:
 
 from .control import *
 from .core.logo.logo import banner
-#from .core.logo.counter import * #- Will be  improved(buggy)
-#Dynamic counter for shellcodes,injectors etc..
+from .core.logo.counter import *
 from .core.Comp import tab
 
 
@@ -48,8 +47,15 @@ shellcodeModules = {
 	"solarisx86":
 			["binsh_spawn","read","reverse_tcp","tcp_bind"],
 	"injectors":
-			["Linux86/ptrace","Linux64/ptrace","Windowsx86/tLsInjectorDLL",
-			"Windowsx86/CodecaveInjector","Windows/Dllinjector",
+			["Linux/x86/ptrace","Linux64/ptrace","Windows/x86/tLsInjectorDLL",
+			"Windows/x86/CodecaveInjector","Windows/Dllinjector",
+			
+			"Windows/BFD/Patching",
+			"MacOSX/BFD/Patching",
+			"Linux/BFD/Patching",
+			"Linux/ARM/x86/BFD/Patching",
+			"FreeBSD/x86/BFD/Patching",
+			
 	#Dllinjector is still passive.
 			],
 	"backdoors":
@@ -58,9 +64,9 @@ shellcodeModules = {
 			"unix/bash/reverse_tcp","unix/ruby/reverse_tcp"]
 	}
 tab.start(1)
-#db = B3mB4mLogo().start()
+db = B3mB4mLogo().start()
 def start():
-	print (banner( "49", "12", "2", "4"))
+	print (banner( db[0], db[1], db[2], db[3]+5))
 	shellsploit()
 
 def shellsploit():
@@ -68,75 +74,70 @@ def shellsploit():
 		bash =  bcolors.OKBLUE + bcolors.UNDERLINE + "ssf" + bcolors.ENDC
 		bash += bcolors.OKBLUE + " > "+ bcolors.ENDC
 		terminal = raw_input(bash)
+	except KeyboardInterrupt:
+		sys.exit("\n[*] (Ctrl + C ) Detected, Trying To Exit ...")
 
-		if terminal[:4] == "help":
-			from .core.help import mainhelp
-			mainhelp()
+
+	if terminal[:4] == "help":
+		from .core.help import mainhelp
+		mainhelp()
+		shellsploit()
+
+	elif terminal[:14] == "show backdoors":
+		from .core.backdoors import backdoorlist
+		backdoorlist()
+		shellsploit()
+
+	elif terminal[:2] == "os":
+		from .core.commands import oscommand
+		oscommand( terminal[3:])
+		shellsploit()
+
+
+	elif terminal[:6] == "banner":
+		print (banner( db[0], db[1], db[2], db[3]+4))
+		shellsploit()
+
+	elif terminal[:3] == "use":
+		all_sc_modules = []
+		for platforms in shellcodeModules.keys():
+			for shellcodeType in shellcodeModules[platforms]:
+				all_sc_modules.append("{}/{}".format(platforms,shellcodeType))
+				if terminal.split()[1] in all_sc_modules:
+					for shellcode in all_sc_modules:
+						if terminal.split()[1] == shellcode:
+							B3mB4m().control(shellcode)
+							shellsploit()
+
+					print ("\nModule not avaible !\n")
+					shellsploit()
+
+
+	elif terminal[:14] == "show injectors":
+		from .core.lists import injectorlist
+		injectorlist()
+		shellsploit()
+
+	elif terminal[:5] == "clear":
+		from .core.commands import clean
+		clean()
+		shellsploit()
+
+	elif terminal[:12] == "show modules":
+		from .core.shellcodes import shellcodelist
+		shellcodelist()
+		shellsploit()
+
+
+	elif terminal[:4] == "exit":
+		sys.exit("\nThanks for using shellsploit !\n")
+
+	else:
+		if terminal == "":
 			shellsploit()
-
-		elif terminal[:14] == "show backdoors":
-			from .core.backdoors import backdoorlist
-			backdoorlist()
-			shellsploit()
-
-		elif terminal[:2] == "os":
-			from .core.commands import oscommand
-			oscommand( terminal[3:])
-			shellsploit()
-
-
-		elif terminal[:6] == "banner":
-			print (banner( "47", "12", "2", "4"))
-			shellsploit()
-
-		elif terminal[:3] == "use":
-			all_sc_modules = []
-			for platforms in shellcodeModules.keys():
-				for shellcodeType in shellcodeModules[platforms]:
-					all_sc_modules.append("{}/{}".format(platforms,shellcodeType))
-			if terminal.split()[1] in all_sc_modules:
-				for shellcode in all_sc_modules:
-					if terminal.split()[1] == shellcode:
-						B3mB4m().control(shellcode)
-						shellsploit()
-			else:
-				print ("\nModule not avaible !\n")
-				shellsploit()
-
-
-		elif terminal[:14] == "show injectors":
-			from .core.lists import injectorlist
-			injectorlist()
-			shellsploit()
-
-		elif terminal[:5] == "clear":
-			from .core.commands import clean
-			clean()
-			shellsploit()
-
-		elif terminal[:12] == "show modules":
-			from .core.shellcodes import shellcodelist
-			shellcodelist()
-			shellsploit()
-
-
-		elif terminal[:4] == "exit":
-			sys.exit("\nThanks for using shellsploit !\n")
-
 		else:
-			if terminal == "":
-				shellsploit()
-			else:
-				print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: %s" % terminal + bcolors.ENDC)
-				shellsploit()
-
-
-
-	except(KeyboardInterrupt):
-		print("\n[*] (Ctrl + C ) Detected, Trying To Exit ...")
-		from sys import exit
-		sys.exit()
-
+			print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: %s" % terminal + bcolors.ENDC)
+			shellsploit()
 
 
 def main():
@@ -157,9 +158,22 @@ def main():
 		backdoorlist( require=False)
 		sys.exit()
 
+
+	if options.list == "shellcodes":
+		from .core.shellcodes import shellcodelist
+		shellcodelist()
+		sys.exit()
+
+
 	if options.list == "encoders":
 		from .core.backdoors import encoderlist
 		encoderlist( require=False)
+		sys.exit()
+
+
+	if options.list == "injectors":
+		from .core.lists import injectorlist
+		injectorlist()
 		sys.exit()
 
 	elif options.nc == "netcat" or options.nc == "nc":
@@ -169,6 +183,7 @@ def main():
 		else:
 			nc()
 		sys.exit()
+
 	else:
 		if options.payload:
 			if options.host and options.port:

