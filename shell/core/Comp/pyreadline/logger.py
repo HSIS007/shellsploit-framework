@@ -8,7 +8,7 @@
 from __future__ import print_function, unicode_literals, absolute_import
 
 import socket, logging, logging.handlers
-from pyreadline.unicode_helper import ensure_str
+from .unicode_helper import ensure_str
 
 host = "localhost"
 port = logging.handlers.DEFAULT_TCP_LOGGING_PORT

@@ -3,7 +3,7 @@
 #necessary for rlcompleter since it relies on the existance
 #of a readline module
 from __future__ import print_function, unicode_literals, absolute_import
-from pyreadline.rlmain import Readline
+from .pyreadline.rlmain import Readline
 
 __all__ = [ 'parse_and_bind',
             'get_line_buffer',
