@@ -7,6 +7,11 @@ And let's you obfuscation every byte via encoders.
 
 "Please do not forget before use shellsploit is still BETA.And its not only about "shellcodes"."
 
+#Compatibility 
+---------------
+    Not stable on python3x(working on it).
+
+
 #StableVersion
 ---------------
     Still not exists stable version, because of too many file(any help would be great hehe).
