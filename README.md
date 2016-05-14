@@ -38,7 +38,7 @@ Pip works on both windows/nix machines without problem. Now you are ready to ins
 #I DONT WANT INSTALL THIS
 ---------------------------
 
-Then dont.You can use shellsploit without install.
+Then don't.You can use shellsploit without install.
 
 	$root cd shellsploit-framework
 	$root python shellsploit.py or python3 shellsploit.py
