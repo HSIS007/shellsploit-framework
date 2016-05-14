@@ -35,6 +35,15 @@ Pip works on both windows/nix machines without problem. Now you are ready to ins
     root$ chmod +x shellsploit (if you are using windows just pass this step)
     root$ ./shellsploit
 
+#I DONT WANT INSTALL THIS
+---------------------------
+
+Then dont.You can use shellsploit without install.
+
+	$root cd shellsploit-framework
+	$root python shellsploit.py or python3 shellsploit.py
+
+
 Don't want it anymore? Uninstall it:
 
     root$ python setup.py --s/--setup uninstall 
