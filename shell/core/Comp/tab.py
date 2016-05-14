@@ -7,13 +7,7 @@
 
 import sys
 import os
-
-if 'linux' in sys.platform:
-    import readline
-elif 'darwin' in sys.platform:
-    from . import readlineOSX as readline
-elif 'win32' == sys.platform or 'win64' == sys.platform:
-    from . import readlineWIN as readline
+import readline
 
 
 
