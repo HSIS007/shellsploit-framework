@@ -26,16 +26,20 @@ And let's you obfuscation every byte via encoders.
     root$ sudo pip install colorama
 
 
-#Install/Uninstall	
--------------------
-
+#Installation	
+-------------
 Pip works on both windows/nix machines without problem. Now you are ready to install:
 
     root$ python setup.py --s/ --setup install 
     root$ chmod +x shellsploit (if you are using windows just pass this step)
     root$ ./shellsploit
 
-#I DONT WANT INSTALL THIS
+#Uninstallation
+----------------
+	root$ python setup.py --s/--setup uninstall
+
+
+#I DONT WANT INSTALL THIS 
 ---------------------------
 
 Then don't.You can use shellsploit without install.
@@ -43,11 +47,6 @@ Then don't.You can use shellsploit without install.
 	$root cd shellsploit-framework
 	$root python shellsploit.py or python3 shellsploit.py
 
-
-Don't want it anymore? Uninstall it:
-
-    root$ python setup.py --s/--setup uninstall 
- 
 
 #Usage
 -----
