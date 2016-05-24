@@ -27,8 +27,8 @@ def controlset( choice, argv1="None", argv2="None", argv3="None", argv4="None"):
 		print (bcolors.GREEN+"""
 	Module options ({0}):
 
-	\tName\t\t{1}\tRequired\tDescription
-	\t----\t\t{2}\t--------\t-----------
+	\tName\t\t{1}\t\tRequired\tDescription
+	\t----\t\t{2}\t\t--------\t-----------
 	\tLHOST\t\t{3}\t\tyes\t\tConnection Host
 	\tLPORT\t\t{4}\t\tyes\t\tConnection Port
 	""".format(choice,"Current Setting".ljust(padd),"---------------".ljust(padd),

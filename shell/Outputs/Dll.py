@@ -1,6 +1,11 @@
-import time
+#------------------Bombermans Team---------------------------------#
+#Author  : B3mB4m
+#Concat  : b3mb4m@protonmail.com
+#Project : https://github.com/b3mb4m/Shellsploit
+#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
+#------------------------------------------------------------------#
 
-from .logger import logs
+from header import *
 
 DLL_TEMPLATE = """/**
  * C source to generate a DLL using shellsploit.
@@ -58,4 +63,4 @@ void __declspec(dllexport) ControlRun(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdL
 def DllFile(shellcode):
 	db =  DLL_TEMPLATE % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
 	logs( db, "c")
-        return
+        

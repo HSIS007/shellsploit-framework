@@ -32,17 +32,18 @@ def injectorlist():
 \t============\t\t\t\t\t=======
 \t[+] injectors/Linux/x86/ptrace\t\t\tx86
 \t[+] injectors/Linux/x64/ptrace\t\t\tx64
-\t[+] injectors/Linux/BFD/Patching\t\tx86/x64
-\t[+] injectors/Linux/ARM/BFD/Patching\t\tx86/x64
-\t[+] injectors/FreeBSD/x86/BFD/Patching\t\tx86/x64
 \t[+] injectors/Windows/x86/tLsInjectorDLL\tx86
 \t[+] injectors/Windows/x86/CodecaveInjector\tx86
 \t[+] injectors/Windows/Dllinjector\t\tx86/x64
 \t[+] injectors/Windows/BFD/Patching\t\tx86/x64
-\t[+] injectors/MachOSX/BFD/Patching\t\tx86/x64
-
-
 	""")
+
+#\t[+] injectors/MachOSX/BFD/Patching\t\tx86/x64
+#\t[+] injectors/Linux/BFD/Patching\t\tx86/x64
+#\t[+] injectors/Linux/ARM/BFD/Patching\t\tx86/x64
+#\t[+] injectors/FreeBSD/x86/BFD/Patching\t\tx86/x64
+
+
 
 def OSlist():
 	print ("""
@@ -66,15 +67,14 @@ def OSlist():
 """)
 
 def encoders():
-  	list = [
-  	"x64/xor",
-	"x86/xor",
-	#"x86/add_sub",
-	#"x86/alpha_mixed",
-	#"x86/alpha_upper",
-	#"x86/countdown",
-	#"x86/nonalpha",
-	#"x86/nonupper",
-	"x86/xor_b3m",
-  	]
-  	return list
+  	return [
+	  	"x64/xor",
+		"x86/xor",
+		#"x86/add_sub",
+		#"x86/alpha_mixed",
+		#"x86/alpha_upper",
+		#"x86/countdown",
+		#"x86/nonalpha",
+		#"x86/nonupper",
+		"x86/xor_b3m",
+	]

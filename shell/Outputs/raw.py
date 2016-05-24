@@ -1,8 +1,13 @@
-import binascii
+#------------------Bombermans Team---------------------------------#
+#Author  : B3mB4m
+#Concat  : b3mb4m@protonmail.com
+#Project : https://github.com/b3mb4m/Shellsploit
+#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
+#------------------------------------------------------------------#
 
-from .logger import logs
+from header import *
+
 
 def RawFile( shellcode):
-        sc = shellcode.replace("\\x", "")
-        sc = binascii.unhexlify( sc )
+    sc = unhexlify(shellcode.replace("\\x", ""))
 	logs( sc, None)

@@ -4,8 +4,8 @@ import os
 import re
 import random
 import string
-#from colorama import init
-#init(autoreset=True)
+from colorama import init
+init(autoreset=True)
 
 #Edited by B3mB4m
 __author__ = "Borja Merino"

@@ -1,6 +1,6 @@
 from optparse import OptionParser
 import sys
-from opt import *
+from .opt import *
 
 from . import pyminify
 from . import __version__

@@ -1,3 +1,10 @@
+#------------------Bombermans Team---------------------------------#
+#Author  : B3mB4m
+#Concat  : b3mb4m@protonmail.com
+#Project : https://github.com/b3mb4m/Shellsploit
+#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
+#------------------------------------------------------------------#
+
 from .color import *
 
 
@@ -7,6 +14,9 @@ def encoderlist( require=False):
 		data = [
 			"encoders/py/bzip2",
 			"encoders/py/gzip",
+			"encoders/shellcode/intel/x86/xor86.py",
+			"encoders/shellcode/intel/x86/xor_b3m.py",
+			"encoders/shellcode/intel/x86/xor64.py",
 		]
 		return data
 	else:
@@ -15,11 +25,20 @@ def encoderlist( require=False):
 Python
 ========
 
-  encoders/py/bzip2
-  encoders/py/gzip			
+	encoders/py/bzip2
+	encoders/py/gzip			
 
+
+Shellcode
+==========
+
+	encoders/shellcode/intel/x86/xor86.py
+	encoders/shellcode/intel/x86/xor_b3m.py
+	
 
 	""" + bcolors.ENDC)
+
+#encoders/shellcode/intel/x86/xor64.py
 
 
 def backdoorlist( require=False):
@@ -31,17 +50,17 @@ def backdoorlist( require=False):
 		"backdoors/osx64/reverse_tcp",
 		"backdoors/windows/x86/reverse_tcp",
 
-		"backdoors/php/reverse_tcp",
-		"backdoors/asp/reverse_tcp",
-		"backdoors/jsp/reverse_tcp",
-		"backdoors/war/reverse_tcp",
+#		"backdoors/php/reverse_tcp",
+#		"backdoors/asp/reverse_tcp",
+#		"backdoors/jsp/reverse_tcp",
+#		"backdoors/war/reverse_tcp",
 
 		"backdoors/unix/python/reverse_tcp",
 		"backdoors/unix/perl/reverse_tcp",
 		"backdoors/unix/bash/reverse_tcp",
 		"backdoors/unix/ruby/reverse_tcp",
 		"backdoors/windows/asm/reverse_tcp",
-		"backdoors/windows/powershell/reverse_tcp",
+		"backdoors/windows/ps/reverse_tcp",
 
 
 		]
@@ -58,13 +77,6 @@ Binaries
   backdoors/windowsx86/reverse_tcp - [Passive]
   backdoors/windowsx64/reverse_tcp - [Passive]
 
-Web Payloads 
-=============
-
-  backdoors/php/reverse_tcp - [Passive]
-  backdoors/asp/reverse_tcp - [Passive]
-  backdoors/jsp/reverse_tcp - [Passive]
-  backdoors/war/reverse_tcp - [Passive]
 
 Scripting Payloads
 ===================
@@ -74,7 +86,16 @@ Scripting Payloads
   backdoors/unix/bash/reverse_tcp
   backdoors/unix/ruby/reverse_tcp
   backdoors/windows/asm/reverse_tcp
-  backdoors/windows/powershell
+  backdoors/windows/ps/reverse_tcp
 
 	""" + bcolors.ENDC)
 
+
+
+#Web Payloads 
+#=============
+
+#  backdoors/php/reverse_tcp - [Passive]
+#  backdoors/asp/reverse_tcp - [Passive]
+#  backdoors/jsp/reverse_tcp - [Passive]
+#  backdoors/war/reverse_tcp - [Passive]

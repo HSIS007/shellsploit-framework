@@ -1,3 +1,10 @@
+#------------------Bombermans Team---------------------------------#
+#Author  : B3mB4m
+#Concat  : b3mb4m@protonmail.com
+#Project : https://github.com/b3mb4m/Shellsploit
+#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
+#------------------------------------------------------------------#
+
 def process( data, HOST, PORT, ENCODER=False, logger=True):
 	logfile = None
 	extension = None
@@ -34,14 +41,14 @@ def process( data, HOST, PORT, ENCODER=False, logger=True):
 
 
 
-	elif data == "backdoors/php/reverse_tcp":
-		pass
-	elif data == "backdoors/asp/reverse_tcp":
-		pass
-	elif data == "backdoors/jsp/reverse_tcp":
-		pass
-	elif data == "backdoors/war/reverse_tcp":
-		pass
+	#elif data == "backdoors/php/reverse_tcp":
+	#	pass
+	#elif data == "backdoors/asp/reverse_tcp":
+	#	pass
+	#elif data == "backdoors/jsp/reverse_tcp":
+	#	pass
+	#elif data == "backdoors/war/reverse_tcp":
+	#	pass
 
 
 	elif data == "backdoors/unix/python/reverse_tcp":
@@ -64,11 +71,10 @@ def process( data, HOST, PORT, ENCODER=False, logger=True):
 		from .backdoors.main import asmreverse_tcp
 		extension = "s"
 		logs = asmreverse_tcp( HOST,PORT)
-	elif data == "backdoors/windows/powershell/reverse_tcp":
+	elif data == "backdoors/windows/ps/reverse_tcp":
 		from .backdoors.main import powershell
 		extension = "ps1"
 		logs = powershell( HOST,PORT)
-
 
 
 	savefile = [logfile if logger != True else logfile+extension]
@@ -89,7 +95,7 @@ def process( data, HOST, PORT, ENCODER=False, logger=True):
 	import os
 	path = os.getcwd()+os.sep+savefile[0].replace("\n", "")
 	if ENCODER:
-		from .encoders.starter import control 
+		from shell.encoders.py.starter import control 
 		control(payload=ENCODER, files=[path])
 	print ("\n\n\t Exploit Location : {0} \n\n".format(path))
 

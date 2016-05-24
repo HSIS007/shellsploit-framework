@@ -35,16 +35,25 @@ class autocomplete(object):
 
 
 
-#Control 1 = Shellsploit
-#Control 2 = control.py
-def start( control=1):
-    if control == 1:
-        from .db import ret2
-        readline.set_completer(autocomplete(ret2()).complete)
+def completion( control=False):
+    if control == "shellsploit":
+        from .db import shellsploitlist
+        readline.set_completer(autocomplete(shellsploitlist()).complete)
         readline.parse_and_bind('tab: complete')
-    else:
-        from .db import ret
-        readline.set_completer(autocomplete(ret()).complete)
+   
+    elif control == "shellcodes":
+        from .db import shellcodelist
+        readline.set_completer(autocomplete(shellcodelist()).complete)
+        readline.parse_and_bind('tab: complete')
+  
+    elif control == "injectors":
+        from .db import injectorlist
+        readline.set_completer(autocomplete(injectorlist()).complete)
+        readline.parse_and_bind('tab: complete')
+   
+    elif control == "backdoors":
+        from .db import backdoorlist
+        readline.set_completer(autocomplete(backdoorlist()).complete)
         readline.parse_and_bind('tab: complete')
 
 

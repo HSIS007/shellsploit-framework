@@ -10,7 +10,9 @@ from itertools import product
 from sys import setrecursionlimit
 from re import findall
 from sys import exit
-import re
+from sys import version_info
+from binascii import hexlify
+
 
 setrecursionlimit(9999)
 def xorme( shellcode):
@@ -38,17 +40,22 @@ def xorme( shellcode):
 
 
 	encode = ""
-	for x in bytearray(cache.decode("hex")):
-		y = x^int("0x"+insert, 16)
-		test = r'\x%02x' % y
-		encode += test
+	if version_info.major >= 3:
+		for x in hexlify(cache.encode('utf8')):	
+			y = x^int("0x"+insert, 16)
+			test = r'\x%02x' % y
+			encode += test
+	else:
+		for x in bytearray(cache.decode("hex")):
+			y = x^int("0x"+insert, 16)
+			test = r'\x%02x' % y
+			encode += test
 
 	header += encode.upper()
 	header += r"\x"+insert
    	
 	if r"\x00" in header.lower():
 		xorme( shellcode)
-	
 	return header.lower().replace("\\x", "")
 
 
@@ -58,9 +65,9 @@ def start( shellcode):
 	try:
 		control = True
 		while control == True:
-			qe = re.findall("..?", xorme( shellcode))
+			qe = findall("..?", xorme( shellcode))
 			if "00" in qe:
-				qe = re.findall("..?", xorme( shellcode))
+				qe = findall("..?", xorme( shellcode))
 				control = True
 			else:
 				control = False
@@ -75,6 +82,7 @@ def prestart( data, roll=None):
 	cache = True
 	if roll == None or roll == 1:
 		data = start(data) 
+		cache = False
 	elif roll > 25:
 		return "This script is still BETA.Please do not use iteration more than 25 times."
 	else:
@@ -86,9 +94,10 @@ def prestart( data, roll=None):
 			data = start( data)
 
 	if cache == False:
-		qe = re.findall("..?", data)
+		qe = findall("..?", data)
 		return "\\x"+"\\x".join(qe).lower()
 	else:
 		return "After roll 9999 times,payload generate failed."
+
 
 

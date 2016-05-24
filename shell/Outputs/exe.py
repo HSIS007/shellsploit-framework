@@ -12,21 +12,6 @@ def ExeFile( shellcode, OS=None):
 	from .logger import logs
 	from .Database.exedb import B3m
 
-	#0 linux86
-	#1 linux64
-	#2 windows x86/x64 
-	#3 openbsdx86
-	#4 solarisx86
-	#5 linuxpowerpc
-	#6 openbsdpowerpc
-	#7 linuxsparc
-	#8 freebsdsparc
-	#9 opensbdsparc
-	#10 solarissparc
-	#11 linuxarm
-	#12 freebsdarm
-	#13 opensbdarm
-	#64 bits will be add soon ..
 
 	db = B3m()
 	padd = ""

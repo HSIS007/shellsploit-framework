@@ -1,0 +1,7 @@
+Dependences
+AIM
+VERSION
+
+__pypcache__/
+*.pyc
+*.pyo

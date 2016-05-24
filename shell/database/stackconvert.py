@@ -6,33 +6,28 @@
 #------------------------------------------------------------------#
 
 
-import sys
-import re
+
+from re import findall
 import codecs
-
-#In py3 not like py2, byte-like objects will fuck up your strings.So you must decode before use them ..
-
-
 
 
 def plaintext( string):
 	string = codecs.encode(str.encode(string), 'hex')
 	string = string.decode('utf-8')
-	db = re.findall("..?", string)
+	db = findall("..?", string)
 	return "\\x"+"\\x".join(db)
+
 
 def plaintextreverse( string):
 	string = codecs.encode(str.encode(string), 'hex')
 	string = string.decode('utf-8')
-	db = re.findall("..?", string)
+	db = findall("..?", string)
 	return "\\x"+"\\x".join(db[::-1])
 
 
-
 def PORT( port):
-	from convertoffset import decimaltohex
 	db = []
-	fixmesempai = re.findall('..?', decimaltohex(str(port)))
+	fixmesempai = findall('..?', hex(int(port))[2:])
 	for x in fixmesempai:
 		if len(x) == 1:
 			x = "0"+x
@@ -40,15 +35,13 @@ def PORT( port):
 	return "\\x"+"\\x".join(db)
 
 
-
 def IP( ip):
-	from convertoffset import decimaltohex
 	#0x101017f : 127.1.1.1
 	ip = str(ip).split(".")
 	db = []
 	db2 = []
 	for x in ip:
-		db.append(decimaltohex( int(x)))
+		db.append(hex( int(x))[2:])
 	for x in db: 
 		if len(x) == 1:
 			x = "0"+x
@@ -60,7 +53,7 @@ def rawSTR( string):
 	db = []
 	for x in string:
 		first = codecs.encode(str.encode(x), 'hex')
-		x = x.decode('utf-8')
+		x = first.decode('utf-8')
 		db.append("\\x"+x)
 	return "".join(db)
 
@@ -79,19 +72,18 @@ def ARM( string):
 		for x in range(0,len(string),4):
 			db.append(ARMsplitter(string[x:x+4]))
 		return "".join(db)
-		
+
+
 def ARMsplitter( hexdump, pushdword="None"):
 	db = []
 	if pushdword == "None":
-		fixmesempai = re.findall('....?', hexdump)
+		fixmesempai = findall('....?', hexdump)
 		for x in fixmesempai[::-1]:
 			first = codecs.encode(str.encode(x[::-1]), 'hex')
 			first = first.decode('utf-8')
-			second = re.findall("..?", first)[::-1]
+			second = findall("..?", first)[::-1]
 			db.append("\\x"+"\\x".join(second))
 		return "".join(db)			
-
-
 
 
 def stackconvertSTR( string, win=False):
@@ -122,7 +114,7 @@ def stackconvertSTR( string, win=False):
 	if len(string) == 4:
 		first = codecs.encode(str.encode(string[::-1]), 'hex')
 		stack = first.decode('utf-8')
-		data = re.findall("..?", stack)
+		data = findall("..?", stack)
 		return "\\x68\\x"+"\\x".join(data)
 
 
@@ -137,7 +129,7 @@ def stackconvertSTR( string, win=False):
 	elif 2 < len(string) < 4:
 		first = codecs.encode(str.encode(hexdump[::-1]), 'hex')
 		first = first.decode('utf-8')
-		second = re.findall("..?", first)[::-1]
+		second = findall("..?", first)[::-1]
 		for x in second:
 			db.append("\\x"+x)
 		return "\\x66\\x68"+"".join(db)
@@ -168,11 +160,11 @@ def filler( string, number):
 def splitter( hexdump, pushdword="None"):
 	db = []
 	if pushdword == "None":
-		fixmesempai = re.findall('....?', hexdump)
+		fixmesempai = findall('....?', hexdump)
 		for x in fixmesempai[::-1]:
 			first = codecs.encode(str.encode(x[::-1]), 'hex')
 			first = first.decode('utf-8')
-			second = re.findall("..?", first)[::-1]
+			second = findall("..?", first)[::-1]
 			db.append("\\x"+"\\x".join(second))
 		return "\\x68"+"".join(db)	
 				
@@ -185,7 +177,7 @@ def splitter( hexdump, pushdword="None"):
 		else:
 			first = codecs.encode(str.encode(hexdump[::-1]), 'hex')
 			first = first.decode('utf-8')
-			second = re.findall("..?", first)[::-1]
+			second = findall("..?", first)[::-1]
 			for x in second:
 				db.append("\\x"+x)
 			return "\\x66\\x68"+"".join(db)

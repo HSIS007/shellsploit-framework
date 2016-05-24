@@ -1,22 +1,24 @@
-#------------------Bombermans Team---------------------------------# 
-#Author  : B3mB4m
-#Concat  : b3mb4m@protonmail.com
-#Project : https://github.com/b3mb4m/Shellsploit
-#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
-#------------------------------------------------------------------#
+from sys import setrecursionlimit
+from sys import version_info
+from re import findall
+from binascii import hexlify
 
-import sys
-import re
-
-sys.setrecursionlimit(9999)
+setrecursionlimit(9999)
 
 def xorme( data):
 	from random import randint
 	xor = [hex(x) for x in range(20,256)][randint(0, len([hex(x) for x in range(20,256)])-1)]
 	shellcode = ""
-	for x in bytearray(data.decode("hex")) :	
-		y = x^int(xor, 16)
-		shellcode += '0x%02x,' %y
+	
+	if version_info.major >= 3:
+		for x in hexlify(data.encode('utf8')):	
+			y = x^int(xor, 16)
+			shellcode += '0x%02x,' %y
+	else:
+		for x in bytearray(data.decode("hex")) :	
+			y = x^int(xor, 16)
+			shellcode += '0x%02x,' %y
+
 
 	padding = str(shellcode)+str(xor)
 	shellcode  =  "EB095E8036"
@@ -33,16 +35,15 @@ def start( shellcode):
 	try:
 		control = True
 		while control == True:
-			qe = re.findall("..?", xorme( shellcode))
+			qe = findall("..?", xorme( shellcode))
 			if "00" in qe:
-				qe = re.findall("..?", xorme( shellcode))
+				qe = findall("..?", xorme( shellcode))
 				control = True
 			else:
 				control = False
 		return "".join(qe)
 	except:
 		print ("After roll 9999 times,payload generate failed.")
-		sys.exit()
 
 
 def prestart( data, roll=None):
@@ -54,7 +55,5 @@ def prestart( data, roll=None):
 		for x in range(int(roll)):
 			data = start( data)
 
-	qe = re.findall("..?", data)
+	qe = findall("..?", data)
 	return "\\x"+"\\x".join(qe).lower()
-
-

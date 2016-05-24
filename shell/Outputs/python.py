@@ -5,8 +5,10 @@
 #LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
 
+
+from header import *
+
 def PyFile( shellcode):
-	import time
 	db = """#!/usr/bin/python
 
 import ctypes
@@ -29,9 +31,8 @@ addr_page = (addr // pagesize) * pagesize
 for page_start in range(addr_page, addr + len(shellcode_data), pagesize):
     assert libc.mprotect(page_start, pagesize, 0x7) == 0
 function()   
-""".format(time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+""".format(strftime("%d/%m/%Y"), strftime("%H:%M:%S"), shellcode)
 
-	from .logger import logs
 	logs( db, "py")
 
 

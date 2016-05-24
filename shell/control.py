@@ -18,11 +18,11 @@ from .core.Comp import tab
 from .core.shellcodeformat import prettyout
 
 
-if sys.version_info.major == 3:
+if sys.version_info.major >= 3:
     raw_input = input
 
 
-tab.start()
+
 class B3mB4m(object):   
     def __init__(self):
         self.argvlist = ["None", "None", "None", "None"]
@@ -122,12 +122,14 @@ class B3mB4m(object):
 
         #Injectors
         if string[:9] == "injectors":
+            tab.completion( "injectors")
             if terminal[:4] == "help":
                 from .core.help import injectorhelp
                 injectorhelp()
                 self.control( string)
 
             elif terminal[:4] == "back":
+                self.argvlist = ["None", "None", "None", "None"]
                 pass
 
             #elif terminal[:9] == "need help":
@@ -195,7 +197,7 @@ class B3mB4m(object):
                     elif terminal[4:8] == "port":
                         self.argvlist[2] = terminal[9:]
                     else:
-                        if terminal == "":
+                        if not terminal:
                             self.control( string)
                         else:
                             print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
@@ -207,7 +209,7 @@ class B3mB4m(object):
                     elif terminal[4:7] == "dll":
                         self.argvlist[1] = terminal[8:]
                     else:
-                        if terminal == "":
+                        if not terminal:
                             self.control( string)
                         else:
                             print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
@@ -218,7 +220,7 @@ class B3mB4m(object):
                     elif terminal[4:13] == "shellcode":
                         self.argvlist[1] = terminal[14:]
                     else:
-                        if terminal == "":
+                        if not terminal:
                             self.control( string)
                         else:
                             print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
@@ -241,7 +243,7 @@ class B3mB4m(object):
                         else:
                             self.argvlist[1] = terminal[14:]
                     else:
-                        if terminal == "":
+                        if not terminal:
                             self.control( string)
                         else:
                             print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
@@ -350,10 +352,11 @@ class B3mB4m(object):
                 #generator()
             
             elif terminal[:4] == "back":
+                self.argvlist = ["None", "None", "None", "None"]
                 pass
 
             else:
-                if terminal == "":
+                if not terminal:
                     self.control( string)
                 else:
                     print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
@@ -362,10 +365,15 @@ class B3mB4m(object):
 
         #Backdoors
         elif string[:9] == "backdoors":
+            tab.completion( "backdoors")
             if terminal[:4] == "help":
                 from .core.help import backdoorshelp
                 backdoorshelp()
                 self.control( string)
+
+            elif terminal[:4] == "exit":
+                from sys import exit
+                exit("\nThanks for using shellsploit !\n")
 
 
             elif terminal[:2] == "os":
@@ -410,7 +418,7 @@ class B3mB4m(object):
                     print ("\nSet options before generate payload.\n")
                     self.control( string)
                 else:
-                    process( string, self.argvlist[0], self.argvlist[1], True)
+                    process( data=string, HOST=self.argvlist[0], PORT=self.argvlist[1], ENCODER=False, logger=True)
                     self.control( string)
 
             elif terminal[:5] == "clear":
@@ -419,10 +427,11 @@ class B3mB4m(object):
                 self.control( string)
 
             elif terminal[:4] == "back":
+                self.argvlist = ["None", "None", "None", "None"]
                 pass
 
             else:
-                if terminal == "":
+                if not terminal:
                     self.control( string)
                 else:
                     print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)
@@ -431,7 +440,7 @@ class B3mB4m(object):
 
         #Shellcodes
         else:
-            
+            tab.completion( "shellcodes")
             if terminal[:4] == "help":
                 #if terminal[5:11] == "output":
                     #from Outputs.exehelp import help
@@ -447,11 +456,12 @@ class B3mB4m(object):
                 self.control( string)
 
             elif terminal[:4] == "back":
+                self.argvlist = ["None", "None", "None", "None"]
                 pass
             
             elif terminal[:4] == "exit":
                 from sys import exit
-                exit()
+                exit("\nThanks for using shellsploit !\n")
 
             elif terminal[:10] == "whatisthis":
                 from .core.whatisthis import whatisthis
@@ -567,8 +577,8 @@ class B3mB4m(object):
                         self.argvlist[0] = terminal[12:]
                     elif terminal[4:13] == "iteration":
                         self.argvlist[1] = terminal[14:]
-                    elif terminal[4:8] == "file":
-                        self.argvlist[3] = terminal[9:]
+                    elif terminal[4:12] == "filename":
+                        self.argvlist[3] = terminal[13:]
                     else:
                         print (bcolors.RED + bcolors.BOLD + "This option is not available." + bcolors.ENDC)
                 
@@ -717,27 +727,27 @@ class B3mB4m(object):
                     elif string == "windows/reverse_tcp":
                         controlset( string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])
                     elif string == "windows/tcp_bind":
-                        controlset( string, self.argvlist[0], self.argvlist[1], self.argvlist[2])                  
+                        controlset( string, self.argvlist[2], self.argvlist[0], self.argvlist[1])                  
                     self.control( string)
 
             elif terminal[:8] == "generate":
                 from .database.generator import generator
                 if string[:7] == "linux86":
                     if string == "linux86/binsh_spawn":
-                        self.disassembly = generator( "linux_x86", "bin_sh")
+                        self.disassembly = generator( "linux86", "binsh_spawn")
 
                     elif string == "linux86/read":
                         if self.argvlist[2] == "None":
                             print ("\nFile name must be declared.\n")
                             self.control( string)
-                        self.disassembly = generator( "linux_x86", "read", self.argvlist[2])
+                        self.disassembly = generator( "linux86", "read", FILE=self.argvlist[2])
                     
 
                     elif string == "linux86/exec":
                         if self.argvlist[2] == "None":
                             print ("\nCommand must be declared.\n")
                             self.control( string)
-                        self.disassembly = generator( "linux_x86", "exec", self.argvlist[2])
+                        self.disassembly = generator( "linux86", "exec", COMMAND=self.argvlist[2])
 
                     elif string  == "linux86/download&exec":
                         if self.argvlist[2] == "None":
@@ -756,139 +766,140 @@ class B3mB4m(object):
                                 self.argvlist[2] = edit
                             except:
                                 pass
-                        self.disassembly = generator( "linux_x86", "download&exec", self.argvlist[2])
+                        self.disassembly = generator( "linux86", "download&exec", URL=self.argvlist[2])
 
 
                     elif string == "linux86/chmod":
                         if self.argvlist[2] == "None":
                             print ("\nFile name must be declared.\n")
                             self.control( string)
-                        self.disassembly = generator( "linux_x86", "chmod", self.argvlist[2])
+                        self.disassembly = generator( "linux86", "chmod", FILE=self.argvlist[2])
 
                     elif string == "linux86/tcp_bind":
                         if self.argvlist[2] == "None":
                             print ("\nPORT must be declared.\n")
                             self.control( string)
-                        self.disassembly = generator( "linux_x86", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "linux86", "tcp_bind", port=self.argvlist[2])
+                  
                     elif string == "linux86/reverse_tcp":   
                         if self.argvlist[2] == "None" or self.argvlist[3] == "None": 
                             print ("\nHost&Port must be declared.\n")
                             self.control( string)
-                        self.disassembly = generator( "linux_x86", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "linux86", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
 
                 elif string[:7] == "linux64":
                     if string == "linux64/binsh_spawn":
-                        self.disassembly = generator( "linux_x64", "bin_sh")
+                        self.disassembly = generator( "linux64", "binsh_spawn")
                     elif string == "linux64/tcp_bind":
-                        self.disassembly = generator( "linux_x64", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "linux64", "tcp_bind", port=self.argvlist[2])
                     elif string == "linux64/reverse_tcp":
-                        self.disassembly = generator( "linux_x64", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "linux64", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
                     elif string == "linux64/read":
-                        self.disassembly = generator( "linux_x64", "read", self.argvlist[2])    
+                        self.disassembly = generator( "linux64", "read", FILE=self.argvlist[2])    
             
                 if string[:5] == "linux":
                     if string == "linux/read":
                         if self.argvlist[2] == "None":
                             print ("\nFile name must be declared.\n")
                             self.control( string)
-                        self.disassembly = generator( "linux", "read", self.argvlist[2])
+                        self.disassembly = generator( "linux", "read", FILE=self.argvlist[2])
                     elif string == "linux/binsh_spawn":
-                        self.disassembly = generator( "linux", "bin_sh")
+                        self.disassembly = generator( "linux", "binsh_spawn")
                     elif string == "linux/tcp_bind":
-                        self.disassembly = generator( "linux", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "linux", "tcp_bind", port=self.argvlist[2])
                     elif string == "linux/reverse_tcp":
-                        self.disassembly = generator( "linux", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "linux", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
 
 
                 elif string[:5] == "osx86":
                     if string == "osx86/tcp_bind":
-                        self.disassembly = generator( "osx86", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "osx86", "tcp_bind", port=self.argvlist[2])
                     elif string == "osx86/binsh_spawn":
-                        self.disassembly = generator( "osx86", "bin_sh")
+                        self.disassembly = generator( "osx86", "binsh_spawn")
                     elif string == "osx86/reverse_tcp":
-                        self.disassembly = generator( "osx86", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "osx86", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
 
                 elif string[:5] == "osx64":
                     if string == "osx64/binsh_spawn":
-                        self.disassembly = generator( "osx64", "bin_sh")
+                        self.disassembly = generator( "osx64", "binsh_spawn")
                     elif string == "osx64/tcp_bind":
-                        self.disassembly = generator( "osx64", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "osx64", "tcp_bind", port=self.argvlist[2])
                     elif string == "osx64/reverse_tcp":
-                        self.disassembly = generator( "osx64", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "osx64", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
                 
                 elif string[:11] == "freebsd_x86":
                     if string == "freebsd_x86/binsh_spawn":
-                        self.disassembly = generator( "freebsd_x86", "bin_sh")
+                        self.disassembly = generator( "freebsdx86", "binsh_spawn")
                     elif string == "freebsd_x86/read":
-                        self.disassembly = generator( "freebsd_x86", "read", self.argvlist[2])
+                        self.disassembly = generator( "freebsdx86", "read", FILE=self.argvlist[2])
                     elif string == "freebsd_x86/reverse_tcp":
-                        self.disassembly = generator( "freebsd_x86", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "freebsdx86", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
                     elif string == "freebsd_x86/reverse_tcp2":
-                        self.disassembly = generator( "freebsd_x86", "reverse_tcp2", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "freebsdx86", "reverse_tcp2", ip=self.argvlist[3], port=self.argvlist[2])
                     elif string == "freebsd_x86/exec":
-                        self.disassembly = generator( "freebsd_x86", "exec", self.argvlist[2])
+                        self.disassembly = generator( "freebsdx86", "exec", COMMAND=self.argvlist[2])
                     elif string == "freebsd_x86/tcp_bind":
-                        self.disassembly = generator( "freebsd_x86", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "freebsdx86", "tcp_bind", port=self.argvlist[2])
 
 
                 elif string[:11] == "freebsd_x64":
                     if string == "freebsd_x64/binsh_spawn":
-                        self.disassembly = generator( "freebsd_x64", "bin_sh")
+                        self.disassembly = generator( "freebsdx64", "binsh_spawn")
                     elif string == "freebsd_x64/tcp_bind":
-                        self.disassembly = generator( "freebsd_x64", "tcp_bind", self.argvlist[2], self.argvlist[3])
+                        self.disassembly = generator( "freebsdx64", "tcp_bind", port=self.argvlist[2], PASSWORD=self.argvlist[3])
                     elif string == "freebsd_x64/reverse_tcp":
-                        self.disassembly = generator( "freebsd_x64", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "freebsdx64", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
                     elif string == "freebsd_x64/exec":
-                        self.disassembly = generator( "freebsd_x64", "exec", self.argvlist[2])
+                        self.disassembly = generator( "freebsdx64", "exec", COMMAND=self.argvlist[2])
 
                 elif string[:9] == "linux_arm":
                     if string == "linux_arm/chmod":
-                        self.disassembly = generator( "linux_arm", "chmod", self.argvlist[2])
+                        self.disassembly = generator( "linux_arm", "chmod", FILE=self.argvlist[2])
                     elif string == "linux_arm/binsh_spawn":
-                        self.disassembly = generator( "linux_arm", "bin_sh")
+                        self.disassembly = generator( "linux_arm", "binsh_spawn")
                     elif string == "linux_arm/reverse_tcp":
-                        self.disassembly = generator( "linux_arm", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "linux_arm", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
                     elif string == "linux_arm/exec":
-                        self.disassembly = generator( "linux_arm", "exec", self.argvlist[2])    
+                        self.disassembly = generator( "linux_arm", "exec", COMMAND=self.argvlist[2])    
 
                 elif string[:10] == "linux_mips":
                     if string == "linux_mips/reverse_tcp":
-                        self.disassembly = generator( "linux_mips", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "linux_mips", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
                     elif string == "linux_mips/binsh_spawn":
-                        self.disassembly = generator( "linux_mips", "bin_sh")
+                        self.disassembly = generator( "linux_mips", "binsh_spawn")
                     elif string == "linux_mips/chmod":
-                        self.disassembly = generator( "linux_mips", "chmod", self.argvlist[2])
+                        self.disassembly = generator( "linux_mips", "chmod", FILE=self.argvlist[2])
                     elif string == "linux_mips/tcp_bind":
-                        self.disassembly = generator( "linux_mips", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "linux_mips", "tcp_bind", port=self.argvlist[2])
 
                 elif string[:7] == "windows":
                     if string == "windows/messagebox":
-                        self.disassembly = generator( "windows", "messagebox", self.argvlist[2])
+                        self.disassembly = generator( "windows", "messagebox", MESSAGE=self.argvlist[2])
                     elif string == "windows/download&execute":
-                        self.disassembly = generator( "windows", "downloandandexecute", self.argvlist[2], self.argvlist[3])
+                        self.disassembly = generator( "windows", "downloandandexecute", URL=self.argvlist[2], FILENAME=self.argvlist[3])
                     elif string == "windows/exec":
-                        self.disassembly = generator( "windows", "exec", self.argvlist[2])
+                        self.disassembly = generator( "windows", "exec", COMMAND=self.argvlist[2])
                     elif string == "windows/reverse_tcp":
-                        self.disassembly = generator( "windows", "reverse_tcp", self.argvlist[3], self.argvlist[2])                  
+                        self.disassembly = generator( "windows", "reverse_tcp", FILENAME=self.argvlist[3], URL=self.argvlist[2])                  
                     elif string == "windows/tcp_bind":
-                        self.disassembly = generator( "windows", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "windows", "tcp_bind", port=self.argvlist[2])
 
                 elif string[:10] == "solarisx86":                   
                     if string == "solarisx86/binsh_spawn":
-                        self.disassembly = generator( "solarisx86", "bin_sh")
+                        self.disassembly = generator( "solarisx86", "binsh_spawn")
                     elif string == "solarisx86/read":
                         if self.argvlist[2] == "None":
                             print ("\nFile name must be declared.\n")
                             self.control( string)
-                        self.disassembly = generator( "solarisx86", "read", self.argvlist[2])
+                        self.disassembly = generator( "solarisx86", "read", FILE=self.argvlist[2])
                     elif string == "solarisx86/reverse_tcp":
-                        self.disassembly = generator( "solarisx86", "reverse_tcp", self.argvlist[3], self.argvlist[2])
+                        self.disassembly = generator( "solarisx86", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])
                     elif string == "solarisx86/tcp_bind":
-                        self.disassembly = generator( "solarisx86", "tcp_bind", self.argvlist[2])
+                        self.disassembly = generator( "solarisx86", "tcp_bind", port=self.argvlist[2])
 
 
                 if self.argvlist[0] == "x86/xor_b3m":
-                    from .encoders.xor_b3m import prestart
+                    from .encoders.shellcode.xor_b3m import prestart
                     if self.argvlist[1] == "None":
                         self.argvlist[1] = 1
                     elif self.argvlist[1] == 0:
@@ -896,13 +907,13 @@ class B3mB4m(object):
                     self.disassembly = prestart( self.disassembly.replace("\\x", ""), int(self.argvlist[1]))
 
                 elif self.argvlist[0] == "x86/xor":
-                    from .encoders.xor import prestart
+                    from .encoders.shellcode.xor import prestart
                     if self.argvlist[1] == "None":
                         self.argvlist[1] = 1
                     elif self.argvlist[1] == 0:
                         self.argvlist[1] = 1
                     self.disassembly = prestart( self.disassembly.replace("\\x", ""), int(self.argvlist[1]))
-
+                    
                 else:
                     self.disassembly = self.disassembly 
 
@@ -1039,7 +1050,7 @@ class B3mB4m(object):
                 self.control( string)
 
             else:
-                if terminal == "":
+                if not terminal:
                     self.control( string)
                 else:
                     print (bcolors.RED + bcolors.BOLD + "[-] Unknown command: {0}".format(terminal) + bcolors.ENDC)

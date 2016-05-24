@@ -43,7 +43,6 @@ POSSIBILITY OF SUCH DAMAGE.
 
 '''
 
-import sys
 from os.path import basename
 from os import getcwd
 from pebin import pebin

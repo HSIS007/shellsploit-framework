@@ -5,68 +5,94 @@
 #LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
 
-def ret():
+
+from shell.payloads import *
+
+
+def shellsploitlist():
 	list = [
-		"back",			
-		"set",		
-		"ip",			
+		"help",		
+		"os",
+		"use",
+		"clear",
+		"show",
+		"shellcodes",
+		"backdoors",
+		"injectors",	
+		"encoders",
+
+	]
+	all_sc_modules = []
+	for platforms in shellcodeModules.keys():
+		for shellcodeType in shellcodeModules[platforms]:
+			all_sc_modules.append("{}/{}".format(platforms,shellcodeType))
+			for shellcode in all_sc_modules:
+				list.append(shellcode)
+	return list
+
+
+def shellcodelist():
+	return [
+		"back",	
+		"set",			
+		"unset",			
+		"ip",		
+		"os",			
 		"clear",		
 		"disas",		
-		"whatisthis",     
-		"iteration",		
-		"generate", 	
-		"output",			
-		"show",		
-		"encoders",
+		"whatisthis",      
+		"iteration",	
+		"generate",	
+		"output", 	
+		"show", 
+		"encoders",	
 		"options",	
+		"help",
 	]
-	return list
 
 
-def ret2():
-	list = [
-		"linux",	 
-		"linux_arm",
-		"linux_mips",
-		"solarisx86",
-		"osx",
-		"FreeBSDx",
-		"windows",
 
 
-		"encoders",
-		"options",	
-
-		"binsh_spawn",
-		"bindash_spawn",
-		"read",
-		"chmod",
-		"reboot",
-		"shutdown",
-		"mkdir",
-		"rmdir",
-		"ipv4forward",
-		"Remoteportforward",
-		"reverse_telnet",
-		"add_user",
-		"DeleteMBR",
-		"tcp_bind",
-		"reverse_tcp",
-		"egghunter",
-		"add_map",
-		"netcatbind",
-		"creat",
-		"messagebox",
-		"download&execute",
-		"killall",
-		"netcatreverse",
-
-		"generate",
-		"help",          
-		"clear",			
-		"use",			
-		"show",
-		"modules",  	
-		"injectors",
+def injectorlist():
+	return [
+		"set",	
+		"unset",			
+		"help",			
+		"back",		
+		"os",			
+		"getpid",		
+		"clear",		
+		"inject",      
+		"iteration",	
+		"show",	
+		"options", 	
+		"shellcode", 
 	]
-	return list
+	 
+	 		
+
+def backdoorlist():
+	return [
+		"set",	
+		"unset",			
+		"help",			
+		"back",		
+		"os",			
+		"clear",		
+		"generate",      
+		"show",	
+		"options", 	
+	]
+	 
+	 			
+	 			
+				
+	  			
+				
+				
+				
+	 			
+	
+		
+	 		
+
