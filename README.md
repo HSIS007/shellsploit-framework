@@ -20,8 +20,7 @@ And let's you obfuscation every byte via encoders.
 #Dependences
 -------------
     root$ sudo pip install capstone
-    	Linux :    root$ sudo pip install readline
-        Windows :  root$ sudo pip install pyreadline
+    root$ sudo pip install readline(Not necessary for windows coz preinstalled in shellsploit)
     root$ sudo pip install pefile
     root$ sudo pip install colorama
 
