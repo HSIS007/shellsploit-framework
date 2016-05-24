@@ -5,12 +5,6 @@ Shellsploit let's you generate customized shellcodes, backdoors, injectors for v
 And let's you obfuscation every byte via encoders.
 
 
-"Please do not forget before use shellsploit is still BETA.And its not only about "shellcodes"."
-
-#Compatibility 
----------------
-    Not stable on python3x(working on it).
-
 
 #StableVersion
 ---------------
@@ -23,6 +17,7 @@ And let's you obfuscation every byte via encoders.
     root$ sudo pip install readline(Not necessary for windows coz preinstalled in shellsploit)
     root$ sudo pip install pefile
     root$ sudo pip install colorama
+    root$ sudo pip install pylzma
 
 
 #Installation	
