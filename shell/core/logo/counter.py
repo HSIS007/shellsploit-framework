@@ -10,6 +10,7 @@ from os import getcwd
 from os import sep
 from os import walk
 from sys import platform
+from sys import exec_prefix
 from shell.encoders.py.payloads	import *
 addEncoder = Encoders().ret()
 from shell.encoders.shellcode.payloads import *
@@ -20,8 +21,16 @@ class B3mB4mLogo(object):
 	def __init__(self):
 		self.db = ["database", "OS", "encoders", "inject"]
 		self.ret = []
-		self.magic = getcwd()+sep+"shell"
-		if 'win' not in platform.lower():
+		if 'win' in platform.lower():
+			for root, dirs, files in walk(exec_prefix+"\\Lib\\site-packages\\", topdown=True):
+				for x in dirs:
+					if x.startswith("cmdline_shellsploit"):
+						self.magic = exec_prefix+"\\Lib\\site-packages\\"+x+sep+"shell"
+						self.control = True
+						break
+				if self.control == True:
+					break
+		else:
 			self.magic = '/usr/share/shellsploit/'+sep
 		self.ignore = ["BFDBackdoors", "pyminifier", "__pycache__"]
 		self.decide = False
