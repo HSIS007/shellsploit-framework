@@ -5,32 +5,9 @@ Shellsploit let's you generate customized shellcodes, backdoors, injectors for v
 And let's you obfuscation every byte via encoders.
 
 
-
-#StableVersion
----------------
-    Still not exists stable version, because of too many file(any help would be great hehe).
-
-
-#Dependences
--------------
-    root$ sudo pip install capstone
-    	Linux   : root$ sudo pip install readline
-    	Windows : root$ pip install pyreadline
-    root$ sudo pip install pefile
-    root$ sudo pip install colorama
-    root$ sudo pip install pylzma
-
-
-[Installation Guide](https://github.com/b3mb4m/shellsploit-framework/wiki/Installation-Guide)
-
-
-#I DONT WANT INSTALL THIS 
----------------------------
-
-Then don't.You can use shellsploit without install.
-
-	$root cd shellsploit-framework
-	$root python shellsploit.py or python3 shellsploit.py
+#Shellsploit Wiki 
+-------------------
+* [Installation Guide](https://github.com/b3mb4m/shellsploit-framework/wiki/Installation-Guide)
 
 
 #Usage
