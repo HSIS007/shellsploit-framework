@@ -14,23 +14,14 @@ And let's you obfuscation every byte via encoders.
 #Dependences
 -------------
     root$ sudo pip install capstone
-    root$ sudo pip install readline(Not necessary for windows coz preinstalled in shellsploit)
+    	Linux   : root$ sudo pip install readline
+    	Windows : root$ pip install pyreadline
     root$ sudo pip install pefile
     root$ sudo pip install colorama
     root$ sudo pip install pylzma
 
 
-#Installation	
--------------
-Pip works on both windows/nix machines without problem. Now you are ready to install:
-
-    root$ python setup.py --s/ --setup install 
-    root$ chmod +x shellsploit (if you are using windows just pass this step)
-    root$ ./shellsploit
-
-#Uninstallation
-----------------
-	root$ python setup.py --s/--setup uninstall
+[Installation Guide](https://github.com/b3mb4m/shellsploit-framework/wiki/Installation-Guide)
 
 
 #I DONT WANT INSTALL THIS 
