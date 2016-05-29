@@ -8,6 +8,7 @@ And let's you obfuscation every byte via encoders.
 #Shellsploit Wiki 
 -------------------
 * [Installation Guide](https://github.com/b3mb4m/shellsploit-framework/wiki/Installation-Guide)
+* [Compatible Operation Systems](https://github.com/b3mb4m/shellsploit-framework/wiki/Compatible-Operation-Systems)
 
 
 #Usage
