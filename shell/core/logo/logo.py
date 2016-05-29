@@ -86,7 +86,7 @@ Y88b  d88P 888  888 Y8b.     888 888      X88 888 d88P 888 Y88..88P 888 Y88b.
 
 
 	dlogo = """
-       \033[32m=[ Shellsploit v1 - \033[1;31m BETA                               \033[0m\033[32m]
+       \033[32m=[ Shellsploit v3 - \033[1;31m BETA                               \033[0m\033[32m]
 \033[32m+ -- --=[ %s shellcode - \033[1;31m%s Different OS                       \033[0m\033[32m]
 \033[32m+ -- --=[ %s encoders - \033[1;31m (Shellcodes/executable files)          \033[0m\033[32m]
 \033[32m+ -- --=[ %s injector - \033[1;31m (PE,ELF,DLL,RAR,DEB etc...)           \033[0m\033[32m]
