@@ -10,19 +10,22 @@ from os import getcwd
 from os import sep
 from os import walk
 from sys import platform
+from sys import exec_prefix
+from sys import version_info
 from shell.encoders.py.payloads	import *
 addEncoder = Encoders().ret()
 from shell.encoders.shellcode.payloads import *
 addEncoder += Encoders().ret()
  
 
+
+
 class B3mB4mLogo(object):
 	def __init__(self):
 		self.db = ["database", "OS", "encoders", "inject"]
 		self.ret = []
-		self.magic = getcwd()+sep+"shell"
-		if 'win' not in platform.lower():
-			self.magic = '/usr/share/shellsploit/'+sep
+		self.control = False
+		self.magic = r"SHELLSPL0ITMASTERS"
 		self.ignore = ["BFDBackdoors", "pyminifier", "__pycache__"]
 		self.decide = False
 

@@ -3,6 +3,8 @@ from os import system
 from os import path
 from os import unlink
 from sys import exit
+from os import sep
+
 
 
 if __name__ == '__main__':
@@ -19,6 +21,23 @@ if __name__ == '__main__':
 				system('python easyinstall.py install --record shellsploit.ini --user')
 			else:
 				system('python easyinstall.py install --record shellsploit.ini')
+			
+
+			with open("shellsploit.ini", "r") as mypath:
+				for line in mypath:
+					line = line.strip()
+					if line.split(sep)[-2] == "shell":
+						shellsploitpath = sep.join(line.strip().split(sep)[:len(line.strip().split(sep))-1])
+					if "core"+sep+"logo"+sep+"counter.pyc" in line:
+						unlink(line)
+					if "core"+sep+"logo"+sep+"counter.py" in line and not "core"+sep+"logo"+sep+"counter.pyc" in line:
+						counterpath = line
+
+				with open(counterpath, "r+") as universal:
+					data  = universal.read().replace("SHELLSPL0ITMASTERS", shellsploitpath)
+					with open(counterpath, "w") as finish:
+						finish.write(data)
+						finish.close()
 
 		elif options.setup == 'uninstall': 
 			if not path.isfile('shellsploit.ini'):
