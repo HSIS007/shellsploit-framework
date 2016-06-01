@@ -1,4 +1,9 @@
 #Shellsploit 
+![MIT Licence](https://img.shields.io/badge/Licence-MIT_Licence-red.svg?style=plastic)
+[![Python 3.4](https://img.shields.io/badge/Python-3.4-yellow.svg?style=plastic)](https://www.python.org/)
+[![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg?style=plastic)](https://www.python.org/)
+![v0.3](https://img.shields.io/badge/Release-v0.3-orange.svg?style=plastic)
+
 -------------
 
 Shellsploit let's you generate customized shellcodes, backdoors, injectors for various operating system.
