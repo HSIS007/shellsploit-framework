@@ -880,7 +880,7 @@ class B3mB4m(object):
                     elif string == "windows/exec":
                         self.disassembly = generator( "windows", "exec", COMMAND=self.argvlist[2])
                     elif string == "windows/reverse_tcp":
-                        self.disassembly = generator( "windows", "reverse_tcp", ip=self.argvlist[3], host=self.argvlist[2])                  
+                        self.disassembly = generator( "windows", "reverse_tcp", ip=self.argvlist[3], port=self.argvlist[2])                  
                     elif string == "windows/tcp_bind":
                         self.disassembly = generator( "windows", "tcp_bind", port=self.argvlist[2])
 
