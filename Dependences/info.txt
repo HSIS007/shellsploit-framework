@@ -1,0 +1,10 @@
+https://github.com/fancycode/pylzma
+https://github.com/erocarrera/pefile
+https://github.com/aquynh/capstone
+https://github.com/pyreadline/pyreadline
+https://github.com/ludwigschwardt/python-readline
+https://github.com/tartley/colorama
+
+
+
+Just in case, we are save all dependent libraries.
