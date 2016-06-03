@@ -1,0 +1,9 @@
+#Files to exclude when creating archive
+
+
+*.git export-ignore
+*.gitignore export-ignore
+*.gitattributes export-ignore
+*README.* export-ignore
+*readme.* export-ignore
+Dependences/* export-ignore
