@@ -38,7 +38,7 @@ int main(void)
 	return EXIT_SUCCESS;
 }	
 
-		""" % ( time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+		""" % ( strftime("%d/%m/%Y"), strftime("%H:%M:%S"), shellcode)
 
 	else:
 		db = """//Project : https://github.com/b3mb4m/Shellsploit
@@ -53,7 +53,7 @@ int main(){
 	func();
 }
 		  
-		""" % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+		""" % (strftime("%d/%m/%Y"), strftime("%H:%M:%S"), shellcode)
 
 
 	logs( db, "cpp")
