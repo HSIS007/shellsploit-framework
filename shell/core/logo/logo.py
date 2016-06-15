@@ -86,17 +86,15 @@ Y88b  d88P 888  888 Y8b.     888 888      X88 888 d88P 888 Y88..88P 888 Y88b.
 
 
 	dlogo = """
-       \033[32m=[ Shellsploit v3 - \033[1;31m BETA                               \033[0m\033[32m]
-\033[32m+ -- --=[ %s shellcode - \033[1;31m%s Different OS                       \033[0m\033[32m]
-\033[32m+ -- --=[ %s encoders - \033[1;31m (Shellcodes/executable files)          \033[0m\033[32m]
-\033[32m+ -- --=[ %s injector - \033[1;31m (PE,ELF,DLL,RAR,DEB etc...)           \033[0m\033[32m]
-\033[32m+ -- --=[ %s backdoors - \033[1;31m (ReverseShell)                        \033[0m\033[32m]
-\033[32m+ -- --=[ Open Source : \033[1;31mhttps://github.com/b3mb4m/Shellsploit  \033[0m\033[32m]
+       \033[32m=[ Shellsploit v3 - \033[1;31m BETA                                    \033[0m\033[32m]
+\033[32m+ -- --=[ %s shellcode   -  \033[1;31m%s Different OS                         \033[0m\033[32m]
+\033[32m+ -- --=[ %s encoders     - \033[1;31m (Shellcodes/executable files)           \033[0m\033[32m]
+\033[32m+ -- --=[ %s injector    - \033[1;31m (PE,ELF,DLL,RAR,DEB etc...)             \033[0m\033[32m]
+\033[32m+ -- --=[ %s backdoors    - \033[1;31m (ReverseShell)                          \033[0m\033[32m]
+\033[32m+ -- --=[ Open Source    -  \033[1;31mhttps://github.com/b3mb4m/Shellsploit   \033[0m\033[32m]
 	""" % (num1,num2,num3,num4, "9")
 	#Will be add a function(counterloop) for backdoors  ..
 
 	return '\033[1;31m'+logo[randint(0, len(logo)-1)]+'\033[0m'+dlogo
-
-
-
-
+	
+	
