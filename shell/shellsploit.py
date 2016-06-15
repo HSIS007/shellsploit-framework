@@ -81,7 +81,7 @@ def shellsploit():
 						if terminal.split()[1] == shellcode:
 							B3mB4m().control(shellcode)
 							shellsploit()
-
+				else:
 					print ("\nModule not avaible !\n")
 					shellsploit()
 
