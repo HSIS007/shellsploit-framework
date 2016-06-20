@@ -38,52 +38,55 @@ def controlset( choice, argv1="None", argv2="None", argv3="None", argv4="None"):
 	argv3 = str(argv3)
 	#Standalone Shellcodes
 	list = [
-	"freebsd_x64/binsh_spawn",
-	"linux86/binsh_spawn",
-	"linux86/bindash_spawn",
-	"linux64/binsh_spawn",
-	"linux/binsh_spawn",
-	"osx64/binsh_spawn",
-	"freebsd_x86/binsh_spawn",
-	"linux_arm/binsh_spawn",
-	"linux_mips/binsh_spawn",
-	"solarisx86/binsh_spawn",
-	"osx86/binsh_spawn"]
+		"freebsd_x64/binsh_spawn",
+		"linux86/binsh_spawn",
+		"linux86/bindash_spawn",
+		"linux64/binsh_spawn",
+		"linux/binsh_spawn",
+		"osx64/binsh_spawn",
+		"freebsd_x86/binsh_spawn",
+		"linux_arm/binsh_spawn",
+		"linux_mips/binsh_spawn",
+		"solarisx86/binsh_spawn",
+		"osx86/binsh_spawn"
+	]
 
 	#Dependent a file 
 	list2 = [ 
-	"linux/read",
-	"FreeBSDx86/read",
-	"linux86/read",
-	"solarisx86/read",
-	"linux86/chmod",
-	"linux64/read",
-	"linux_arm/chmod",
-	"linux86/mkdir",
-	"linux_arm/chmod"]
+		"linux/read",
+		"FreeBSDx86/read",
+		"linux86/read",
+		"solarisx86/read",
+		"linux86/chmod",
+		"linux64/read",
+		"linux_arm/chmod",
+		"linux86/mkdir",
+		"linux_arm/chmod"
+	]
 
 	list3 = [
-	"windows/tcp_bind",
-	"linux86/tcp_bind",
-	"solarisx86/tcp_bind",
-	"linux/tcp_bind",
-	"linux64/tcp_bind",
-	"osx86/tcp_bind",
-	"osx64/tcp_bind",
-	"freebsd_x86/tcp_bind"]
+		"windows/tcp_bind",
+		"linux86/tcp_bind",
+		"solarisx86/tcp_bind",
+		"linux/tcp_bind",
+		"linux64/tcp_bind",
+		"osx86/tcp_bind",
+		"osx64/tcp_bind",
+		"freebsd_x86/tcp_bind"
+	]
 
 	list4 = [
-	"windows/reverse_tcp",
-	"freebsd_x86/reverse_tcp",
-	"freebsd_x64/reverse_tcp",
-	"freebsd_x86/reverse_tcp2",
-	"linux/reverse_tcp",
-	"linux86/reverse_tcp",
-	"linux64/reverse_tcp",
-	"osx64/reverse_tcp",
-	"linux_mips/reverse_tcp",
-	"osx86/reverse_tcp",
-	"solarisx86/reverse_tcp",
+		"windows/reverse_tcp",
+		"freebsd_x86/reverse_tcp",
+		"freebsd_x64/reverse_tcp",
+		"freebsd_x86/reverse_tcp2",
+		"linux/reverse_tcp",
+		"linux86/reverse_tcp",
+		"linux64/reverse_tcp",
+		"osx64/reverse_tcp",
+		"linux_mips/reverse_tcp",
+		"osx86/reverse_tcp",
+		"solarisx86/reverse_tcp",
 	]
 
 	#Execve

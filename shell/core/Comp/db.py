@@ -6,7 +6,8 @@
 #------------------------------------------------------------------#
 
 
-from shell.payloads import *
+#from shell.payloads import *
+from lib.utils.modules import modulelist 
 
 
 def shellsploitlist():
@@ -23,8 +24,8 @@ def shellsploitlist():
 
 	]
 	all_sc_modules = []
-	for platforms in shellcodeModules.keys():
-		for shellcodeType in shellcodeModules[platforms]:
+	for platforms in modulelist().AllModules().keys():
+		for shellcodeType in modulelist().AllModules()[platforms]:
 			all_sc_modules.append("{}/{}".format(platforms,shellcodeType))
 			for shellcode in all_sc_modules:
 				list.append(shellcode)
