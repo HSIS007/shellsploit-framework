@@ -72,7 +72,7 @@ class B3mB4m(ShellsploitFramework):
 
 
 			elif terminal[:5] == "unset":
-				if string in self.BFD:
+				if string in B3mB4m.bfdlist():
 					if terminal[6:] == "exe" or terminal[6:] == "file":
 						self.argvlist[0] = "None"   
 					elif terminal[6:] == "host":
@@ -105,7 +105,7 @@ class B3mB4m(ShellsploitFramework):
 
 
 			elif terminal[:3] == "set":
-				if string in self.BFD:
+				if string in B3mB4m.bfdlist():
 					if terminal[4:7] == "exe" or terminal[4:8] == "file":
 						self.argvlist[0] = terminal[9:]
 					elif terminal[4:8] == "host":
@@ -167,7 +167,7 @@ class B3mB4m(ShellsploitFramework):
 
 
 			elif terminal[:14] == "show shellcode":
-				if string in self.BFD:
+				if string in B3mB4m.bfdlist():
 					print ("This option not available for this module.")
 					self.control( string)
 				elif string == "injectors/Windowsx86/tLsInjectorDLL":
@@ -183,7 +183,7 @@ class B3mB4m(ShellsploitFramework):
 
 			elif terminal[:12] == "show options":
 				from .core.Injectoroptions import controlset
-				if string in self.BFD:
+				if string in B3mB4m.bfdlist():
 					controlset( string, self.argvlist[0], self.argvlist[1], self.argvlist[2])
 					self.control( string)
 				else:
