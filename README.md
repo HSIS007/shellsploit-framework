@@ -67,7 +67,10 @@ And let's you obfuscation every byte via encoders.
 #Bugs
 ------
 
-Please do not forget to report bugs! You can submit an issue, pull request, or even directly PM me through my email address.
+Please do not forget to report bugs! You can submit an issue, pull request, or you can pm via email or xmpp,
+
+######shellsploit-framework@exploit.im     - Instant chat
+######shellsploit-framework@protonmail.com 
 
 
 #Screenshots
