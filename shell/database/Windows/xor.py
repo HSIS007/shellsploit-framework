@@ -8,6 +8,7 @@ import sys
 
 
 class EncoderModule:
+
     def __init__(self, shellcode, bad_chars=r"\x00"):
         self.author = "Justin Warner (@sixdub)"
         self.xor_key = 0x00
@@ -32,8 +33,6 @@ class EncoderModule:
             output += "\\x%02x" % b
         return output
 
-
-
     def set_bad_characters(self, bad_characters):
         if bad_characters is not None:
             final_bad_chars = []
@@ -49,11 +48,10 @@ class EncoderModule:
                     if len(item) == 2:
                         # Thanks rohan (@cptjesus) for providing this regex code, and making me too lazy
                         # to do it myself
-                        rohan_re_code = re.compile('[a-f0-9]{2}',flags=re.IGNORECASE)
+                        rohan_re_code = re.compile('[a-f0-9]{2}', flags=re.IGNORECASE)
                         if rohan_re_code.match(item):
                             final_bad_chars.append(item)
-            self.bad_chars = [int("0x"+x, 16) for x in final_bad_chars]
-
+            self.bad_chars = [int("0x" + x, 16) for x in final_bad_chars]
 
     # Takes a blob as input with a single byte key and returns blob output
     def xor(self, x, key):
@@ -105,6 +103,6 @@ class EncoderModule:
             complete = decodestub + encode
             self.encoded_payload_length = len(complete)
 
-            #At this point, the shellcode is a byte array... now we convert to ASCII
+            # At this point, the shellcode is a byte array... now we convert to ASCII
             self.encoded_shellcode = self.shellcode_to_ascii(complete)
             return self.encoded_shellcode

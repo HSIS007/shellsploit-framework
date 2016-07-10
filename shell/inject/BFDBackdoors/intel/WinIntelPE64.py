@@ -61,7 +61,7 @@ class winI64_shellcode():
     def pack_ip_addresses(self):
         hostocts = []
         for i, octet in enumerate(self.HOST.split('.')):
-                hostocts.append(int(octet))
+            hostocts.append(int(octet))
         self.hostip = struct.pack('=BBBB', hostocts[0], hostocts[1],
                                   hostocts[2], hostocts[3])
         return self.hostip
@@ -108,13 +108,13 @@ class winI64_shellcode():
             if breakupvar > 0:
                 if len(self.shellcode1) < breakupvar:
                     self.shellcode1 += struct.pack("<I", int(str(hex(breakupvar - len(self.stackpreserve) -
-                                                   len(self.shellcode1) - 4).rstrip("L")), 16))
+                                                                     len(self.shellcode1) - 4).rstrip("L")), 16))
                 else:
                     self.shellcode1 += struct.pack("<I", int(str(hex(len(self.shellcode1) -
-                                                   breakupvar - len(self.stackpreserve) - 4).rstrip("L")), 16))
+                                                                     breakupvar - len(self.stackpreserve) - 4).rstrip("L")), 16))
             else:
-                    self.shellcode1 += struct.pack("<I", int('0xffffffff', 16) + breakupvar -
-                                                   len(self.stackpreserve) - len(self.shellcode1) - 3)
+                self.shellcode1 += struct.pack("<I", int('0xffffffff', 16) + breakupvar -
+                                               len(self.stackpreserve) - len(self.shellcode1) - 3)
         else:
             self.shellcode1 += "\xc0\x00\x00\x00"
 

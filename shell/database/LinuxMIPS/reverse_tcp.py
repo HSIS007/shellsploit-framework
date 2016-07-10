@@ -113,6 +113,9 @@
     stg3_SC += "\xf8\xff\xa8\xaf\xf8\xff\xa5\x23\xec\xff\xbd\x27\xff\xff\x06\x28"
     stg3_SC += "\xab\x0f\x02\x24\x0c\x09\x09\x01"
 
-
+    0x1054: 7969053c        lui $a1, 0x6979
+    0x1058: 01ffa534        ori $a1, $a1, 0xff01
+    0x105c: 0101a520        addi $a1, $a1, 0x101
+    0x1060: f8ffa5af        sw $a1, -8($sp)
 
 """

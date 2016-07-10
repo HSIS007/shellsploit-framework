@@ -8,14 +8,14 @@ from sys import exit
 listening   = False
 clisock     = None
 done        = False
- 
+
 #Beta script for listener.
 #Same effect nc -vlp [PORT]
 
 
 #Greetz:
-    #Goodies
-    #https://twitter.com/GoodiesHQ
+#Goodies
+#https://twitter.com/GoodiesHQ
 
 
 
@@ -23,7 +23,7 @@ try:
     input = raw_input 
 except NameError:
     pass 
- 
+
 def listen(port=4444):
     global clisock, listening, done
     s   = socket(AF_INET, SOCK_STREAM)         
@@ -45,7 +45,7 @@ def listen(port=4444):
             exit()
     print("Done listening.")
     done = True
- 
+
 def write():
     global clisock, listening, done
     while True:

@@ -9,7 +9,7 @@
 from header import *
 
 def PyFile( shellcode):
-	db = """#!/usr/bin/python
+    db = """#!/usr/bin/python
 
 import ctypes
 import multiprocessing
@@ -33,7 +33,7 @@ for page_start in range(addr_page, addr + len(shellcode_data), pagesize):
 function()   
 """.format(strftime("%d/%m/%Y"), strftime("%H:%M:%S"), shellcode)
 
-	logs( db, "py")
+    logs( db, "py")
 
 
 

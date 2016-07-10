@@ -8,7 +8,7 @@
 from header import *
 
 def TxtFile( shellcode):
-	db = '''#Project : https://github.com/b3mb4m/Shellsploit
+    db = '''#Project : https://github.com/b3mb4m/Shellsploit
 #This file created with shellsploit ..
 #{0} - {1}
 
@@ -17,4 +17,4 @@ def TxtFile( shellcode):
  
 '''.format(strftime("%d/%m/%Y"), strftime("%H:%M:%S"), shellcode)
 
-	logs( db, "txt")
+    logs( db, "txt")

@@ -10,7 +10,7 @@ from .color import *
 
 
 def mainhelp():
-	print (bcolors.GREEN + """
+    print (bcolors.GREEN + """
 Usage Commands
 ===============
 \tCommands              Description
@@ -27,7 +27,7 @@ Usage Commands
 
 
 def shellcodehelp():
-	print (bcolors.GREEN + """
+    print (bcolors.GREEN + """
 Shellcode Commands
 ===================
 \tCommands              Description
@@ -49,7 +49,7 @@ Shellcode Commands
 
 
 def injectorhelp():
-	print (bcolors.GREEN + """
+    print (bcolors.GREEN + """
 Injector  Commands
 ===================
 \tCommands              Description
@@ -69,7 +69,7 @@ Injector  Commands
 
 
 def backdoorshelp():
-	print (bcolors.GREEN + """
+    print (bcolors.GREEN + """
 Injector  Commands
 ===================
 \tCommands              Description

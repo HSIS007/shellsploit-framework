@@ -1,8 +1,8 @@
 #------------------Bombermans Team---------------------------------#
-#Author  : B3mB4m
-#Concat  : b3mb4m@protonmail.com
-#Project : https://github.com/b3mb4m/Shellsploit
-#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
+# Author  : B3mB4m
+# Concat  : b3mb4m@protonmail.com
+# Project : https://github.com/b3mb4m/Shellsploit
+# LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
 
 

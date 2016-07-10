@@ -1,15 +1,16 @@
 #------------------Bombermans Team---------------------------------# 
-#Author  : B3mB4m
-#Concat  : b3mb4m@protonmail.com
-#Project : https://github.com/b3mb4m/Shellsploit
-#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
+# Author  : B3mB4m
+# Concat  : b3mb4m@protonmail.com
+# Project : https://github.com/b3mb4m/Shellsploit
+# LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
 
 from .color import *
 
-def shellcodelist( getlist=False):
-	if getlist == False:
-		print (bcolors.GREEN+"""
+
+def shellcodelist(getlist=False):
+    if getlist == False:
+        print (bcolors.GREEN + """
 
   Linux x86
   ===========
@@ -100,7 +101,6 @@ def shellcodelist( getlist=False):
 	FreeBSDx86/read
 	FreeBSDx86/tcp_bind
 	FreeBSDx86/reverse_tcp
-	FreeBSDx86/reverse_tcp2 (through /bin/sh)
 	FreeBSDx86/exec
 
 	
@@ -112,73 +112,73 @@ def shellcodelist( getlist=False):
 	FreeBSDx64/tcp_bind
 	FreeBSDx64/reverse_tcp
 		""" + bcolors.ENDC)
-	
-	else:
-		return [
-		"linux86/exec",
-		"linux86/binsh_spawn",
-		"linux86/read",
-		"linux86/chmod",
-		"linux86/tcp_bind",
-		"linux86/reverse_tcp",
 
-		"linux64/binsh_spawn",
-		"linux64/read",
-		"linux64/tcp_bind",
-		"linux64/reverse_tcp",
+    else:
+        return [
+            "linux86/exec",
+            "linux86/binsh_spawn",
+            "linux86/read",
+            "linux86/chmod",
+            "linux86/tcp_bind",
+            "linux86/reverse_tcp",
 
-
-		"linux/binsh_spawn",
-		"linux/read",
-		"linux/tcp_bind",
-		"linux/reverse_tcp",
+            "linux64/binsh_spawn",
+            "linux64/read",
+            "linux64/tcp_bind",
+            "linux64/reverse_tcp",
 
 
-		"linux_arm/exec",
-		"linux_arm/binsh_spawn",
-		"linux_arm/chmod",
-		"linux_arm/reverse_tcp",
+            "linux/binsh_spawn",
+            "linux/read",
+            "linux/tcp_bind",
+            "linux/reverse_tcp",
 
 
-		"linux_mips/binsh_spawn",
-		"linux_mips/chmod",
-		"linux_mips/tcp_bind",
-		
-
-		"solarisx86/binsh_spawn",
-		"solarisx86/read",
-		"solarisx86/reverse_tcp",
-		"solarisx86/tcp_bind",
+            "linux_arm/exec",
+            "linux_arm/binsh_spawn",
+            "linux_arm/chmod",
+            "linux_arm/reverse_tcp",
 
 
-		"windows/exec",
-		"windows/messagebox",
-		"windows/download&execute",
-		"windows/reverse_tcp",
-		"windows/tcp_bind",
-		
-
-		"osx86/tcp_bind",
-		"osx86/binsh_spawn",
-		"osx86/reverse_tcp",
+            "linux_mips/binsh_spawn",
+            "linux_mips/chmod",
+            "linux_mips/tcp_bind",
 
 
-		"osx64/binsh_spawn",
-		"osx64/reverse_tcp",
-		"osx64/tcp_bind",
+            "solarisx86/binsh_spawn",
+            "solarisx86/read",
+            "solarisx86/reverse_tcp",
+            "solarisx86/tcp_bind",
 
 
-		"FreeBSDx86/binsh_spawn",
-		"FreeBSDx86/read",
-		"FreeBSDx86/tcp_bind",
-		"FreeBSDx86/reverse_tcp",
-		"FreeBSDx86/reverse_tcp2",
-		"FreeBSDx86/exec",
+            "windows/exec",
+            "windows/messagebox",
+            "windows/download&execute",
+            "windows/reverse_tcp",
+            "windows/tcp_bind",
 
 
-		
-		"FreeBSDx64/exec",
-		"FreeBSDx64/binsh_spawn",
-		"FreeBSDx64/tcp_bind",
-		"FreeBSDx64/reverse_tcp",
-		]
+            "osx86/tcp_bind",
+            "osx86/binsh_spawn",
+            "osx86/reverse_tcp",
+
+
+            "osx64/binsh_spawn",
+            "osx64/reverse_tcp",
+            "osx64/tcp_bind",
+
+
+            "FreeBSDx86/binsh_spawn",
+            "FreeBSDx86/read",
+            "FreeBSDx86/tcp_bind",
+            "FreeBSDx86/reverse_tcp",
+            "FreeBSDx86/reverse_tcp2",
+            "FreeBSDx86/exec",
+
+
+
+            "FreeBSDx64/exec",
+            "FreeBSDx64/binsh_spawn",
+            "FreeBSDx64/tcp_bind",
+            "FreeBSDx64/reverse_tcp",
+        ]

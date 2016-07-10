@@ -61,6 +61,6 @@ void __declspec(dllexport) ControlRun(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdL
 """
 
 def DllFile(shellcode):
-	db =  DLL_TEMPLATE % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
-	logs( db, "c")
-        
+    db =  DLL_TEMPLATE % (time.strftime("%d/%m/%Y"), time.strftime("%H:%M:%S"), shellcode)
+    logs( db, "c")
+

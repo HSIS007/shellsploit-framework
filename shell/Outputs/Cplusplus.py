@@ -8,8 +8,8 @@
 from header import *
 
 def CplusplusFile( shellcode, win=False):
-	if win == True:
-		db = """//Project : https://github.com/b3mb4m/Shellsploit
+    if win == True:
+        db = """//Project : https://github.com/b3mb4m/Shellsploit
 //This file created with shellsploit ..
 //%s - %s
 //Compile : gcc shell.c -o shell.exe
@@ -40,8 +40,8 @@ int main(void)
 
 		""" % ( strftime("%d/%m/%Y"), strftime("%H:%M:%S"), shellcode)
 
-	else:
-		db = """//Project : https://github.com/b3mb4m/Shellsploit
+    else:
+        db = """//Project : https://github.com/b3mb4m/Shellsploit
 //This file created with shellsploit ..
 //%s - %s
 //Compile : g++ -fno-stack-protector -z execstack shell.cpp -o shell
@@ -56,7 +56,7 @@ int main(){
 		""" % (strftime("%d/%m/%Y"), strftime("%H:%M:%S"), shellcode)
 
 
-	logs( db, "cpp")
+    logs( db, "cpp")
 
 
 

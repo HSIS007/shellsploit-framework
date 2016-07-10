@@ -126,14 +126,14 @@ class elfbin():
                                   ]],
                                 0x09:    # FreeBSD
                                 [[0x01,  # 32bit
-                                 # 0x02  # 64bit
+                                  # 0x02  # 64bit
                                   ],
                                  [0x03,  # x86
                                   # 0x3E # x64
                                   ]],
                                 0x0C:    # OpenBSD
                                 [[0x01,  # 32bit
-                                 #0x02   # 64bit
+                                  #0x02   # 64bit
                                   ],
                                  [0x03,  # x86
                                   #0x3E  # x64
@@ -377,7 +377,7 @@ class elfbin():
         """
         Set the section names
         """
-         #how to find name section specifically
+        #how to find name section specifically
         for i in range(0, self.e_shstrndx + 1):
             self.sec_hdr[i]['name'] = self.get_section_name(self.sec_hdr[i]['sh_name'])
             if self.sec_hdr[i]['name'] is False:
@@ -385,7 +385,7 @@ class elfbin():
                 return False
         if self.sec_hdr[i]['name'] == ".text":
                 #print "Found text section"
-                self.text_section = i
+            self.text_section = i
 
     def gather_file_info(self):
         '''
@@ -432,19 +432,19 @@ class elfbin():
         self.e_shentsize = struct.unpack(self.endian + "H", bin.read(2))[0]
         self.e_shnum = struct.unpack(self.endian + "H", bin.read(2))[0]
         self.e_shstrndx = struct.unpack(self.endian + "H", bin.read(2))[0]
-        
+
         #section tables
         if self.e_phoff > os.path.getsize(self.FILE):
             print "[!] El fuzzero"
             return False
         bin.seek(self.e_phoff, 0)
-            
+
         #header tables
         if self.e_shnum == 0:
             print "[*] More than 0xFF00 sections"
             print "[*] NOPE NOPE NOPE"
             return False
-            
+
         else:
             self.real_num_sections = self.e_shnum
 
@@ -523,7 +523,7 @@ class elfbin():
                 self.sec_hdr[i]['sh_info'] = struct.unpack(self.endian + "I", bin.read(4))[0]
                 self.sec_hdr[i]['sh_addralign'] = struct.unpack(self.endian + "Q", bin.read(8))[0]
                 self.sec_hdr[i]['sh_entsize'] = struct.unpack(self.endian + "Q", bin.read(8))[0]
-        
+
         if self.set_section_name() is False:
             print "[!] Fuzzing sections"
             return False
@@ -580,7 +580,7 @@ class elfbin():
         if gather_result is False:
             print "[!] Are you fuzzing?"
             return False
-        
+
         print "[*] Getting shellcode length"
 
         resultShell = self.set_shells()
@@ -623,7 +623,7 @@ class elfbin():
         if newOffset > self.file_size:
             print "[!] The file is really not that big"
             return False
-        
+
         file_1st_part = self.bin_file.read(newOffset)
         #print file_1st_part.encode('hex')
         newSectionOffset = self.bin_file.tell()
@@ -677,7 +677,7 @@ class elfbin():
                     #print "Found Text Segment again"
                     after_textSegment = True
                     self.bin_file.seek(16, 1)
-           
+
                     if self.prog_hdr[i]['p_filesz'] + newBuffer > 4294967296:
                         print "[!] Melkor you fuzzer you..."
                         return False

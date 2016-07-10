@@ -8,8 +8,9 @@ module.
 import tokenize
 try:
     import cStringIO as io
-except ImportError: # We're using Python 3
+except ImportError:  # We're using Python 3
     import io
+
 
 def untokenize(tokens):
     """
@@ -37,6 +38,7 @@ def untokenize(tokens):
         last_col = end_col
         last_lineno = end_line
     return out
+
 
 def listified_tokenizer(source):
     """Tokenizes *source* and returns the tokens as a list of lists."""

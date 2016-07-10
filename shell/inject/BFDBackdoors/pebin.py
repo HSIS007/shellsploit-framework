@@ -194,7 +194,7 @@ class pebin():
         if self.VERBOSE is True:
             for mactype, name in MachineTypes.iteritems():
                 if int(mactype, 16) == self.flItms['MachineType']:
-                        print ('MachineType is:', name)
+                    print ('MachineType is:', name)
         self.binary.seek(self.flItms['COFF_Start'] + 2, 0)
         self.flItms['NumberOfSections'] = struct.unpack('<H', self.binary.read(2))[0]
         self.flItms['TimeDateStamp'] = struct.unpack('<I', self.binary.read(4))[0]
@@ -205,7 +205,7 @@ class pebin():
         self.flItms['OptionalHeader_start'] = self.flItms['COFF_Start'] + 20
 
         #if self.flItms['SizeOfOptionalHeader']:
-            #Begin Standard Fields section of Optional Header
+        #Begin Standard Fields section of Optional Header
         self.binary.seek(self.flItms['OptionalHeader_start'])
         self.flItms['Magic'] = struct.unpack('<H', self.binary.read(2))[0]
         self.flItms['MajorLinkerVersion'] = struct.unpack("!B", self.binary.read(1))[0]
@@ -318,7 +318,7 @@ class pebin():
                 if ('.text\x00\x00\x00' == sectionValues[0] or
                     'AUTO\x00\x00\x00\x00' == sectionValues[0] or
                     'UPX1\x00\x00\x00\x00' == sectionValues[0] or
-                    'CODE\x00\x00\x00\x00' == sectionValues[0]):
+                        'CODE\x00\x00\x00\x00' == sectionValues[0]):
                     self.flItms['textSectionName'] = sectionValues[0]
                     self.flItms['textVirtualSize'] = sectionValues[1]
                     self.flItms['textVirtualAddress'] = sectionValues[2]
@@ -723,7 +723,7 @@ class pebin():
 
             self.binary.write(self.flItms['addedIAT'])
             self.binary.write(struct.pack("<B", 0x0) * (self.flItms['NewSectionSize'] -
-                              len(self.flItms['addedIAT']) - len(self.flItms['Import_Directory_Table']) + 20))
+                                                        len(self.flItms['addedIAT']) - len(self.flItms['Import_Directory_Table']) + 20))
             self.binary.seek(self.flItms['ImportTableLOCInPEOptHdrs'], 0)
             self.binary.write(struct.pack('<I', self.flItms['SizeOfImage']))
             self.binary.write(struct.pack("<I", (self.flItms['ImportTableSize']) + self.flItms['apiCount'] * 8 + 20))
@@ -869,7 +869,7 @@ class pebin():
             self.flItms['len_allshells'] = (self.flItms['shellcode_length'], )
 
         print ("[*] Looking for caves that will fit the minimum "\
-              "shellcode length of %s" % SIZE_CAVE_TO_FIND)
+               "shellcode length of %s" % SIZE_CAVE_TO_FIND)
         print ("[*] All caves lengths: ", ', '.join([str(i) for i in self.flItms['len_allshells']]))
         Tracking = 0
         count = 1
@@ -1009,17 +1009,17 @@ class pebin():
                             break
                     selection = choice(_tempCaves.keys())
                     print ('[!] Selected:', str(selection) + ":", ("Section Name: {0}; Cave begin: {1} End: {2}; "
-                                                                  "Cave Size: {3}; Payload Size: {4}".format(pickACave[selection][0], pickACave[selection][1],
-                                                                                          pickACave[selection][2], pickACave[selection][3], ref[1]
-                                                                                          )))
+                                                                   "Cave Size: {3}; Payload Size: {4}".format(pickACave[selection][0], pickACave[selection][1],
+                                                                                                              pickACave[selection][2], pickACave[selection][3], ref[1]
+                                                                                                              )))
                     trackSectionName.add(pickACave[selection][0])
                     #remove the selection from the dict
                     popSet = set()
                     for cave_ref, cave_vals in availableCaves.iteritems():
                         if pickACave[cave_ref][1] <= pickACave[selection][1] <= pickACave[cave_ref][2] or \
-                            pickACave[cave_ref][1] <= pickACave[selection][2] <= pickACave[cave_ref][2] or \
-                            pickACave[selection][1] <= pickACave[cave_ref][1] <= pickACave[selection][2] or \
-                            pickACave[selection][1] <= pickACave[cave_ref][2] <= pickACave[selection][2]:
+                                pickACave[cave_ref][1] <= pickACave[selection][2] <= pickACave[cave_ref][2] or \
+                                pickACave[selection][1] <= pickACave[cave_ref][1] <= pickACave[selection][2] or \
+                                pickACave[selection][1] <= pickACave[cave_ref][2] <= pickACave[selection][2]:
                             popSet.add(cave_ref)
                     for item in popSet:
                         availableCaves.pop(item)     
@@ -1056,10 +1056,10 @@ class pebin():
                 for ref, details in pickACave.iteritems():
                     if details[3] >= item:
                         print (str(ref) + ".", ("Section Name: {0}; Section Begin: {4} "
-                                               "End: {5}; Cave begin: {1} End: {2}; "
-                                               "Cave Size: {3}".format(details[0], details[1], details[2],
-                                                                       details[3], details[4], details[5],
-                                                                       details[6])))
+                                                "End: {5}; Cave begin: {1} End: {2}; "
+                                                "Cave Size: {3}".format(details[0], details[1], details[2],
+                                                                        details[3], details[4], details[5],
+                                                                        details[6])))
 
                 while True:
                     try:
@@ -1270,8 +1270,8 @@ class pebin():
                         self.rsrc_structure[lanID] = parse_data_entry()
                     #Jump to Manifest
                     self.flItms['manifestLOC'] = (self.flItms['rsrcPointerToRawData'] +
-                                                 (self.rsrc_structure[lanID]["RVA of Data"] -
-                                                  self.flItms['rsrcVirtualAddress']))
+                                                  (self.rsrc_structure[lanID]["RVA of Data"] -
+                                                   self.flItms['rsrcVirtualAddress']))
 
                     return True
         return False
@@ -1463,12 +1463,12 @@ class pebin():
                 #random string in .rdata
                 od_stub.seek(0xD250, 0)
                 od_stub.write(''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits)
-                              for _ in range(random.randint(6, 12))))
+                                      for _ in range(random.randint(6, 12))))
 
                 #random string in .reloc
                 od_stub.seek(0x107F0, 0)
                 od_stub.write(''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits)
-                              for _ in range(random.randint(6, 12))))
+                                      for _ in range(random.randint(6, 12))))
                 # update data section
                 od_stub.seek(0xfc28, 0)
                 od_stub.write(struct.pack("<I", self.od_binary_begin))
@@ -1487,14 +1487,14 @@ class pebin():
             #update dropped file names
             od_stub.seek(0xfb20, 0)
             od_stub.write(''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits)
-                          for _ in range(random.randint(6, 12))))
+                                  for _ in range(random.randint(6, 12))))
 
             od_stub.seek(0xfc34, 0)
             _temp_name = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(random.randint(4, 8)))
             _temp_name += ".exe"
             od_stub.write(_temp_name)
 
-            
+
         #check submitted file to see if it is a DLL:
         with open(self.SUPPLIED_BINARY, 'r') as self.binary:
             print ("[?] Checking if user supplied is a DLL")
@@ -1767,10 +1767,10 @@ class pebin():
         self.binary.close()
 
         if self.CODE_SIGN is True:
-			# cert was removed earlier 
+                        # cert was removed earlier 
             p = subprocess.Popen(['osslsigncode', '-certs', self.flItms['curdir'] + '/' + 'certs/signingCert.cer', '-key', \
                                   self.flItms['curdir'] + '/' + 'certs/signingPrivateKey.pem', '-n', 'Security','-in', \
-                                   self.flItms["backdoorfile"], '-out', self.flItms["backdoorfile"], '-readpass', self.flItms['curdir'] + '/' + 'certs/passFile.txt'] \
+                                  self.flItms["backdoorfile"], '-out', self.flItms["backdoorfile"], '-readpass', self.flItms['curdir'] + '/' + 'certs/passFile.txt'] \
                                  , stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             p.wait()
             out, err = p.communicate()
@@ -2046,7 +2046,7 @@ class pebin():
             time.sleep(.5)
             os.remove(self.OUTPUT)
             print (" - The original file {0} has been renamed to {1}".format(self.FILE,
-                   self.FILE + self.SUFFIX))
+                                                                             self.FILE + self.SUFFIX))
 
             if self.DELETE_ORIGINAL is True:
                 print ("!!Warning Deleteing Original File!!")
@@ -2057,7 +2057,7 @@ class pebin():
             else:
                 try:
                     if (list_of_targets[filename][2] is True and
-                       running_proc is True):
+                            running_proc is True):
                         subprocess.Popen([self.FILE, ])
                         print ("- Restarting:", self.FILE)
                     else:
@@ -2065,7 +2065,7 @@ class pebin():
 
                 except:
                     if (list_of_targets[filename.lower()][2] is True and
-                       running_proc is True):
+                            running_proc is True):
                         subprocess.Popen([self.FILE, ])
                         print ("- Restarting:", self.FILE)
                     else:

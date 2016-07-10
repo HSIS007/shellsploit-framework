@@ -1,12 +1,13 @@
 #------------------Bombermans Team---------------------------------# 
-#Author  : B3mB4m
-#Concat  : b3mb4m@protonmail.com
-#Project : https://github.com/b3mb4m/Shellsploit
-#LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
+# Author  : B3mB4m
+# Concat  : b3mb4m@protonmail.com
+# Project : https://github.com/b3mb4m/Shellsploit
+# LICENSE : https://github.com/b3mb4m/Shellsploit/blob/master/LICENSE
 #------------------------------------------------------------------#
 
+
 def encoderlist():
-	print ("""
+    print ("""
 Encoders
 ========
 
@@ -27,7 +28,7 @@ Encoders
 #\tx86/nonupper\t\tlow\t\tNon-Upper Encoder
 
 def injectorlist():
-	print ("""
+    print ("""
 \tArchitecture\t\t\t\t\tVersion
 \t============\t\t\t\t\t=======
 \t[+] injectors/Linux/x86/ptrace\t\t\tx86
@@ -44,9 +45,8 @@ def injectorlist():
 #\t[+] injectors/FreeBSD/x86/BFD/Patching\t\tx86/x64
 
 
-
 def OSlist():
-	print ("""
+    print ("""
 	Operating System	Architecture
 	================	============
 	Linux 		   		x86
@@ -66,15 +66,16 @@ def OSlist():
 
 """)
 
+
 def encoders():
-  	return [
-	  	"x64/xor",
-		"x86/xor",
-		#"x86/add_sub",
-		#"x86/alpha_mixed",
-		#"x86/alpha_upper",
-		#"x86/countdown",
-		#"x86/nonalpha",
-		#"x86/nonupper",
-		"x86/xor_b3m",
-	]
+    return [
+        "x64/xor",
+        "x86/xor",
+        #"x86/add_sub",
+        #"x86/alpha_mixed",
+        #"x86/alpha_upper",
+        #"x86/countdown",
+        #"x86/nonalpha",
+        #"x86/nonupper",
+        "x86/xor_b3m",
+    ]

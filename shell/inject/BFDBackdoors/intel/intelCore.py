@@ -89,11 +89,11 @@ class intelCore():
             value_bytes = k.bytes + _bytes
 
             self.flItms['ImpList'].append([int(hex(k.address).strip('L'), 16),
-                                          k.mnemonic.encode("utf-8"),
-                                          k.op_str.encode("utf-8"),
-                                          int(hex(k.address).strip('L'), 16) + k.size,
-                                          value_bytes,
-                                          k.size])
+                                           k.mnemonic.encode("utf-8"),
+                                           k.op_str.encode("utf-8"),
+                                           int(hex(k.address).strip('L'), 16) + k.size,
+                                           value_bytes,
+                                           k.size])
 
             if self.count >= 6 or self.count % 5 == 0 and self.count != 0:
                 break
@@ -119,11 +119,11 @@ class intelCore():
             value_bytes = k.bytes + _bytes
 
             self.flItms['ImpList'].append([int(hex(k.address).strip('L'), 16),
-                                          k.mnemonic.encode("utf-8"),
-                                          k.op_str.encode("utf-8"),
-                                          int(hex(k.address).strip('L'), 16) + k.size,
-                                          value_bytes,
-                                          k.size])
+                                           k.mnemonic.encode("utf-8"),
+                                           k.op_str.encode("utf-8"),
+                                           int(hex(k.address).strip('L'), 16) + k.size,
+                                           value_bytes,
+                                           k.size])
 
             if self.count >= 6 or self.count % 5 == 0 and self.count != 0:
                 break

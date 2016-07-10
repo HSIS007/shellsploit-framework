@@ -10,4 +10,4 @@ from header import *
 
 def RawFile( shellcode):
     sc = unhexlify(shellcode.replace("\\x", ""))
-	logs( sc, None)
+        logs( sc, None)
