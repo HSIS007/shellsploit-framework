@@ -1,4 +1,6 @@
 #Shellsploit 
+
+[![Join the chat at https://gitter.im/b3mb4m/shellsploit-framework](https://badges.gitter.im/b3mb4m/shellsploit-framework.svg)](https://gitter.im/b3mb4m/shellsploit-framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![MIT Licence](https://img.shields.io/badge/Licence-MIT_Licence-red.svg?style=plastic)
 [![Python 3.4](https://img.shields.io/badge/Python-3.4-yellow.svg?style=plastic)](https://www.python.org/)
 [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg?style=plastic)](https://www.python.org/)
