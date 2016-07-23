@@ -77,12 +77,10 @@ Please do not forget to report bugs! You can submit an issue, pull request, or y
 ######shellsploit-framework@protonmail.com 
 
 
-#Screenshots
--------------
 
-![alt tag](http://i.hizliresim.com/28XmmN.png)
-![alt tag](http://i.hizliresim.com/7MrYVv.png)
-![alt tag](http://i.hizliresim.com/g8NqXN.jpg)
-![alt tag](http://i.hizliresim.com/W18pL2.png)
-![alt tag](http://i.hizliresim.com/pBMNO0.png)
-![alt tag](http://i.hizliresim.com/rZP6vV.png)
+#Donations
+-----------
+
+Shellsploit project is completely funded  through donations(no sponsors etc.).This project consume a lot of tim.. bla bla bla bla.If you consider worth it, please consider donation.Thank you.
+
+[![BitCoin donate button](https://img.shields.io/badge/bitcoin-donate-red.svg)](https://www.coinbase.com/checkouts/ea474c1909bea50505abe32b66ca8a21 "Donate once-off to this project using BitCoin")
