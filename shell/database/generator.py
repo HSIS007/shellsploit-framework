@@ -230,12 +230,12 @@ def generator(choose=None, shellcode=None, COMMAND=None, FILE=None, ip=None, por
 
     elif choose == "windows":
         if shellcode == "messagebox":
-            from .Windows import Payload
+            from .Windows.messagebox import Payload
             from .stackconvert import stackconvertSTR
             return Payload(message=stackconvertSTR(MESSAGE, True)).getpayload()
 
         elif shellcode == "downloandandexecute":
-            from .Windows import Payload
+            from .Windows.downloadandexecute import Payload
             from .stackconvert import rawSTR
             from .stackconvert import stackconvertSTR
             if FILENAME == "None":
