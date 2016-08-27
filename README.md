@@ -76,12 +76,3 @@ Please do not forget to report bugs! You can submit an issue, pull request, or y
 ######shellsploit-framework@exploit.im     - Instant chat
 ######shellsploit-framework@protonmail.com 
 
-
-
-
-#Donations
------------
-
-Shellsploit project is completely funded  through donations(no sponsors etc.).This project consume a lot of time so if you consider worth it, please consider donation.Thank you.
-
-BTC :  1DGrZ5BuzMAHa4dtScsSQNRXnLafnYeqqD
