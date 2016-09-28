@@ -1,13 +1,10 @@
-#TEST MODULE
+#BETA
 
+
+from ctypes import *
 
 
 def qweqwe( PID, SHELLCODE):
-    try:
-        from ctypes import *
-    except ImportError as error:
-        return False
-
     page_rwx_value = 0x40
     process_all = 0x1F0FFF
     memcommit = 0x00001000
