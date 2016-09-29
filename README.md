@@ -18,6 +18,15 @@ And let's you obfuscation every byte via encoders.
 * [Compatible Operation Systems](https://github.com/b3mb4m/shellsploit-framework/wiki/Compatible-Operation-Systems)
 
 
+#Pre-installed Systems
+-----------------------
+![alt tag](https://github.com/BlackArch/blackarch-artwork/blob/master/logo/logo-38-49.png?raw=true "blackarch.org")
+![alt tag](https://avatars2.githubusercontent.com/u/13773009?v=3&s=40 "archstrike.org")
+
+
+
+
+
 #Usage
 -----
 
@@ -65,14 +74,24 @@ And let's you obfuscation every byte via encoders.
 			pids				Get PID list of computer
 			getpid				Get specific PID on list(Ex. getpid Python)
 
+#Donate 
+--------
+
+![alt tag](http://i.hizliresim.com/QQ85a3.png)
+
+
+1HzaA1dyH2Hn57VnSBw6THw8kWo2diWvFF
+
+
+
+
 
 #Bugs
 ------
 
-Please do not forget to report bugs! You can submit an issue, pull request, or you can pm via email or xmpp and newly gitter,
+Please do not forget to report bugs! You can submit an issue, pull request, or you can pm via email or gitter,
 
 
 ######https://gitter.im/b3mb4m/shellsploit-framework
-######shellsploit-framework@exploit.im     - Instant chat
-######shellsploit-framework@protonmail.com 
+######b3mb4m@protonmail.com
 
