@@ -74,15 +74,6 @@ And let's you obfuscation every byte via encoders.
 			pids				Get PID list of computer
 			getpid				Get specific PID on list(Ex. getpid Python)
 
-#Donate 
---------
-
-![alt tag](http://i.hizliresim.com/QQ85a3.png)
-
-
-1HzaA1dyH2Hn57VnSBw6THw8kWo2diWvFF
-
-
 
 
 
