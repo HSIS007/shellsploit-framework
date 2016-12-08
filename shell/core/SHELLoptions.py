@@ -217,7 +217,7 @@ Module options ({0}):
 	\tName\t\tCurrent Setting\t\tRequired\tDescription
 	\t----\t\t--------------\t\t--------\t-----------
 	\tlink\t\t{1}\t\t\tyes\t\tSource to download exe
-	\tfilename\t{2}\t\t\tno\t\tFile name
+	\tfile\t\t{2}\t\t\tno\t\tFile name
 	\tencoder\t\t{3}\t\t\tno\t\tEncoder type		
 	\titeration\t{4}\t\t\tno\t\tIteration times
 	""".format(choice, argv3, argv4, argv2, argv1))

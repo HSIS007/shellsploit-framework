@@ -401,7 +401,7 @@ class B3mB4m(ShellsploitFramework):
 
             elif terminal[:3] == "set":
                 if terminal[4:8] == "file":
-                    if string in B3mB4m.readlist():
+                    if string in B3mB4m.readlist() or string in B3mB4m.downloadandexecutelist():
                         self.argvlist[2] = terminal[9:]
                     else:
                         B3mB4m.invalidcommand()   
@@ -417,7 +417,7 @@ class B3mB4m(ShellsploitFramework):
                         B3mB4m.invalidcommand()   
                 elif terminal[4:8] == "link":
                     if string in B3mB4m.downloadandexecutelist():
-                        self.argvlist[2] = terminal[9:]
+                        self.argvlist[3] = terminal[9:]
                     else:
                         B3mB4m.invalidcommand()   
                 elif terminal[4:11] == "message":
@@ -574,7 +574,7 @@ class B3mB4m(ShellsploitFramework):
                     elif string == "windows/exec":
                         controlset(string, self.argvlist[1], self.argvlist[0], self.argvlist[2])
                     elif string == "windows/download&execute":
-                        controlset(string, self.argvlist[0], self.argvlist[1], self.argvlist[2], self.argvlist[3])
+                        controlset(string, self.argvlist[0], self.argvlist[1], self.argvlist[3], self.argvlist[2])
                     elif string == "windows/reverse_tcp":
                         controlset(string, self.argvlist[2], self.argvlist[3], self.argvlist[0], self.argvlist[1])
                     elif string == "windows/tcp_bind":
@@ -723,7 +723,7 @@ class B3mB4m(ShellsploitFramework):
                     if string == "windows/messagebox":
                         self.disassembly = generator("windows", "messagebox", MESSAGE=self.argvlist[2])
                     elif string == "windows/download&execute":
-                        self.disassembly = generator("windows", "downloandandexecute", URL=self.argvlist[2], FILENAME=self.argvlist[3])
+                        self.disassembly = generator("windows", "downloandandexecute", URL=self.argvlist[3], FILENAME=self.argvlist[2])
                     elif string == "windows/exec":
                         self.disassembly = generator("windows", "exec", COMMAND=self.argvlist[2])
                     elif string == "windows/reverse_tcp":

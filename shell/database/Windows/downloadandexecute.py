@@ -5,7 +5,7 @@ class Payload(Shellcode):
     Shellcode.info["author"] = "B3mB4m"
     Shellcode.info["name"] = "Windows - download&execute shellcode"
     Shellcode.info["references"] = [
-        "https://www.exploit-db.com/exploits/39389/"
+        "https://www.exploit-db.com/exploits/39979/"
     ]
 
     def __init__(self, **kwargs): 
